@@ -1,5 +1,6 @@
 extends RayCast3D
 @export var PlaceableTest : PackedScene
+@export var player_inventory : PlayerInventory
 var MeshPreview : MeshInstance3D 
 var selected_grid_pos : Vector2i
 var selected_global_pos : Vector3
@@ -12,13 +13,38 @@ func _input(event: InputEvent) -> void:
         if !has_selected_pos:
             return
         if !GridManager.get_grid_pos_status(selected_grid_pos): 
+            var item_to_place = player_inventory.get_selected_item()
             
-            var instancedPlaceable = PlaceableTest.instantiate()
+            var instancedPlaceable = item_to_place.instantiate()
             get_tree().root.add_child(instancedPlaceable)
-            instancedPlaceable.global_position = selected_global_pos
             
-            GridManager.set_grid_pos(selected_grid_pos,true)
+            # Save the target position and scale
+            var target_pos = selected_global_pos
+            var target_scale = instancedPlaceable.scale
 
+            # Start at zero scale and slightly below or at target pos
+            instancedPlaceable.scale = Vector3.ZERO
+            instancedPlaceable.global_position = target_pos - Vector3(0, 0.2, 0)  # start a bit lower
+
+            # Create a Tween
+            var tween = create_tween()
+            #instancedPlaceable.add_child(tween)  # can be added to object
+            tween.set_parallel()
+            tween.tween_property(instancedPlaceable, "rotation_degrees:y",180,0.3).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+            tween.tween_property(instancedPlaceable, "scale", target_scale, 0.2).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+            tween.tween_property(instancedPlaceable, "global_position", target_pos + Vector3(0, 0.5, 0), 0.3).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+            tween.tween_property(instancedPlaceable, "global_position", target_pos, 0.2).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN).set_delay(0.3)
+
+            tween.play()
+            
+            
+            GridManager.set_grid_pos(selected_grid_pos,instancedPlaceable)
+    if Input.is_action_just_pressed("remove_object"):
+        if !has_selected_pos:
+            return
+        if GridManager.get_grid_pos_status(selected_grid_pos): 
+            GridManager.remove_object_from_grid(selected_grid_pos)
+                
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
     #Check if the raycast hits anything

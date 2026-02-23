@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://5bdwrvlvjpkg" path="res://PrefabScenes/PlayerComponents/player_camera_controls.gd" id="2_g17x4"]
 [ext_resource type="Script" uid="uid://do01t0go5ksnu" path="res://PrefabScenes/PlayerComponents/player_raycast.gd" id="3_1vwmn"]
 [ext_resource type="PackedScene" uid="uid://ybesdvxhp7qg" path="res://PrefabScenes/test_placeable.tscn" id="4_sj73l"]
+[ext_resource type="Script" uid="uid://dryvfa32depwx" path="res://PrefabScenes/PlayerComponents/player_inventory.gd" id="5_yjr7a"]
+[ext_resource type="PackedScene" uid="uid://bstbgldxwo8q" path="res://PrefabScenes/test_placeable_2.tscn" id="6_0icxw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g3qmp"]
 
@@ -21,7 +23,12 @@ script = ExtResource("2_g17x4")
 HorizontalSensitivity = 3.0
 VerticalSensitivity = 3.0
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1700763046]
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1700763046 node_paths=PackedStringArray("player_inventory")]
 target_position = Vector3(0, 0, -5)
 script = ExtResource("3_1vwmn")
 PlaceableTest = ExtResource("4_sj73l")
+player_inventory = NodePath("../../PlayerInventory")
+
+[node name="PlayerInventory" type="Node" parent="." unique_id=604657600]
+script = ExtResource("5_yjr7a")
+items = Array[PackedScene]([ExtResource("4_sj73l"), ExtResource("6_0icxw")])
