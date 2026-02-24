@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d2l01kdms6841"]
+
+[ext_resource type="PackedScene" uid="uid://dnj4sfvhati2o" path="res://Matts Files/part_Convey_1.fbx" id="1_8hj31"]
+
+[node name="PartConveyorBelt" type="Node3D" unique_id=1225890810]
+
+[node name="part_Convey_1" parent="." unique_id=616372772 instance=ExtResource("1_8hj31")]

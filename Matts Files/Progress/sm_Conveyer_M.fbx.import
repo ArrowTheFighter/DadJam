@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://csoabdwljfvf"
-path="res://.godot/imported/sm_Conveyer_M.fbx-a541180f76f4dc51c8cf6573e2e882d7.scn"
+path="res://.godot/imported/sm_Conveyer_M.fbx-6ea744e855606e1f8ae9b6ed31e8f0c0.scn"
 
 [deps]
 
-source_file="res://Matts Files/sm_Conveyer_M.fbx"
-dest_files=["res://.godot/imported/sm_Conveyer_M.fbx-a541180f76f4dc51c8cf6573e2e882d7.scn"]
+source_file="res://Matts Files/Progress/sm_Conveyer_M.fbx"
+dest_files=["res://.godot/imported/sm_Conveyer_M.fbx-6ea744e855606e1f8ae9b6ed31e8f0c0.scn"]
 
 [params]
 

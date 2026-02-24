@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ci6sqet7ykbtu"
-path="res://.godot/imported/sm_Conveyer_L.fbx-7066e6db1a55af9f47193fe9aea6e15f.scn"
+uid="uid://ddg3hrr6xoji2"
+path="res://.godot/imported/sm_Conveyer_R.fbx-3db37a53e6268fbaf4b9127e8f69e120.scn"
 
 [deps]
 
-source_file="res://Matts Files/sm_Conveyer_L.fbx"
-dest_files=["res://.godot/imported/sm_Conveyer_L.fbx-7066e6db1a55af9f47193fe9aea6e15f.scn"]
+source_file="res://Matts Files/Progress/sm_Conveyer_R.fbx"
+dest_files=["res://.godot/imported/sm_Conveyer_R.fbx-3db37a53e6268fbaf4b9127e8f69e120.scn"]
 
 [params]
 
