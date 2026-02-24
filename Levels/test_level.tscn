@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://pw3dh0fu07rj" path="res://Scripts/mouse_capture.gd" id="1_00vsl"]
 [ext_resource type="PackedScene" uid="uid://gc6i7wnhyx6v" path="res://PrefabScenes/player_scene.tscn" id="1_ormqy"]
 [ext_resource type="Shader" uid="uid://ba367m6bviqqd" path="res://ShaderScripts/grid_shader.gdshader" id="2_4k50d"]
+[ext_resource type="Script" uid="uid://buup2wx5af5l0" path="res://Scripts/grid_visuals_script.gd" id="3_i4ak4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4k50d"]
 albedo_color = Color(0.24066085, 0.40436083, 0.40920183, 1)
@@ -16,7 +17,7 @@ material = SubResource("StandardMaterial3D_4k50d")
 render_priority = 0
 shader = ExtResource("2_4k50d")
 shader_parameter/line_width = 0.09600000456
-shader_parameter/grid_size = 3.0000001425
+shader_parameter/grid_size = 1.50000007125
 shader_parameter/line_color = Color(1, 1, 1, 0.12941177)
 shader_parameter/fill_color = Color(0, 0, 0, 0)
 
@@ -38,6 +39,7 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = SubResource("PlaneMesh_gbj0n")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=1861919148]
+collision_layer = 17
 
 [node name="Collider" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=1641440152]
 shape = SubResource("WorldBoundaryShape3D_ormqy")
@@ -45,6 +47,7 @@ shape = SubResource("WorldBoundaryShape3D_ormqy")
 [node name="Grid" type="MeshInstance3D" parent="." unique_id=119457709]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0.001, 0)
 mesh = SubResource("PlaneMesh_3158n")
+script = ExtResource("3_i4ak4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Grid" unique_id=1877778134]
 

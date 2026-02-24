@@ -1,14 +1,29 @@
 extends RayCast3D
 @export var PlaceableTest : PackedScene
 @export var player_inventory : PlayerInventory
-var MeshPreview : MeshInstance3D 
+@export var preview_material : StandardMaterial3D
+var MeshPreview : Node3D
 var selected_grid_pos : Vector2i
 var selected_global_pos : Vector3
 var has_selected_pos = false
+var _object_rotation := 0
+var object_rotation : int :
+    get:
+        return _object_rotation
+    set(v):
+        _object_rotation = posmod(v,4)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     pass # Replace with function body.
 func _input(event: InputEvent) -> void:
+    
+    if event.is_action_pressed("rotation_next"):
+        _object_rotation += 1
+        set_preview_rotation(_object_rotation)
+    if event.is_action_pressed("rotation_previous"):
+        _object_rotation -= 1
+        set_preview_rotation(_object_rotation)
+    
     if Input.is_action_just_pressed("place_object"):
         if !has_selected_pos:
             return
@@ -21,16 +36,19 @@ func _input(event: InputEvent) -> void:
             # Save the target position and scale
             var target_pos = selected_global_pos
             var target_scale = instancedPlaceable.scale
+            var target_rotation = instancedPlaceable.rotation_degrees
+            target_rotation.y = 90 * _object_rotation
 
             # Start at zero scale and slightly below or at target pos
             instancedPlaceable.scale = Vector3.ZERO
             instancedPlaceable.global_position = target_pos - Vector3(0, 0.2, 0)  # start a bit lower
-
+            instancedPlaceable.rotation_degrees.y -= 180
+        
             # Create a Tween
             var tween = create_tween()
             #instancedPlaceable.add_child(tween)  # can be added to object
             tween.set_parallel()
-            tween.tween_property(instancedPlaceable, "rotation_degrees:y",180,0.3).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+            tween.tween_property(instancedPlaceable, "rotation_degrees",target_rotation,0.3).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
             tween.tween_property(instancedPlaceable, "scale", target_scale, 0.2).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
             tween.tween_property(instancedPlaceable, "global_position", target_pos + Vector3(0, 0.5, 0), 0.3).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
             tween.tween_property(instancedPlaceable, "global_position", target_pos, 0.2).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN).set_delay(0.3)
@@ -38,7 +56,7 @@ func _input(event: InputEvent) -> void:
             tween.play()
             
             
-            GridManager.set_grid_pos(selected_grid_pos,instancedPlaceable)
+            GridManager.set_grid_pos(selected_grid_pos,instancedPlaceable,_object_rotation)
     if Input.is_action_just_pressed("remove_object"):
         if !has_selected_pos:
             return
@@ -51,11 +69,11 @@ func _process(delta: float) -> void:
     has_selected_pos = is_colliding()
     if(has_selected_pos):
         #Get world space position for placement
-        var roundedPos = Vector3(round_to_multiple_offset(get_collision_point().x,3,1.5),1,round_to_multiple_offset(get_collision_point().z,3,1.5))
+        var roundedPos = Vector3(round_to_multiple_offset(get_collision_point().x,GridManager.GRID_SIZE,GridManager.GRID_SIZE * 0.5),0,round_to_multiple_offset(get_collision_point().z,GridManager.GRID_SIZE,GridManager.GRID_SIZE * 0.5))
         #Get grid pos
         var grid_pos = Vector2i.ZERO
-        grid_pos.x = int((roundedPos.x - 1.5) / 3.0)
-        grid_pos.y = int((roundedPos.z - 1.5) / 3.0)
+        grid_pos.x = int((roundedPos.x - GridManager.GRID_SIZE * 0.5) / GridManager.GRID_SIZE)
+        grid_pos.y = int((roundedPos.z - GridManager.GRID_SIZE * 0.5) / GridManager.GRID_SIZE)
         #Set selected grid pos
         selected_grid_pos = grid_pos
         
@@ -63,15 +81,15 @@ func _process(delta: float) -> void:
             
             #If we don't have a preview object, set one up
             if(MeshPreview == null):
-                MeshPreview = MeshInstance3D.new()
-                MeshPreview.mesh = BoxMesh.new()
-                MeshPreview.scale = Vector3.ONE * 2
-                var preview_material := StandardMaterial3D.new()
-                preview_material.albedo_color = Color(0.968, 0.143, 0.0, 0.5)
-                preview_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-                MeshPreview.material_override = preview_material
+                var item_to_place = player_inventory.get_selected_item()
+                MeshPreview = item_to_place.instantiate()
+                
+                disable_colliders_recursive(MeshPreview)
+                apply_material_recursive(MeshPreview,preview_material)
+                
                 get_tree().root.add_child(MeshPreview)
-            
+                
+                set_preview_rotation(_object_rotation)
             
             #Set preview to world pos
             MeshPreview.global_position = roundedPos
@@ -85,5 +103,31 @@ func _process(delta: float) -> void:
         MeshPreview.queue_free()
     pass
 
+func set_preview_rotation(rotation_amount):
+    if MeshPreview == null: 
+        return
+    
+    MeshPreview.rotation_degrees.y = 90 * rotation_amount
+    
+
 func round_to_multiple_offset(value: float, multiple: float, offset: float) -> float:
     return round((value - offset) / multiple) * multiple + offset
+    
+func apply_material_recursive(root: Node, material: Material) -> void:
+    for child in root.get_children():
+        if child is MeshInstance3D:
+            var mesh = child.mesh
+            if mesh:
+                for i in mesh.get_surface_count():
+                    child.set_surface_override_material(i, material)
+        
+        # Recurse into children
+        apply_material_recursive(child, material)
+
+func disable_colliders_recursive(root: Node) -> void:
+    for child in root.get_children():
+        if child is CollisionObject3D:
+            child.collision_layer = 0
+            child.collision_mask = 0
+
+        disable_colliders_recursive(child)
