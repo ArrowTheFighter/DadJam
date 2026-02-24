@@ -19,7 +19,8 @@ func _input(event: InputEvent) -> void:
         #Rotate the camera horizontally
         rotation_degrees.y -= event.relative.x * HorizontalSensitivity * MOUSE_SCALE
         #Rotate the camera vertically
-        rotation_degrees.x -= event.relative.y * VerticalSensitivity * MOUSE_SCALE
+        rotation_degrees.x = clampf(rotation_degrees.x - event.relative.y * VerticalSensitivity * MOUSE_SCALE,-90,90)
+        
         
         
         

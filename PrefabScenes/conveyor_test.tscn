@@ -1,6 +1,9 @@
 [gd_scene format=4 uid="uid://b4a0ukdn84yhd"]
 
+[ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_ckeed"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
+size = Vector3(1, 0.7139282, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvuy5"]
 resource_name = "mat_Convey_Sides"
@@ -160,29 +163,35 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_h72lw")
 
-[node name="ConveyorTest" type="Node3D" unique_id=291985971]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1790180508 node_paths=PackedStringArray("display_points") groups=["Machine"]]
+collision_layer = 17
+script = ExtResource("1_ckeed")
+display_points = [NodePath("ConveyorTest/DisplayPosition")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1790180508]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=862597027]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50080276, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=862597027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35776687, 0)
 shape = SubResource("BoxShape3D_mvuy5")
 
-[node name="part_Convey_1" type="Node3D" parent="." unique_id=226618108]
+[node name="ConveyorTest" type="Node3D" parent="." unique_id=291985971]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="DisplayPosition" type="Marker3D" parent="ConveyorTest" unique_id=2015351178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76842636, 0)
+
+[node name="part_Convey_1" type="Node3D" parent="ConveyorTest" unique_id=226618108]
 transform = Transform3D(0.805, 0, 0, 0, 0.805, 0, 0, 0, 0.805, 0, 0, 0)
 
-[node name="mesh_Convey_Frame" type="MeshInstance3D" parent="part_Convey_1" unique_id=228163936]
+[node name="mesh_Convey_Frame" type="MeshInstance3D" parent="ConveyorTest/part_Convey_1" unique_id=228163936]
 mesh = SubResource("ArrayMesh_ckeed")
 
-[node name="mesh_Convey_Belt" type="MeshInstance3D" parent="part_Convey_1/mesh_Convey_Frame" unique_id=262962420]
+[node name="mesh_Convey_Belt" type="MeshInstance3D" parent="ConveyorTest/part_Convey_1/mesh_Convey_Frame" unique_id=262962420]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8006643, 0)
 mesh = SubResource("ArrayMesh_oqtmx")
 
-[node name="mesh_Rotator_L" type="MeshInstance3D" parent="part_Convey_1/mesh_Convey_Frame" unique_id=1822553449]
+[node name="mesh_Rotator_L" type="MeshInstance3D" parent="ConveyorTest/part_Convey_1/mesh_Convey_Frame" unique_id=1822553449]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5131857, 0.8004286, 1.0898783e-07)
 mesh = SubResource("ArrayMesh_sie50")
 
-[node name="mesh_Rotator_R" type="MeshInstance3D" parent="part_Convey_1/mesh_Convey_Frame" unique_id=2100817353]
+[node name="mesh_Rotator_R" type="MeshInstance3D" parent="ConveyorTest/part_Convey_1/mesh_Convey_Frame" unique_id=2100817353]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5131857, 0.8004286, 1.0898783e-07)
 mesh = SubResource("ArrayMesh_tu5gl")
