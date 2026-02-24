@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RecipeInfo" format=3 uid="uid://drdwuuextb3st"]
+
+[ext_resource type="Script" uid="uid://ckc6grqxpee7h" path="res://Scripts/item_info.gd" id="1_2jna1"]
+[ext_resource type="Script" uid="uid://b014sm5jahalk" path="res://Scripts/recipe_info.gd" id="2_fy6h4"]
+
+[resource]
+script = ExtResource("2_fy6h4")
+accept_any_item = true
+output_intake_item = true
+metadata/_custom_type_script = "uid://b014sm5jahalk"

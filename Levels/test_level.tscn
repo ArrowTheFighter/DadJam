@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://gc6i7wnhyx6v" path="res://PrefabScenes/player_scene.tscn" id="1_ormqy"]
 [ext_resource type="Shader" uid="uid://ba367m6bviqqd" path="res://ShaderScripts/grid_shader.gdshader" id="2_4k50d"]
 [ext_resource type="Script" uid="uid://buup2wx5af5l0" path="res://Scripts/grid_visuals_script.gd" id="3_i4ak4"]
-[ext_resource type="PackedScene" uid="uid://dgobgxd7jkbaa" path="res://PrefabScenes/test_pickup.tscn" id="5_3158n"]
+[ext_resource type="PackedScene" uid="uid://dgobgxd7jkbaa" path="res://PrefabScenes/PickupScenes/test_pickup.tscn" id="5_3158n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4k50d"]
 albedo_color = Color(0.24066085, 0.40436083, 0.40920183, 1)

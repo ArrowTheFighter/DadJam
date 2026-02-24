@@ -14,7 +14,6 @@ height = 0.2
 
 [node name="TestPickup" type="RigidBody3D" unique_id=629013510 groups=["Machine", "Pickup"]]
 collision_layer = 17
-freeze_mode = 1
 script = ExtResource("1_3sp8b")
 item_info = ExtResource("2_tdu0s")
 

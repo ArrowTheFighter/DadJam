@@ -7,9 +7,9 @@ var MeshPreview : Node3D
 var selected_grid_pos : Vector2i
 var selected_global_pos : Vector3
 var has_selected_pos = false
-var _object_rotation := 0
 var holding_item : Node3D
 var holding_item_local_pos : Vector3
+var _object_rotation := 0
 var object_rotation : int :
     get:
         return _object_rotation
@@ -21,16 +21,19 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
     
     if event.is_action_pressed("rotation_next"):
-        _object_rotation += 1
-        set_preview_rotation(_object_rotation)
+        object_rotation += 1
+        print(object_rotation)
+        set_preview_rotation(object_rotation)
     if event.is_action_pressed("rotation_previous"):
-        _object_rotation -= 1
-        set_preview_rotation(_object_rotation)
+        object_rotation -= 1
+        set_preview_rotation(object_rotation)
     
     if Input.is_action_just_pressed("place_object"):
         if !has_selected_pos:
             return
         if !GridManager.get_grid_pos_status(selected_grid_pos): 
+            var machine_pos = selected_grid_pos
+            var machine_rotation = object_rotation
             var item_to_place = player_inventory.get_selected_item()
             
             var instancedPlaceable = item_to_place.instantiate()
@@ -40,7 +43,7 @@ func _input(event: InputEvent) -> void:
             var target_pos = selected_global_pos
             var target_scale = instancedPlaceable.scale
             var target_rotation = instancedPlaceable.rotation_degrees
-            target_rotation.y = 90 * _object_rotation
+            target_rotation.y = 90 * object_rotation
 
             # Start at zero scale and slightly below or at target pos
             instancedPlaceable.scale = Vector3.ZERO
@@ -57,9 +60,11 @@ func _input(event: InputEvent) -> void:
             tween.tween_property(instancedPlaceable, "global_position", target_pos, 0.2).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN).set_delay(0.3)
 
             tween.play()
+            GridManager.set_pos_filled(machine_pos)
+            await get_tree().create_timer(0.51).timeout 
+            GridManager.set_grid_pos(machine_pos,instancedPlaceable,machine_rotation)
+            instancedPlaceable.initialize_machine(machine_pos,machine_rotation)
             
-            
-            GridManager.set_grid_pos(selected_grid_pos,instancedPlaceable,_object_rotation)
     if Input.is_action_just_pressed("remove_object"):
         if !has_selected_pos:
             return
@@ -76,7 +81,7 @@ func _process(delta: float) -> void:
     has_selected_pos = is_colliding()
     if(is_colliding()):
         var hitObject : Node3D = get_collider(0)
-        if (hitObject.is_in_group("Pickup")):
+        if (hitObject != null and hitObject.is_in_group("Pickup")):
             if(MeshPreview != null):
                 MeshPreview.queue_free()
             if Input.is_action_just_pressed("interact"):
@@ -85,14 +90,12 @@ func _process(delta: float) -> void:
                 holding_item.freeze = true
                 holding_item.set_collision_layer_value(5,false)
                 (holding_item as RigidBody3D).disable_mode = 4
-                print("interacting with pickup")
             return
-        elif(hitObject.is_in_group("Machine") and holding_item != null):
-            print("looking at machine with item")
+        elif(hitObject != null and hitObject.is_in_group("Machine") and holding_item != null):
             if Input.is_action_just_pressed("interact"):
                 print(hitObject.name)
                 hitObject.add_item_to_machine(holding_item.item_info)
-                drop_holding_item()
+                destroy_holding_item()
                 return
         
         if(holding_item == null):
@@ -118,7 +121,7 @@ func _process(delta: float) -> void:
                     
                     get_tree().root.add_child(MeshPreview)
                     
-                    set_preview_rotation(_object_rotation)
+                    set_preview_rotation(object_rotation)
                 
                 #Set preview to world pos
                 MeshPreview.global_position = roundedPos
@@ -172,3 +175,7 @@ func drop_holding_item():
     (holding_item as RigidBody3D).disable_mode = CollisionObject3D.DISABLE_MODE_REMOVE
     holding_item = null
     holding_item_local_pos = Vector3.ZERO
+
+func destroy_holding_item():
+    holding_item.queue_free()
+    holding_item = null
