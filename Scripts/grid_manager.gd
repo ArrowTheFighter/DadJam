@@ -1,6 +1,6 @@
 extends Node
 
-const GRID_SIZE = 1.5
+const GRID_SIZE = 1
 var grid_spots_status = Set.new()
 
 var StoredObjects : Array[PlacedObjectInfo]

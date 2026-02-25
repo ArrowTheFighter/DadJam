@@ -2,7 +2,8 @@ extends Node
 class_name QualityEnum
 
 enum Property {
-	
+   
+NONE, 
 BORING,
 ROASTED,
 BURNT,

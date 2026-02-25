@@ -12,6 +12,9 @@
 radius = 0.25
 height = 1.5
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_0icxw"]
+radius = 0.2
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0icxw"]
 transparency = 1
 albedo_color = Color(0.6901961, 0.17254902, 0.25490198, 0.5058824)
@@ -33,7 +36,8 @@ script = ExtResource("2_g17x4")
 HorizontalSensitivity = 3.0
 VerticalSensitivity = 3.0
 
-[node name="RayCastObjectPlacer2" type="RayCast3D" parent="Camera3D" unique_id=1007674822 node_paths=PackedStringArray("player_inventory", "camera_node")]
+[node name="RayCastObjectPlacer2" type="ShapeCast3D" parent="Camera3D" unique_id=1122591465 node_paths=PackedStringArray("player_inventory", "camera_node")]
+shape = SubResource("SphereShape3D_0icxw")
 target_position = Vector3(0, 0, -3.5)
 collision_mask = 16
 script = ExtResource("3_1vwmn")
@@ -43,7 +47,6 @@ preview_material = SubResource("StandardMaterial3D_0icxw")
 camera_node = NodePath("..")
 
 [node name="Area3D" type="Area3D" parent="Camera3D" unique_id=1133437265]
-collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Area3D" unique_id=1629384523]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3000001)

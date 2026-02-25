@@ -1,21 +1,26 @@
 extends Node3D
 class_name Machine
 @export var recipe_info : RecipeInfo
-@export var machine_process_duration : float
 @export var display_points : Array[Node3D]
 @export_flags("+X","-X","+Z","-Z") var input_dir
 @export var output_dir : Direction
 var input_positions : Array[Vector2i]
 var out_position : Vector2i
-var holding_items : Array[ItemInfo]
+var holding_items : Array[Pickup]
 var machine_grid_position : Vector2i
 var machine_rotation : int
 var machine_finished := false
-@onready var timer: Timer = $Timer
+@export var input_duration : float
+@onready var input_timer: Timer = $InputTimer
+@export var process_duration : float
+@onready var process_timer: Timer = $ProcessTimer
+@export var output_duration : float
+@onready var output_timer: Timer = $OutputTimer
 
 
-signal machine_started
-
+signal input_started
+signal process_started
+signal output_started
 
 enum Direction {
     PositiveX,
@@ -25,8 +30,15 @@ enum Direction {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    timer.wait_time = machine_process_duration
-    timer.timeout.connect(push_item_to_output)
+    input_timer.wait_time = input_duration
+    input_timer.timeout.connect(start_process)
+    
+    process_timer.wait_time = process_duration
+    process_timer.timeout.connect(process_ended)
+    
+    output_timer.wait_time = output_duration
+    output_timer.timeout.connect(output_ended)
+    
     GridManager.grid_updated.connect(grid_updated)
     pass # Replace with function body.
     
@@ -44,38 +56,81 @@ func grid_updated():
         push_item_to_output()
     pass
 
-func add_item_to_machine(item_info : ItemInfo):
+func add_item_to_machine(pickup : Pickup):
     machine_finished = false
-    holding_items.append(item_info)
-    display_item(item_info)
-    timer.start()
-    machine_started.emit()
+    holding_items.append(pickup)
+    display_item(pickup)
+    input_timer.start()
+    input_started.emit()
+    
+func start_process():
+    if process_duration <= 0:
+        process_ended()
+        return
+    process_timer.start()
+    process_started.emit()
+    
+func process_ended():
+    #var instanced_item
+    #if(recipe_info != null and recipe_info.recipe_output != null):
+        #var output_item_scene = recipe_info.recipe_output.get_item_scene()
+        #instanced_item = output_item_scene.instantiate()
+        #get_tree().root.add_child(instanced_item)
+        #
+    #var outputItem = instanced_item
+    #if recipe_info.output_intake_item:
+        #outputItem = holding_items[0]
+        #
+    #for point in display_points:
+        #if point.get_child_count() > 0:
+            #point.get_child(0).queue_free()
+            #
+    #holding_items = []         
+    #holding_items.append(outputItem)
+    #display_item(outputItem)
+        #
+    output_timer.start()
+    output_started.emit()
+        
+func output_ended():
+    push_item_to_output()
 
 
 func push_item_to_output():
+    print("machine_finished")
     machine_finished = true
     var output_machine = GridManager.get_machine_at_grid_position(out_position)
     if !output_machine:
         return
-    var outputItem = recipe_info.recipe_output
+    
+    print("found next machine")
+    var instanced_item
+    if(recipe_info != null and recipe_info.recipe_output != null):
+        var output_item_scene = recipe_info.recipe_output.get_item_scene()
+        instanced_item = output_item_scene.instantiate()
+        get_tree().root.add_child(instanced_item)
+        
+    var outputItem = instanced_item
     if recipe_info.output_intake_item:
         outputItem = holding_items[0]
+        
+    print(outputItem.name)
     output_machine.add_item_to_machine(outputItem)
     for point in display_points:
         if point.get_child_count() > 0:
             point.get_child(0).queue_free()
         
     holding_items = []
+    
+    print("finished moving item")
     pass
 
-func display_item(item_info :ItemInfo):
-    var fetched_scene : PackedScene = load(item_info.item_scene_path)
-    var instanced_item = fetched_scene.instantiate()
+func display_item(pickup :Pickup):
     for point in display_points:
         if point.get_child_count() <= 0:
-            point.add_child(instanced_item)
-            instanced_item.position = Vector3.ZERO
-            instanced_item.freeze = true
+            pickup.reparent(point)
+            pickup.position = Vector3.ZERO
+            pickup.freeze = true
             
 func direction_to_local_offset(dir: Direction) -> Vector2i:
     match dir:

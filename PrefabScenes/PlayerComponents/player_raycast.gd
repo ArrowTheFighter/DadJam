@@ -1,4 +1,4 @@
-extends ShapeCast3D
+extends RayCast3D
 @export var PlaceableTest : PackedScene
 @export var player_inventory : PlayerInventory
 @export var preview_material : StandardMaterial3D
@@ -15,8 +15,11 @@ var object_rotation : int :
         return _object_rotation
     set(v):
         _object_rotation = posmod(v,4)
+        
+var detectedColliders : Array
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+    player_inventory.selected_item_changed.connect(selected_item_changed)
     pass # Replace with function body.
 func _input(event: InputEvent) -> void:
     
@@ -73,6 +76,19 @@ func _input(event: InputEvent) -> void:
                 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+    var best_pickup = get_best_pickup()
+    if best_pickup != null and holding_item == null:
+        if(MeshPreview != null):
+            MeshPreview.queue_free()
+        if Input.is_action_just_pressed("interact"):
+            holding_item = best_pickup
+            holding_item_local_pos = Vector3(.5,-.2,-1)
+            holding_item.freeze = true
+            holding_item.set_collision_layer_value(5,false)
+            (holding_item as RigidBody3D).disable_mode = 4
+        return
+    
+    
     if holding_item != null:
         holding_item.global_position = camera_node.to_global(holding_item_local_pos)
          #drop the item
@@ -80,28 +96,19 @@ func _process(delta: float) -> void:
     #Check if the raycast hits anything
     has_selected_pos = is_colliding()
     if(is_colliding()):
-        var hitObject : Node3D = get_collider(0)
-        if (hitObject != null and hitObject.is_in_group("Pickup")):
-            if(MeshPreview != null):
-                MeshPreview.queue_free()
-            if Input.is_action_just_pressed("interact"):
-                holding_item = hitObject
-                holding_item_local_pos = Vector3(.5,-.2,-1)
-                holding_item.freeze = true
-                holding_item.set_collision_layer_value(5,false)
-                (holding_item as RigidBody3D).disable_mode = 4
-            return
-        elif(hitObject != null and hitObject.is_in_group("Machine") and holding_item != null):
+        var hitObject : Node3D = get_collider()
+        
+        if(hitObject != null and hitObject.is_in_group("Machine") and holding_item != null):
             if Input.is_action_just_pressed("interact"):
                 print(hitObject.name)
-                hitObject.add_item_to_machine(holding_item.item_info)
-                destroy_holding_item()
+                hitObject.add_item_to_machine(holding_item)
+                remove_holding_item()
                 return
         
         if(holding_item == null):
             
             #Get world space position for placement
-            var roundedPos = Vector3(round_to_multiple_offset(get_collision_point(0).x,GridManager.GRID_SIZE,GridManager.GRID_SIZE * 0.5),0,round_to_multiple_offset(get_collision_point(0).z,GridManager.GRID_SIZE,GridManager.GRID_SIZE * 0.5))
+            var roundedPos = Vector3(round_to_multiple_offset(get_collision_point().x,GridManager.GRID_SIZE,GridManager.GRID_SIZE * 0.5),0,round_to_multiple_offset(get_collision_point().z,GridManager.GRID_SIZE,GridManager.GRID_SIZE * 0.5))
             #Get grid pos
             var grid_pos = Vector2i.ZERO
             grid_pos.x = int((roundedPos.x - GridManager.GRID_SIZE * 0.5) / GridManager.GRID_SIZE)
@@ -113,15 +120,7 @@ func _process(delta: float) -> void:
                 
                 #If we don't have a preview object, set one up
                 if(MeshPreview == null):
-                    var item_to_place = player_inventory.get_selected_item()
-                    MeshPreview = item_to_place.instantiate()
-                    
-                    disable_colliders_recursive(MeshPreview)
-                    apply_material_recursive(MeshPreview,preview_material)
-                    
-                    get_tree().root.add_child(MeshPreview)
-                    
-                    set_preview_rotation(object_rotation)
+                    spawn_display_mesh()
                 
                 #Set preview to world pos
                 MeshPreview.global_position = roundedPos
@@ -132,20 +131,52 @@ func _process(delta: float) -> void:
         
     #Remove preview if not hitting anything
     elif(MeshPreview != null):
-        MeshPreview.queue_free()
-    
+        delete_display_mesh()
+        
     if Input.is_action_just_pressed("interact") and holding_item != null:
         drop_holding_item()
         return
    
     pass
 
-func set_preview_rotation(rotation_amount):
+func selected_item_changed():
+    delete_display_mesh()
+    spawn_display_mesh()
+    pass
+
+func delete_display_mesh():
+    if MeshPreview != null:
+        MeshPreview.queue_free()
+
+func spawn_display_mesh():
+    var item_to_place = player_inventory.get_selected_item()
+    MeshPreview = item_to_place.instantiate()
+    
+    disable_colliders_recursive(MeshPreview)
+    apply_material_recursive(MeshPreview,preview_material)
+    
+    get_tree().root.add_child(MeshPreview)
+    
+    set_preview_rotation(object_rotation,true)
+
+func set_preview_rotation(rotation_step , instant = false):
     if MeshPreview == null: 
         return
+    if instant:
+        MeshPreview.rotation_degrees.y = rotation_step * 90
+        return
+    var tween = create_tween()
     
-    MeshPreview.rotation_degrees.y = 90 * rotation_amount
-    
+    var target_angle = shortest_angle(MeshPreview.rotation_degrees.y, rotation_step)
+    tween.tween_property(MeshPreview, "rotation_degrees:y", target_angle, 0.15)
+    #MeshPreview.rotation_degrees.y = 90 * rotation_amount
+
+func shortest_angle(from_deg: float, to_index: int) -> float:
+    # Convert index (0-3) to target angle
+    var to_deg = to_index * 90.0
+    # Compute delta in [-180, 180]
+    var delta = fmod(to_deg - from_deg + 180.0, 360.0) - 180.0
+    return from_deg + delta
 
 func round_to_multiple_offset(value: float, multiple: float, offset: float) -> float:
     return round((value - offset) / multiple) * multiple + offset
@@ -164,6 +195,7 @@ func apply_material_recursive(root: Node, material: Material) -> void:
 func disable_colliders_recursive(root: Node) -> void:
     for child in root.get_children():
         if child is CollisionObject3D:
+            child.set_deferred("freeze", true)
             child.collision_layer = 0
             child.collision_mask = 0
 
@@ -175,7 +207,31 @@ func drop_holding_item():
     (holding_item as RigidBody3D).disable_mode = CollisionObject3D.DISABLE_MODE_REMOVE
     holding_item = null
     holding_item_local_pos = Vector3.ZERO
-
-func destroy_holding_item():
-    holding_item.queue_free()
+    
+func remove_holding_item():
     holding_item = null
+
+func get_best_pickup() -> Node3D:
+    var best_pickup: Node3D = null
+    var smallest_dot: float = -1.0  # DOT ranges [-1,1], want closest to 1
+
+    for body in detectedColliders:
+        if body.is_in_group("Pickup"):  # Only consider pickups
+            var dir_to_body = (body.global_transform.origin - camera_node.global_transform.origin).normalized()
+            var forward = -camera_node.global_transform.basis.z  # Camera forward in Godot 4
+            var dot = forward.dot(dir_to_body)
+
+            if dot > smallest_dot:  # larger dot = more aligned with camera
+                smallest_dot = dot
+                best_pickup = body
+
+    return best_pickup
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+    detectedColliders.append(body)
+    pass # Replace with function body.
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+    detectedColliders.erase(body)
+    pass # Replace with function body.

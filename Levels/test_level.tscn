@@ -73,4 +73,13 @@ shadow_enabled = true
 [node name="TestPickup" parent="." unique_id=629013510 instance=ExtResource("5_3158n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6424322, 0.10099945, -6.317572)
 
+[node name="TestPickup2" parent="." unique_id=1142083623 instance=ExtResource("5_3158n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1702766, 0.10099945, -6.1356835)
+
+[node name="TestPickup3" parent="." unique_id=5418946 instance=ExtResource("5_3158n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.152995, 0.10099945, -6.821085)
+
+[node name="TestPickup4" parent="." unique_id=1979754113 instance=ExtResource("5_3158n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6723158, 0.10099945, -6.9437413)
+
 [editable path="PlayerScene"]
