@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://cpr3v5yo1ahqc"]
 
 [ext_resource type="PackedScene" uid="uid://d2l01kdms6841" path="res://Matts Files/scene_conveyor_belt.tscn" id="1_r51p4"]
+[ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="2_8gar6"]
 
 [node name="Node3D" type="Node3D" unique_id=1846924293]
 
 [node name="PartConveyorBelt" parent="." unique_id=1225890810 instance=ExtResource("1_r51p4")]
+
+[node name="part_Mixer_2" parent="." unique_id=239372155 instance=ExtResource("2_8gar6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3581884, -0.046854496, 0.95723784)
