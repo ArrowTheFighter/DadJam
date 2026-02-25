@@ -14,7 +14,7 @@ func _ready() -> void:
     
 func input_started():
     var tween = create_tween()
-    item_parent.global_position = start_pos.global_position
+    #item_parent.global_position = start_pos.global_position
     tween.tween_property(item_parent,"global_position",middle_pos.global_position,machine.input_duration)
     
     pass

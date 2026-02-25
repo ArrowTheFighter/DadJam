@@ -1,11 +1,18 @@
 extends Node3D
 class_name Machine
+
+const DIR_X_POS := 1 << 0 # +X
+const DIR_X_NEG := 1 << 1 # -X
+const DIR_Z_POS := 1 << 2 # +Z
+const DIR_Z_NEG := 1 << 3 # -Z
+
 @export var recipe_info : RecipeInfo
 @export var display_points : Array[Node3D]
 @export_flags("+X","-X","+Z","-Z") var input_dir
 @export var output_dir : Direction
 var input_positions : Array[Vector2i]
 var out_position : Vector2i
+@export var max_items : int = 1
 var holding_items : Array[Pickup]
 var machine_grid_position : Vector2i
 var machine_rotation : int
@@ -48,18 +55,34 @@ func initialize_machine(grid_position : Vector2i,rotation_step):
     
     var offset := direction_to_grid_offset(output_dir,machine_rotation)
     out_position = machine_grid_position + offset
+    input_positions = bitmask_to_grid_offsets(input_dir, rotation_step)
+    
+    GridManager.grid_was_updated()
     
     pass
+    
+func get_input_grid_positions() -> Array[Vector2i]:
+    var positions : Array[Vector2i]
+    for pos in input_positions:
+        var grid := Vector2i(
+            machine_grid_position.x + pos.x,
+            machine_grid_position.y + pos.y
+        )
+        positions.append(grid)
+    return positions
     
 func grid_updated():
     if machine_finished and holding_items != []:
         push_item_to_output()
     pass
 
+func can_add_to_machine() -> bool:
+    return holding_items.size() < max_items
+
 func add_item_to_machine(pickup : Pickup):
     machine_finished = false
     holding_items.append(pickup)
-    display_item(pickup)
+    display_item(pickup,pickup.global_position)
     input_timer.start()
     input_started.emit()
     
@@ -71,6 +94,26 @@ func start_process():
     process_started.emit()
     
 func process_ended():
+    convert_items_to_recipe_output()
+    output_timer.start()
+    output_started.emit()
+        
+func output_ended():
+    push_item_to_output()
+
+
+func push_item_to_output():
+    print("machine_finished")
+    
+    machine_finished = true
+    var output_machine = GridManager.get_machine_at_grid_position(out_position)
+    if !output_machine:
+        return
+    if !output_machine.can_add_to_machine():
+        return
+    if !output_machine.get_input_grid_positions().has(machine_grid_position):
+        return
+    print("found next machine")
     #var instanced_item
     #if(recipe_info != null and recipe_info.recipe_output != null):
         #var output_item_scene = recipe_info.recipe_output.get_item_scene()
@@ -81,29 +124,21 @@ func process_ended():
     #if recipe_info.output_intake_item:
         #outputItem = holding_items[0]
         #
-    #for point in display_points:
-        #if point.get_child_count() > 0:
-            #point.get_child(0).queue_free()
-            #
-    #holding_items = []         
-    #holding_items.append(outputItem)
-    #display_item(outputItem)
+    #print(outputItem.name)
+    output_machine.add_item_to_machine(holding_items[0])
+    for point in display_points:
+        if point.get_child_count() > 0:
+            point.get_child(0).queue_free()
         #
-    output_timer.start()
-    output_started.emit()
-        
-func output_ended():
-    push_item_to_output()
-
-
-func push_item_to_output():
-    print("machine_finished")
-    machine_finished = true
-    var output_machine = GridManager.get_machine_at_grid_position(out_position)
-    if !output_machine:
-        return
+    holding_items = []
     
-    print("found next machine")
+    GridManager.grid_was_updated()
+    pass
+
+
+func convert_items_to_recipe_output():
+    if recipe_info.output_intake_item:
+        return
     var instanced_item
     if(recipe_info != null and recipe_info.recipe_output != null):
         var output_item_scene = recipe_info.recipe_output.get_item_scene()
@@ -111,26 +146,24 @@ func push_item_to_output():
         get_tree().root.add_child(instanced_item)
         
     var outputItem = instanced_item
-    if recipe_info.output_intake_item:
-        outputItem = holding_items[0]
         
-    print(outputItem.name)
-    output_machine.add_item_to_machine(outputItem)
     for point in display_points:
         if point.get_child_count() > 0:
-            point.get_child(0).queue_free()
+            point.get_child(0).free()
         
     holding_items = []
     
-    print("finished moving item")
-    pass
+    holding_items.append(outputItem)
+    display_item(outputItem, display_points[0].global_position)
 
-func display_item(pickup :Pickup):
+func display_item(pickup :Pickup,pos : Vector3):
     for point in display_points:
         if point.get_child_count() <= 0:
+            point.global_position = pos
             pickup.reparent(point)
             pickup.position = Vector3.ZERO
             pickup.freeze = true
+            
             
 func direction_to_local_offset(dir: Direction) -> Vector2i:
     match dir:
@@ -162,6 +195,53 @@ func rotate_offset(offset: Vector2i, rotation_step: int) -> Vector2i:
 func direction_to_grid_offset(dir: Direction, rotation_step: int) -> Vector2i:
     var local_offset := direction_to_local_offset(dir)
     return rotate_offset(local_offset, rotation_step)
+    
+    
+func bit_to_local_offset(bit: int) -> Vector2i:
+    match bit:
+        DIR_X_POS:
+            return Vector2i(1, 0)
+        DIR_X_NEG:
+            return Vector2i(-1, 0)
+        DIR_Z_POS:
+            return Vector2i(0, 1)
+        DIR_Z_NEG:
+            return Vector2i(0, -1)
+        _:
+            return Vector2i.ZERO
+    
+func bitmask_to_grid_offsets(mask: int, rotation_step: int) -> Array[Vector2i]:
+    var result: Array[Vector2i] = []
+
+    var bits := [
+        DIR_X_POS,
+        DIR_X_NEG,
+        DIR_Z_POS,
+        DIR_Z_NEG
+    ]
+
+    for bit in bits:
+        if mask & bit != 0:
+            var local := bit_to_local_offset(bit)
+            var rotated := rotate_offset(local, rotation_step)
+            result.append(rotated)
+
+    return result
+    
+func draw_input_debug():
+    for pos in input_positions:
+        var grid := Vector3(
+            machine_grid_position.x + pos.x,
+            0,
+            machine_grid_position.y + pos.y
+        )
+
+        var world_pos := grid * GridManager.GRID_SIZE
+        world_pos.x += GridManager.GRID_SIZE * 0.5
+        world_pos.z += GridManager.GRID_SIZE * 0.5
+        world_pos.y = 1
+
+        draw_debug_cube(world_pos)
     
 func draw_debug_cube(position: Vector3, size: float = 0.5, color: Color = Color.RED):
     var mesh_instance := MeshInstance3D.new()

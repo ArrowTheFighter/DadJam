@@ -8,6 +8,9 @@ var StoredObjects : Array[PlacedObjectInfo]
 signal grid_updated
 # Called when the node enters the scene tree for the first time.
 
+func grid_was_updated():
+    grid_updated.emit()
+
 func get_grid_pos_status(pos: Vector2i) -> bool:
     return grid_spots_status.contains(pos)
     

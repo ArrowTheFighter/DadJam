@@ -198,6 +198,8 @@ func disable_colliders_recursive(root: Node) -> void:
             child.set_deferred("freeze", true)
             child.collision_layer = 0
             child.collision_mask = 0
+        if child is CollisionShape3D:
+            child.set_deferred("disabled",true)
 
         disable_colliders_recursive(child)
         
