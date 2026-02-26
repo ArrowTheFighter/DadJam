@@ -200,22 +200,8 @@ func convert_items_to_recipe_output():
 
 
 func apply_qualities(pickup : Pickup):
-    if recipe_info.added_quality_1 != QualityEnum.Property.NONE:
-        if !pickup.item_qualities.has(recipe_info.added_quality_1):
-            pickup.item_qualities.append(recipe_info.added_quality_1)
-            print("adding quality " + QualityEnum.Property.keys()[recipe_info.added_quality_1])
     
-    if recipe_info.added_quality_2 != QualityEnum.Property.NONE:
-        if !pickup.item_qualities.has(recipe_info.added_quality_2):
-            pickup.item_qualities.append(recipe_info.added_quality_2)
-            print("adding quality " + QualityEnum.Property.keys()[recipe_info.added_quality_2])
-    
-    if recipe_info.added_quality_3 != QualityEnum.Property.NONE:
-        if !pickup.item_qualities.has(recipe_info.added_quality_3):
-            pickup.item_qualities.append(recipe_info.added_quality_3)     
-            print("adding quality " + QualityEnum.Property.keys()[recipe_info.added_quality_3])
-            
-    #remove qualities
+    #Remove qualities
     if recipe_info.removed_quality_1 != QualityEnum.Property.NONE:
         if pickup.item_qualities.has(recipe_info.removed_quality_1):
             pickup.item_qualities.erase(recipe_info.removed_quality_1)
@@ -227,18 +213,38 @@ func apply_qualities(pickup : Pickup):
     if recipe_info.removed_quality_3 != QualityEnum.Property.NONE:
         if pickup.item_qualities.has(recipe_info.removed_quality_3):
             pickup.item_qualities.erase(recipe_info.removed_quality_3)  
+    
+    #Add qualities
+    if recipe_info.added_quality_1 != QualityEnum.Property.NONE:
+        if !pickup.item_qualities.has(recipe_info.added_quality_1):
+            #if pickup.item_qualities.size() < pickup.item_info.max_qualities:
+            pickup.item_qualities.append(recipe_info.added_quality_1)
+            print("adding quality " + QualityEnum.Property.keys()[recipe_info.added_quality_1])
+    
+    if recipe_info.added_quality_2 != QualityEnum.Property.NONE:
+        if !pickup.item_qualities.has(recipe_info.added_quality_2):
+            #if pickup.item_qualities.size() < pickup.item_info.max_qualities:
+            pickup.item_qualities.append(recipe_info.added_quality_2)
+            print("adding quality " + QualityEnum.Property.keys()[recipe_info.added_quality_2])
+    
+    if recipe_info.added_quality_3 != QualityEnum.Property.NONE:
+        if !pickup.item_qualities.has(recipe_info.added_quality_3):
+            #if pickup.item_qualities.size() < pickup.item_info.max_qualities:
+            pickup.item_qualities.append(recipe_info.added_quality_3)     
+            print("adding quality " + QualityEnum.Property.keys()[recipe_info.added_quality_3])
             
       
     
 
 func display_item(pickup :Pickup,pos : Vector3):
-    for point in display_points:
-        if point.get_child_count() <= 0:
-            point.global_position = pos
-            pickup.reparent(point)
+    for i in range (display_points.size()):
+        if display_points[i].get_child_count() <= 0:
+            display_points[i].global_position = pos
+            pickup.reparent(display_points[i])
             pickup.position = Vector3.ZERO
             pickup.freeze = true
             pickup.set_collision_layer_value(5,false)
+            return
             
             
 func direction_to_local_offset(dir: Direction) -> Vector2i:
