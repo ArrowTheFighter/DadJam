@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://baqimo8jrf7w7"]
+
+[ext_resource type="Texture2D" uid="uid://c2wmni8dw3ffk" path="res://FactoryArt/Textures/T_ATB_Palette_Base.png" id="1_sfm84"]
+[ext_resource type="Texture2D" uid="uid://7n1ex0rowwjy" path="res://FactoryArt/Textures/T_ATB_Palette_Emissive.png" id="2_bunig"]
+[ext_resource type="Texture2D" uid="uid://cctb6mp4oxk2g" path="res://FactoryArt/Textures/T_ATB_Palette_Metal.png" id="3_ue5eh"]
+[ext_resource type="Texture2D" uid="uid://bfqb7alp2vq7e" path="res://FactoryArt/Textures/T_ATB_Palette_Roughness.png" id="4_8spig"]
+
+[resource]
+albedo_texture = ExtResource("1_sfm84")
+metallic = 1.0
+metallic_texture = ExtResource("3_ue5eh")
+roughness_texture = ExtResource("4_8spig")
+emission_enabled = true
+emission_energy_multiplier = 0.79
+emission_texture = ExtResource("2_bunig")
