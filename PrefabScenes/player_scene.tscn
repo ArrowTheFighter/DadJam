@@ -20,7 +20,7 @@ albedo_color = Color(0.6901961, 0.17254902, 0.25490198, 0.5058824)
 [sub_resource type="BoxShape3D" id="BoxShape3D_glq8a"]
 size = Vector3(0.5, 0.5, 2.5)
 
-[node name="PlayerScene" type="CharacterBody3D" unique_id=2134970690 node_paths=PackedStringArray("Camera")]
+[node name="PlayerScene" type="CharacterBody3D" unique_id=2134970690 node_paths=PackedStringArray("Camera") groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_3rav0")
 player_speed = 3.5

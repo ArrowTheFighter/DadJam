@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://6vvha3oweedu"]
+
+[ext_resource type="Script" uid="uid://64qmsmh0r1to" path="res://Scripts/ui_quality_display.gd" id="1_6k04f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_radbr"]
+font_size = 37
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 0.48235294)
+shadow_offset = Vector2(3.425, 3.705)
+
+[node name="Control" type="MarginContainer" unique_id=852689714]
+anchors_preset = -1
+anchor_right = 0.224
+anchor_bottom = 0.09900001
+offset_top = 1.0
+offset_right = -0.04800415
+offset_bottom = -0.15200806
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6k04f")
+
+[node name="Label" type="Label" parent="." unique_id=1692399755]
+layout_mode = 2
+text = "Roasted"
+label_settings = SubResource("LabelSettings_radbr")
+vertical_alignment = 1

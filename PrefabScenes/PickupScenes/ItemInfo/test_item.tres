@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_gort7")
-item_name = "Test"
+item_name = "Test Item"
+max_qualities = 3
 item_scene_path = "uid://dgobgxd7jkbaa"
 metadata/_custom_type_script = "uid://ckc6grqxpee7h"

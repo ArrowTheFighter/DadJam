@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://fskqjv5cxj8w"]
 
 [ext_resource type="Script" uid="uid://7sqag8g6r8vd" path="res://Scripts/score_manager.gd" id="1_g8fu2"]
+[ext_resource type="Script" uid="uid://cp3iiiri1s8h8" path="res://Scripts/quality_tab_manager.gd" id="2_rn3rv"]
 
 [node name="UI" type="Control" unique_id=1595550919]
 layout_mode = 3
@@ -33,3 +34,16 @@ grow_vertical = 2
 max_value = 10.0
 step = 1.0
 script = ExtResource("1_g8fu2")
+
+[node name="QualityBox" type="VBoxContainer" parent="." unique_id=841515256]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -479.0
+offset_right = 275.0
+offset_bottom = -34.0
+grow_vertical = 0
+alignment = 2
+script = ExtResource("2_rn3rv")

@@ -3,21 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2wmni8dw3ffk"
-path.s3tc="res://.godot/imported/T_ATB_Palette_Base.png-aa4bb5582e0c048f68957f05ffe43a32.s3tc.ctex"
+path="res://.godot/imported/T_ATB_Palette_Base.png-aa4bb5582e0c048f68957f05ffe43a32.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://FactoryArt/Textures/T_ATB_Palette_Base.png"
-dest_files=["res://.godot/imported/T_ATB_Palette_Base.png-aa4bb5582e0c048f68957f05ffe43a32.s3tc.ctex"]
+dest_files=["res://.godot/imported/T_ATB_Palette_Base.png-aa4bb5582e0c048f68957f05ffe43a32.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=false
+compress/mode=0
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RecipeInfo" format=3 uid="uid://bnf5rouwups2n"]
+
+[ext_resource type="Resource" uid="uid://spcw05uxwq13" path="res://PrefabScenes/PickupScenes/ItemInfo/test_item_processed.tres" id="1_e5w3s"]
+[ext_resource type="Script" uid="uid://ckc6grqxpee7h" path="res://Scripts/item_info.gd" id="2_cgr6m"]
+[ext_resource type="Resource" uid="uid://0jjh74b4xtg8" path="res://PrefabScenes/PickupScenes/ItemInfo/test_item_processed2.tres" id="3_e5w3s"]
+[ext_resource type="Script" uid="uid://b014sm5jahalk" path="res://Scripts/recipe_info.gd" id="4_3slj1"]
+
+[resource]
+script = ExtResource("4_3slj1")
+recipe_output = ExtResource("1_e5w3s")
+added_quality_1 = 3
+recipe_requirements = Array[ExtResource("2_cgr6m")]([ExtResource("3_e5w3s"), ExtResource("3_e5w3s"), ExtResource("3_e5w3s")])
+metadata/_custom_type_script = "uid://b014sm5jahalk"

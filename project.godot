@@ -26,6 +26,7 @@ Pickup=""
 Machine=""
 Score=""
 ItemDispenser=""
+Player=""
 
 [input]
 

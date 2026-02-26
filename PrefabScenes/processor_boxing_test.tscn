@@ -1,9 +1,9 @@
-[gd_scene format=4 uid="uid://hmypigd6ax60"]
+[gd_scene format=4 uid="uid://daedj7fix216u"]
 
-[ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_jp0t8"]
-[ext_resource type="Resource" uid="uid://m7h6t3lr5xil" path="res://PrefabScenes/PickupScenes/RecipeInfo/test_recipe_multi.tres" id="2_jp0t8"]
-[ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="3_bjdkr"]
-[ext_resource type="Script" uid="uid://dv3152veuf0rf" path="res://Scripts/conveyor_visuals_script.gd" id="4_rmtdf"]
+[ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_0ffnv"]
+[ext_resource type="Resource" uid="uid://m7h6t3lr5xil" path="res://PrefabScenes/PickupScenes/RecipeInfo/test_recipe_multi.tres" id="2_syyek"]
+[ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="3_r8mlu"]
+[ext_resource type="Script" uid="uid://dv3152veuf0rf" path="res://Scripts/conveyor_visuals_script.gd" id="4_mdl7j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
 size = Vector3(1, 0.7139282, 1)
@@ -171,11 +171,11 @@ top_radius = 0.3
 bottom_radius = 0.25
 height = 0.5
 
-[node name="StaticBody3D2" type="StaticBody3D" unique_id=1790180508 node_paths=PackedStringArray("display_points") groups=["Machine"]]
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1790180508 node_paths=PackedStringArray("display_points") groups=["Machine"]]
 collision_layer = 17
-script = ExtResource("1_jp0t8")
-recipe_info = ExtResource("2_jp0t8")
-display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2"), NodePath("DisplayPosition3")]
+script = ExtResource("1_0ffnv")
+recipe_info = ExtResource("2_syyek")
+display_points = [NodePath("DisplayPosition3"), NodePath("DisplayPosition2"), NodePath("DisplayPosition3")]
 input_dir = 2
 max_items = 3
 input_duration = 0.2
@@ -206,7 +206,8 @@ one_shot = true
 
 [node name="ConveyorTest" type="Node3D" parent="." unique_id=291985971]
 
-[node name="part_Mixer_2" parent="ConveyorTest" unique_id=2026862831 instance=ExtResource("3_bjdkr")]
+[node name="part_Mixer_2" parent="ConveyorTest" unique_id=2026862831 instance=ExtResource("3_r8mlu")]
+visible = false
 
 [node name="part_Convey_1" type="Node3D" parent="ConveyorTest" unique_id=226618108]
 transform = Transform3D(0.805, 0, 0, 0, 0.805, 0, 0, 0, 0.805, 0, 0, 0)
@@ -228,7 +229,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5131857, 0.8004286, 1.08987
 mesh = SubResource("ArrayMesh_tu5gl")
 
 [node name="ConveyorVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "start_pos", "middle_pos", "end_pos")]
-script = ExtResource("4_rmtdf")
+script = ExtResource("4_mdl7j")
 machine = NodePath("..")
 start_pos = NodePath("../StartPos")
 middle_pos = NodePath("../MiddlePos")
@@ -244,5 +245,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0020655394, 0.44210523, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.753, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=670887352]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5068827, -0.03955604)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5505011, -0.03955604)
 mesh = SubResource("CylinderMesh_jp0t8")

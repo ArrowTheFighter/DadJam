@@ -1,4 +1,5 @@
 extends RayCast3D
+class_name PlayerRaycast
 @export var PlaceableTest : PackedScene
 @export var player_inventory : PlayerInventory
 @export var preview_material : StandardMaterial3D
@@ -18,6 +19,9 @@ var object_rotation : int :
         _object_rotation = posmod(v,4)
         
 var detectedColliders : Array
+
+signal item_picked_up(pickup : Pickup)
+signal item_dropped
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     player_inventory.selected_item_changed.connect(selected_item_changed)
@@ -98,6 +102,7 @@ func _process(delta: float) -> void:
             holding_item.freeze = true
             holding_item.set_collision_layer_value(5,false)
             (holding_item as RigidBody3D).disable_mode = 4
+            item_picked_up.emit(holding_item)
         return
             
     var best_machine_with_pickup : Machine = get_best_machine_with_pickup()
@@ -115,6 +120,7 @@ func _process(delta: float) -> void:
                 holding_item.set_collision_layer_value(5,false)
                 best_machine_with_pickup.release_items()
                 (holding_item as RigidBody3D).disable_mode = 4
+                item_picked_up.emit(holding_item)
                 update_node_outline(best_machine_with_pickup,1.0)
                 update_node_outline(holding_item,1.0)
         if Input.is_action_just_pressed("empty_machine"): 
@@ -133,6 +139,7 @@ func _process(delta: float) -> void:
             holding_item.freeze = true
             holding_item.set_collision_layer_value(5,false)
             (holding_item as RigidBody3D).disable_mode = 4
+            item_picked_up.emit(holding_item)
         return
     
     
@@ -151,6 +158,7 @@ func _process(delta: float) -> void:
                     print(hitObject.name)
                     hitObject.add_item_to_machine(holding_item)
                     remove_holding_item()
+                    item_dropped.emit()
                     return
         
         if(holding_item == null):
@@ -257,6 +265,7 @@ func drop_holding_item():
     (holding_item as RigidBody3D).disable_mode = CollisionObject3D.DISABLE_MODE_REMOVE
     holding_item = null
     holding_item_local_pos = Vector3.ZERO
+    item_dropped.emit()
     
 func remove_holding_item():
     holding_item = null
