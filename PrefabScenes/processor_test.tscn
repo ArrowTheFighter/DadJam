@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://ccvjojhc7xylf"]
 
 [ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_7imkx"]
-[ext_resource type="Resource" uid="uid://c86d2dycrkvti" path="res://RecipeInfo/test_recipe2.tres" id="2_7imkx"]
+[ext_resource type="Resource" uid="uid://c86d2dycrkvti" path="res://PrefabScenes/PickupScenes/RecipeInfo/test_recipe2.tres" id="2_7imkx"]
 [ext_resource type="Script" uid="uid://dv3152veuf0rf" path="res://Scripts/conveyor_visuals_script.gd" id="3_bbu4b"]
 [ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="3_j7q21"]
 
@@ -179,6 +179,12 @@ output_duration = 0.2
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
 
+[node name="DisplayPosition2" type="Marker3D" parent="." unique_id=416576520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
+
+[node name="DisplayPosition3" type="Marker3D" parent="." unique_id=626833161]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=862597027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35776687, 0)
 shape = SubResource("BoxShape3D_mvuy5")
@@ -215,10 +221,9 @@ mesh = SubResource("ArrayMesh_sie50")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5131857, 0.8004286, 1.0898783e-07)
 mesh = SubResource("ArrayMesh_tu5gl")
 
-[node name="ConveyorVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "item_parent", "start_pos", "middle_pos", "end_pos")]
+[node name="ConveyorVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "start_pos", "middle_pos", "end_pos")]
 script = ExtResource("3_bbu4b")
 machine = NodePath("..")
-item_parent = NodePath("../DisplayPosition")
 start_pos = NodePath("../StartPos")
 middle_pos = NodePath("../MiddlePos")
 end_pos = NodePath("../EndPos")

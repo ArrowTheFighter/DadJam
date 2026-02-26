@@ -4,6 +4,7 @@ class_name QualityEnum
 enum Property {
    
 NONE, 
+BOXED,
 BORING,
 ROASTED,
 BURNT,

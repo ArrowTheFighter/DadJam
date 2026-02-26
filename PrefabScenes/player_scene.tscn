@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dryvfa32depwx" path="res://PrefabScenes/PlayerComponents/player_inventory.gd" id="5_yjr7a"]
 [ext_resource type="PackedScene" uid="uid://b4a0ukdn84yhd" path="res://PrefabScenes/conveyor_test.tscn" id="6_0icxw"]
 [ext_resource type="PackedScene" uid="uid://ccvjojhc7xylf" path="res://PrefabScenes/processor_test.tscn" id="7_glq8a"]
-[ext_resource type="PackedScene" uid="uid://cpwtckxswpmc7" path="res://PrefabScenes/shipping_container_test.tscn" id="8_7eaeh"]
+[ext_resource type="PackedScene" uid="uid://hmypigd6ax60" path="res://PrefabScenes/processor_test_multi.tscn" id="8_7eaeh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g3qmp"]
 radius = 0.25
@@ -23,6 +23,7 @@ size = Vector3(0.5, 0.5, 2.5)
 [node name="PlayerScene" type="CharacterBody3D" unique_id=2134970690 node_paths=PackedStringArray("Camera")]
 collision_layer = 2
 script = ExtResource("1_3rav0")
+player_speed = 3.5
 Camera = NodePath("Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=706077203]

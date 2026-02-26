@@ -9,6 +9,7 @@ var selected_global_pos : Vector3
 var has_selected_pos = false
 var holding_item : Node3D
 var holding_item_local_pos : Vector3
+var outlined_object
 var _object_rotation := 0
 var object_rotation : int :
     get:
@@ -76,8 +77,54 @@ func _input(event: InputEvent) -> void:
                 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+    if outlined_object != null:
+        update_node_outline(outlined_object, 1)
+        outlined_object = null
+    var ItemDispenser = get_item_dispenser()
+    if ItemDispenser != null and holding_item == null:
+        
+        update_node_outline(ItemDispenser,1.1)
+        outlined_object = ItemDispenser
+        if(MeshPreview != null):
+            MeshPreview.queue_free()
+        if Input.is_action_just_pressed("interact"):
+            var itemInfo = ItemDispenser.item_info;
+            var spawnedItem = itemInfo.get_item_scene().instantiate()
+            
+            get_tree().root.add_child(spawnedItem)
+            
+            holding_item = spawnedItem
+            holding_item_local_pos = Vector3(.5,-.2,-1)
+            holding_item.freeze = true
+            holding_item.set_collision_layer_value(5,false)
+            (holding_item as RigidBody3D).disable_mode = 4
+        return
+            
+    var best_machine_with_pickup : Machine = get_best_machine_with_pickup()
+    if best_machine_with_pickup != null and holding_item == null:
+        update_node_outline(best_machine_with_pickup,1.1)
+        outlined_object = best_machine_with_pickup
+        if best_machine_with_pickup.can_take_item():
+            if(MeshPreview != null):
+                MeshPreview.queue_free()
+            if Input.is_action_just_pressed("interact"):
+                holding_item = best_machine_with_pickup.holding_items[0]
+                holding_item.reparent(get_tree().root)
+                holding_item_local_pos = Vector3(.5,-.2,-1)
+                holding_item.freeze = true
+                holding_item.set_collision_layer_value(5,false)
+                best_machine_with_pickup.release_items()
+                (holding_item as RigidBody3D).disable_mode = 4
+                update_node_outline(best_machine_with_pickup,1.0)
+                update_node_outline(holding_item,1.0)
+        if Input.is_action_just_pressed("empty_machine"): 
+              best_machine_with_pickup.empty_machine()
+        return
+    
     var best_pickup = get_best_pickup()
     if best_pickup != null and holding_item == null:
+        update_node_outline(best_pickup,1.1)
+        outlined_object = best_pickup
         if(MeshPreview != null):
             MeshPreview.queue_free()
         if Input.is_action_just_pressed("interact"):
@@ -100,10 +147,11 @@ func _process(delta: float) -> void:
         
         if(hitObject != null and hitObject.is_in_group("Machine") and holding_item != null):
             if Input.is_action_just_pressed("interact"):
-                print(hitObject.name)
-                hitObject.add_item_to_machine(holding_item)
-                remove_holding_item()
-                return
+                if (hitObject as Machine).can_add_to_machine():
+                    print(hitObject.name)
+                    hitObject.add_item_to_machine(holding_item)
+                    remove_holding_item()
+                    return
         
         if(holding_item == null):
             
@@ -213,21 +261,56 @@ func drop_holding_item():
 func remove_holding_item():
     holding_item = null
 
-func get_best_pickup() -> Node3D:
-    var best_pickup: Node3D = null
-    var smallest_dot: float = -1.0  # DOT ranges [-1,1], want closest to 1
+func get_item_dispenser() -> Node3D:
+    var dispenser: Node3D = null
+    var smallest_dot: float = -1.0  
 
     for body in detectedColliders:
-        if body.is_in_group("Pickup"):  # Only consider pickups
+        if body.is_in_group("ItemDispenser"): 
             var dir_to_body = (body.global_transform.origin - camera_node.global_transform.origin).normalized()
             var forward = -camera_node.global_transform.basis.z  # Camera forward in Godot 4
             var dot = forward.dot(dir_to_body)
 
-            if dot > smallest_dot:  # larger dot = more aligned with camera
+            if dot > smallest_dot: 
+                smallest_dot = dot
+                dispenser = body
+
+    return dispenser
+
+func get_best_pickup() -> Node3D:
+    var best_pickup: Node3D = null
+    var smallest_dot: float = -1.0  
+
+    for body in detectedColliders:
+        if body.is_in_group("Pickup"):  
+            var dir_to_body = (body.global_transform.origin - camera_node.global_transform.origin).normalized()
+            var forward = -camera_node.global_transform.basis.z 
+            var dot = forward.dot(dir_to_body)
+
+            if dot > smallest_dot: 
                 smallest_dot = dot
                 best_pickup = body
 
     return best_pickup
+    
+func get_best_machine_with_pickup() -> Node3D:
+    var best_pickup: Node3D = null
+    var smallest_dot: float = -1.0  
+
+    for body in detectedColliders:
+        if body.is_in_group("Machine"): 
+            if (body as Machine).holding_items.size() <= 0:
+                continue
+            var dir_to_body = (body.global_transform.origin - camera_node.global_transform.origin).normalized()
+            var forward = -camera_node.global_transform.basis.z  
+            var dot = forward.dot(dir_to_body)
+
+            if dot > smallest_dot:  
+                smallest_dot = dot
+                best_pickup = body
+
+    return best_pickup
+    
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
     detectedColliders.append(body)
@@ -237,3 +320,38 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _on_area_3d_body_exited(body: Node3D) -> void:
     detectedColliders.erase(body)
     pass # Replace with function body.
+
+func update_node_outline(node: Node, outline_size : float):
+    if node is MeshInstance3D:
+        _update_mesh_outline(node,outline_size)
+
+    for child in node.get_children():
+        update_node_outline(child,outline_size)
+
+func _update_mesh_outline(mesh_instance: MeshInstance3D,outline_size :float):
+    var mesh := mesh_instance.mesh
+    if mesh == null:
+        return
+
+    for surface in range(mesh.get_surface_count()):
+        var mat := mesh_instance.get_active_material(surface)
+        if mat == null:
+            continue
+
+        # 1️⃣ Duplicate the base material
+        var mat_instance := mat.duplicate()
+        mat_instance.resource_local_to_scene = true
+
+        # 2️⃣ Duplicate the next_pass (outline material)
+        if mat_instance.next_pass:
+            mat_instance.next_pass = mat_instance.next_pass.duplicate()
+            mat_instance.next_pass.resource_local_to_scene = true
+
+            if mat_instance.next_pass is ShaderMaterial:
+                mat_instance.next_pass.set_shader_parameter(
+                    "size",
+                    outline_size
+                )
+
+        # 3️⃣ Assign per-instance material override
+        mesh_instance.set_surface_override_material(surface, mat_instance)

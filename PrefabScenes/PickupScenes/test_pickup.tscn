@@ -1,18 +1,24 @@
 [gd_scene format=3 uid="uid://dgobgxd7jkbaa"]
 
 [ext_resource type="Script" uid="uid://dny4rrlm475x2" path="res://PrefabScenes/pickup_script.gd" id="1_3sp8b"]
-[ext_resource type="Resource" uid="uid://drjbri3f0bh68" path="res://ItemInfo/test_item.tres" id="2_tdu0s"]
+[ext_resource type="Resource" uid="uid://drjbri3f0bh68" path="res://PrefabScenes/PickupScenes/ItemInfo/test_item.tres" id="2_tdu0s"]
+[ext_resource type="Material" uid="uid://b4x821bpnsh5y" path="res://Materials/outline_shader.tres" id="3_iknwl"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7rbwc"]
 height = 0.2
 radius = 0.2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nymub"]
+next_pass = ExtResource("3_iknwl")
+albedo_color = Color(0.32024416, 0.32024416, 0.32024413, 1)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_3sp8b"]
+material = SubResource("StandardMaterial3D_nymub")
 top_radius = 0.2
 bottom_radius = 0.2
 height = 0.2
 
-[node name="TestPickup" type="RigidBody3D" unique_id=629013510 groups=["Machine", "Pickup"]]
+[node name="TestPickup" type="RigidBody3D" unique_id=629013510 groups=["Pickup"]]
 collision_layer = 17
 script = ExtResource("1_3sp8b")
 item_info = ExtResource("2_tdu0s")

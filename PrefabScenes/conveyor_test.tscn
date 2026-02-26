@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_ckeed"]
 [ext_resource type="Script" uid="uid://dv3152veuf0rf" path="res://Scripts/conveyor_visuals_script.gd" id="2_0fxfu"]
-[ext_resource type="Resource" uid="uid://drdwuuextb3st" path="res://RecipeInfo/test_recipe.tres" id="2_oqtmx"]
+[ext_resource type="Resource" uid="uid://drdwuuextb3st" path="res://PrefabScenes/PickupScenes/RecipeInfo/test_recipe.tres" id="2_oqtmx"]
 [ext_resource type="Texture2D" uid="uid://duxb7hwkfa1bg" path="res://Images/T_ATB_Palette_Base.png" id="3_sie50"]
+[ext_resource type="Material" uid="uid://cff4dughde73v" path="res://Materials/outline_shader_upward_offset.tres" id="4_3r3l1"]
 [ext_resource type="Texture2D" uid="uid://hwu704y5ay61" path="res://Images/T_ConveyorBelt.png" id="4_tu5gl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
@@ -11,6 +12,7 @@ size = Vector3(1, 0.7139282, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3r3l1"]
 resource_name = "mat_Convey_Sides"
+next_pass = ExtResource("4_3r3l1")
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("3_sie50")
 emission_enabled = true
@@ -53,6 +55,7 @@ shadow_mesh = SubResource("ArrayMesh_bu2rx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3bf5"]
 resource_name = "mat_Convey_Belt"
+next_pass = ExtResource("4_3r3l1")
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("4_tu5gl")
 emission_enabled = true
@@ -305,10 +308,9 @@ mesh = SubResource("ArrayMesh_sie50")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5131857, 0.8004286, 1.0898783e-07)
 mesh = SubResource("ArrayMesh_tu5gl")
 
-[node name="ConveyorVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "item_parent", "start_pos", "middle_pos", "end_pos")]
+[node name="ConveyorVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "start_pos", "middle_pos", "end_pos")]
 script = ExtResource("2_0fxfu")
 machine = NodePath("..")
-item_parent = NodePath("../DisplayPosition")
 start_pos = NodePath("../StartPos")
 middle_pos = NodePath("../MiddlePos")
 end_pos = NodePath("../EndPos")

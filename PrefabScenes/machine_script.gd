@@ -25,7 +25,7 @@ var machine_finished := false
 @onready var output_timer: Timer = $OutputTimer
 
 
-signal input_started
+signal input_started(input_number)
 signal process_started
 signal output_started
 
@@ -83,27 +83,49 @@ func add_item_to_machine(pickup : Pickup):
     machine_finished = false
     holding_items.append(pickup)
     display_item(pickup,pickup.global_position)
-    input_timer.start()
-    input_started.emit()
+    input_started.emit(holding_items.size() - 1)
+    if input_duration <= 0:
+        input_timer.timeout.emit()
+    else:
+        input_timer.start()
     
 func start_process():
-    if process_duration <= 0:
-        process_ended()
+    if !recipe_info.output_intake_item and !items_match_recipe():
+        print("didn't have correct recipe")
         return
-    process_timer.start()
     process_started.emit()
+    if process_duration <= 0:
+        process_timer.timeout.emit()
+    else:
+        process_timer.start()
     
 func process_ended():
     convert_items_to_recipe_output()
-    output_timer.start()
     output_started.emit()
+    if output_duration <= 0:
+        output_timer.timeout.emit()
+    else:
+        output_timer.start()
         
 func output_ended():
     push_item_to_output()
 
+func items_match_recipe() -> bool:
+    var items_match := 0
+    var item_check_array = holding_items.duplicate()
+
+    for item in recipe_info.recipe_requirements:
+        for holding_item in item_check_array:
+            if holding_item.item_info == item:
+                items_match += 1
+                item_check_array.erase(holding_item)
+                break
+
+    print(items_match)
+    return items_match == recipe_info.recipe_requirements.size()
+    
 
 func push_item_to_output():
-    print("machine_finished")
     
     machine_finished = true
     var output_machine = GridManager.get_machine_at_grid_position(out_position)
@@ -113,7 +135,6 @@ func push_item_to_output():
         return
     if !output_machine.get_input_grid_positions().has(machine_grid_position):
         return
-    print("found next machine")
     #var instanced_item
     #if(recipe_info != null and recipe_info.recipe_output != null):
         #var output_item_scene = recipe_info.recipe_output.get_item_scene()
@@ -126,15 +147,37 @@ func push_item_to_output():
         #
     #print(outputItem.name)
     output_machine.add_item_to_machine(holding_items[0])
-    for point in display_points:
-        if point.get_child_count() > 0:
-            point.get_child(0).queue_free()
-        #
-    holding_items = []
-    
-    GridManager.grid_was_updated()
+    release_items()
     pass
 
+func cancel_process():
+    process_timer.stop()
+    
+func cancel_output():
+    output_timer.stop()
+    
+func empty_machine(broadcast = true):
+    for point in display_points:
+        if point.get_child_count() > 0:
+            point.get_child(0).free()
+        
+        #
+    #for i in range(holding_items.size() - 1, -1, -1):
+        #holding_items[i].free()
+    holding_items = []
+    if broadcast:
+        GridManager.grid_was_updated()
+
+func release_items():
+    ##for point in display_points:
+        ##if point.get_child_count() > 0:
+            ##point.get_child(0).reparent(get_tree().root)
+        ###
+    holding_items = []
+    GridManager.grid_was_updated()
+    
+func can_take_item() -> bool:
+    return machine_finished
 
 func convert_items_to_recipe_output():
     if recipe_info.output_intake_item:
@@ -147,14 +190,46 @@ func convert_items_to_recipe_output():
         
     var outputItem = instanced_item
         
-    for point in display_points:
-        if point.get_child_count() > 0:
-            point.get_child(0).free()
-        
-    holding_items = []
+    empty_machine(false)
     
+    apply_qualities(outputItem)
     holding_items.append(outputItem)
+    
     display_item(outputItem, display_points[0].global_position)
+    GridManager.grid_was_updated()
+
+
+func apply_qualities(pickup : Pickup):
+    if recipe_info.added_quality_1 != QualityEnum.Property.NONE:
+        if !pickup.item_qualities.has(recipe_info.added_quality_1):
+            pickup.item_qualities.append(recipe_info.added_quality_1)
+            print("adding quality " + QualityEnum.Property.keys()[recipe_info.added_quality_1])
+    
+    if recipe_info.added_quality_2 != QualityEnum.Property.NONE:
+        if !pickup.item_qualities.has(recipe_info.added_quality_2):
+            pickup.item_qualities.append(recipe_info.added_quality_2)
+            print("adding quality " + QualityEnum.Property.keys()[recipe_info.added_quality_2])
+    
+    if recipe_info.added_quality_3 != QualityEnum.Property.NONE:
+        if !pickup.item_qualities.has(recipe_info.added_quality_3):
+            pickup.item_qualities.append(recipe_info.added_quality_3)     
+            print("adding quality " + QualityEnum.Property.keys()[recipe_info.added_quality_3])
+            
+    #remove qualities
+    if recipe_info.removed_quality_1 != QualityEnum.Property.NONE:
+        if pickup.item_qualities.has(recipe_info.removed_quality_1):
+            pickup.item_qualities.erase(recipe_info.removed_quality_1)
+    
+    if recipe_info.removed_quality_2 != QualityEnum.Property.NONE:
+        if pickup.item_qualities.has(recipe_info.removed_quality_2):
+            pickup.item_qualities.erase(recipe_info.removed_quality_2)
+    
+    if recipe_info.removed_quality_3 != QualityEnum.Property.NONE:
+        if pickup.item_qualities.has(recipe_info.removed_quality_3):
+            pickup.item_qualities.erase(recipe_info.removed_quality_3)  
+            
+      
+    
 
 func display_item(pickup :Pickup,pos : Vector3):
     for point in display_points:
@@ -163,6 +238,7 @@ func display_item(pickup :Pickup,pos : Vector3):
             pickup.reparent(point)
             pickup.position = Vector3.ZERO
             pickup.freeze = true
+            pickup.set_collision_layer_value(5,false)
             
             
 func direction_to_local_offset(dir: Direction) -> Vector2i:

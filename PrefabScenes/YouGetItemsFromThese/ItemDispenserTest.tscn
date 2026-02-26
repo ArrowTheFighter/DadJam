@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://sosyj6ocyqeg"]
+
+[ext_resource type="Script" uid="uid://d1h7r3oshcs88" path="res://Scripts/item_dispenser_script.gd" id="1_o5bwd"]
+[ext_resource type="Resource" uid="uid://drjbri3f0bh68" path="res://PrefabScenes/PickupScenes/ItemInfo/test_item.tres" id="2_eoky7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0yqkp"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8fygn"]
+bottom_radius = 0.4
+height = 1.0
+
+[node name="ItemDispenserTest" type="RigidBody3D" unique_id=2000094186 groups=["ItemDispenser"]]
+disable_mode = 1
+collision_layer = 17
+freeze = true
+script = ExtResource("1_o5bwd")
+item_info = ExtResource("2_eoky7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1790293370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_0yqkp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=835329670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CylinderMesh_8fygn")
