@@ -40,11 +40,15 @@ func _input(event: InputEvent) -> void:
         if !has_selected_pos:
             return
         if !GridManager.get_grid_pos_status(selected_grid_pos): 
+            var item_to_place = player_inventory.get_selected_item()
+            var instancedPlaceable = item_to_place.instantiate()
+            if !MoneyManager.can_afford(instancedPlaceable.machine_cost):
+                instancedPlaceable.queue_free()
+                return
+            MoneyManager.remove_money(instancedPlaceable.machine_cost)
             var machine_pos = selected_grid_pos
             var machine_rotation = object_rotation
-            var item_to_place = player_inventory.get_selected_item()
             
-            var instancedPlaceable = item_to_place.instantiate()
             get_tree().root.add_child(instancedPlaceable)
             
             # Save the target position and scale
@@ -77,6 +81,9 @@ func _input(event: InputEvent) -> void:
         if !has_selected_pos:
             return
         if GridManager.get_grid_pos_status(selected_grid_pos): 
+            var placed_machine = GridManager.get_machine_at_grid_position(selected_grid_pos)
+            if placed_machine != null:
+                MoneyManager.add_money(placed_machine.machine_cost)
             GridManager.remove_object_from_grid(selected_grid_pos)
                 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

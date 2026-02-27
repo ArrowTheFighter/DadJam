@@ -23,11 +23,14 @@ var machine_finished := false
 @onready var process_timer: Timer = $ProcessTimer
 @export var output_duration : float
 @onready var output_timer: Timer = $OutputTimer
+@export var machine_cost : int = 10
 
 
 signal input_started(input_number)
 signal process_started
 signal output_started
+
+signal process_finished(ingredients : Array[ItemInfo])
 
 enum Direction {
     PositiveX,
@@ -189,13 +192,17 @@ func convert_items_to_recipe_output():
         get_tree().root.add_child(instanced_item)
         
     var outputItem = instanced_item
-        
+    var ingredients : Array[ItemInfo]
+    for item in holding_items:
+        ingredients.append(item.item_info)
     empty_machine(false)
     
     apply_qualities(outputItem)
     holding_items.append(outputItem)
     
     display_item(outputItem, display_points[0].global_position)
+    
+    process_finished.emit(ingredients)
     GridManager.grid_was_updated()
 
 

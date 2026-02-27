@@ -1,7 +1,17 @@
 [gd_scene format=3 uid="uid://fskqjv5cxj8w"]
 
+[ext_resource type="Script" uid="uid://dytkuyg8weujb" path="res://Scripts/item_hotbar_manager.gd" id="1_aodg1"]
 [ext_resource type="Script" uid="uid://7sqag8g6r8vd" path="res://Scripts/score_manager.gd" id="1_g8fu2"]
 [ext_resource type="Script" uid="uid://cp3iiiri1s8h8" path="res://Scripts/quality_tab_manager.gd" id="2_rn3rv"]
+[ext_resource type="Script" uid="uid://dkoefk6y72omr" path="res://Scripts/money_display.gd" id="3_312q2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_312q2"]
+font_size = 37
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 0.48235294)
+shadow_offset = Vector2(3.425, 3.705)
 
 [node name="UI" type="Control" unique_id=1595550919]
 layout_mode = 3
@@ -10,6 +20,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ItemHotbarContainer" type="HBoxContainer" parent="." unique_id=673224789]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -439.0
+offset_top = -117.0
+offset_right = 439.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 39
+alignment = 1
+script = ExtResource("1_aodg1")
 
 [node name="Control" type="Control" parent="." unique_id=831285422]
 layout_mode = 1
@@ -47,3 +74,14 @@ offset_bottom = -34.0
 grow_vertical = 0
 alignment = 2
 script = ExtResource("2_rn3rv")
+
+[node name="Money" type="Label" parent="." unique_id=1648488068]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 23.0
+offset_right = 218.0
+offset_bottom = 96.0
+text = "Money: 0"
+label_settings = SubResource("LabelSettings_312q2")
+vertical_alignment = 1
+script = ExtResource("3_312q2")

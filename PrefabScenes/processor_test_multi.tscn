@@ -181,6 +181,7 @@ max_items = 3
 input_duration = 0.2
 process_duration = 1.0
 output_duration = 0.2
+machine_cost = 60
 
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)

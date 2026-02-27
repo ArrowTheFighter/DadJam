@@ -31,7 +31,7 @@ render_priority = 0
 shader = ExtResource("3_0y878")
 shader_parameter/line_width = 0.09600000456
 shader_parameter/grid_size = 1.0
-shader_parameter/line_color = Color(1, 1, 1, 0.12941177)
+shader_parameter/line_color = Color(0.41521516, 0.59685814, 0.7135587, 0.40784314)
 shader_parameter/fill_color = Color(0, 0, 0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3158n"]
@@ -58,7 +58,7 @@ collision_layer = 19
 shape = SubResource("WorldBoundaryShape3D_ormqy")
 
 [node name="Grid" type="MeshInstance3D" parent="." unique_id=119457709]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0.001, 0)
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0.033311322, 0)
 mesh = SubResource("PlaneMesh_3158n")
 script = ExtResource("4_3oet3")
 

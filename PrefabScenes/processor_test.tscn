@@ -175,6 +175,7 @@ input_dir = 2
 input_duration = 0.2
 process_duration = 1.0
 output_duration = 0.2
+machine_cost = 30
 
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
@@ -200,7 +201,16 @@ one_shot = true
 
 [node name="ConveyorTest" type="Node3D" parent="." unique_id=291985971]
 
-[node name="part_Mixer_2" parent="ConveyorTest" unique_id=2026862831 instance=ExtResource("3_j7q21")]
+[node name="part_Mixer_2" parent="ConveyorTest" unique_id=909053846 instance=ExtResource("3_j7q21")]
+
+[node name="sm_Mix_Arm_2" parent="ConveyorTest/part_Mixer_2/sm_Mix_Top/sm_Mix_Arm_1" parent_id_path=PackedInt32Array(909053846, 348545296) index="0" unique_id=587742202]
+transform = Transform3D(0.01, 0, 0, 0, -1.1920929e-09, -0.009999999, 0, 0.009999999, -1.1920929e-09, 0, 0, 0)
+
+[node name="sm_Mix_Paddle_L" parent="ConveyorTest/part_Mixer_2/sm_Mix_Top/sm_Mix_Arm_1/sm_Mix_Arm_2" index="0" unique_id=741732174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="sm_Mix_Paddle_R" parent="ConveyorTest/part_Mixer_2/sm_Mix_Top/sm_Mix_Arm_1/sm_Mix_Arm_2" index="1" unique_id=1958005473]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 1.4210855e-14, 0, -1.4210855e-14, 0.99999994, 0, 1.1219963e-06, 9.41198)
 
 [node name="part_Convey_1" type="Node3D" parent="ConveyorTest" unique_id=226618108]
 transform = Transform3D(0.805, 0, 0, 0, 0.805, 0, 0, 0, 0.805, 0, 0, 0)
@@ -236,3 +246,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0020655394, 0.44210523, 0)
 
 [node name="EndPos" type="Marker3D" parent="." unique_id=413078187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.753, 0)
+
+[editable path="ConveyorTest/part_Mixer_2"]
