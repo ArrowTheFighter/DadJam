@@ -1,11 +1,32 @@
 [gd_scene format=3 uid="uid://cpr3v5yo1ahqc"]
 
-[ext_resource type="PackedScene" uid="uid://d2l01kdms6841" path="res://Matts Files/scene_conveyor_belt.tscn" id="1_r51p4"]
 [ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="2_8gar6"]
+[ext_resource type="PackedScene" uid="uid://biqnv23eohmvy" path="res://Matts Files/part_Chocolate_1.fbx" id="3_227eq"]
+[ext_resource type="PackedScene" uid="uid://cn3ictyjs51dq" path="res://Matts Files/part_Chocolate_2.fbx" id="4_wq0a8"]
+[ext_resource type="PackedScene" uid="uid://yuhxfu3yfbvi" path="res://Matts Files/part_Chocolate_3.fbx" id="5_p2nk1"]
+[ext_resource type="PackedScene" uid="uid://c8t77yy2274u6" path="res://Matts Files/part_Chocolate_4.fbx" id="6_tf7hw"]
+[ext_resource type="PackedScene" uid="uid://b6rcqisfmpwkb" path="res://Matts Files/part_Convey_2.fbx" id="6_wq0a8"]
+[ext_resource type="PackedScene" uid="uid://b4km4qtg4pxqm" path="res://Matts Files/part_Boxer_1.fbx" id="7_p2nk1"]
 
 [node name="Node3D" type="Node3D" unique_id=1846924293]
 
-[node name="PartConveyorBelt" parent="." unique_id=1225890810 instance=ExtResource("1_r51p4")]
-
-[node name="part_Mixer_2" parent="." unique_id=239372155 instance=ExtResource("2_8gar6")]
+[node name="part_Mixer_2" parent="." unique_id=353833453 instance=ExtResource("2_8gar6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3581884, -0.046854496, 0.95723784)
+
+[node name="part_Chocolate_1" parent="." unique_id=517454459 instance=ExtResource("3_227eq")]
+transform = Transform3D(0.999979, -0.005170959, 0.0038966502, 0.0051706955, 0.9999866, 7.76268e-05, -0.0038969999, -5.7460453e-05, 0.9999924, 1.0750482, 0, 0.15293401)
+
+[node name="part_Chocolate_2" parent="." unique_id=1325155511 instance=ExtResource("4_wq0a8")]
+transform = Transform3D(0.999979, -0.005170959, 0.0038966502, 0.0051706955, 0.9999866, 7.76268e-05, -0.0038969999, -5.7460453e-05, 0.9999924, 0.85873646, 0, 0.50444484)
+
+[node name="part_Chocolate_3" parent="." unique_id=1960207815 instance=ExtResource("5_p2nk1")]
+transform = Transform3D(0.999979, -0.005170959, 0.0038966502, 0.0051706955, 0.9999866, 7.76268e-05, -0.0038969999, -5.7460453e-05, 0.9999924, 1.0750482, 0, 0.50444484)
+
+[node name="part_Chocolate_4" parent="." unique_id=1610490213 instance=ExtResource("6_tf7hw")]
+transform = Transform3D(0.999979, -0.005170959, 0.0038966502, 0.0051706955, 0.9999866, 7.76268e-05, -0.0038969999, -5.7460453e-05, 0.9999924, 1.349862, 0, 0.50444484)
+
+[node name="part_Convey_2" parent="." unique_id=1703394443 instance=ExtResource("6_wq0a8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03188634, 0, 0.20977378)
+
+[node name="part_Boxer_1" parent="." unique_id=1304421624 instance=ExtResource("7_p2nk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6445115, 0, 0.043682516)
