@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://bb02u5scbgdvc" path="res://FactoryArt/Meshes/SM_Factory_Doorway.fbx" id="15_gknsb"]
 [ext_resource type="PackedScene" uid="uid://b7g0tt7dopupe" path="res://FactoryArt/Meshes/SM_Factory_Floor.fbx" id="16_w8d2s"]
 [ext_resource type="PackedScene" uid="uid://c3xliu2mx0h86" path="res://FactoryArt/Meshes/SM_Factory_Panel_04.fbx" id="17_egvif"]
+[ext_resource type="PackedScene" uid="uid://be8vqky5eusgg" path="res://FactoryArt/Meshes/SM_Factory_Panel_01.fbx" id="18_3oet3"]
+[ext_resource type="PackedScene" uid="uid://bp34jyry3deyd" path="res://FactoryArt/Meshes/SM_Factory_Panel_02.fbx" id="19_72e5s"]
+[ext_resource type="PackedScene" uid="uid://c4f38bd405tiw" path="res://FactoryArt/Meshes/SM_Factory_Panel_03.fbx" id="20_y3sp4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4k50d"]
 albedo_color = Color(0.24066085, 0.40436083, 0.40920183, 1)
@@ -1574,5 +1577,32 @@ max_distance = 0.4
 size = Vector3(35.38, 6.835, 41.41)
 interior = true
 enable_shadows = true
+
+[node name="SM_Factory_Panel_01" parent="." unique_id=1444481526 instance=ExtResource("18_3oet3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 2, 8)
+
+[node name="SM_Factory_Panel_02" parent="." unique_id=1365553929 instance=ExtResource("19_72e5s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 2, -7)
+
+[node name="SM_Factory_Panel_03" parent="." unique_id=1887864823 instance=ExtResource("20_y3sp4")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0.76260984, -13.215541)
+
+[node name="SM_Factory_Panel_06" parent="." unique_id=278071566 instance=ExtResource("17_egvif")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -20)
+
+[node name="SM_Factory_Panel_07" parent="." unique_id=945204320 instance=ExtResource("20_y3sp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.7215893, -20)
+
+[node name="SM_Factory_Panel_08" parent="." unique_id=206768572 instance=ExtResource("20_y3sp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3573313, 0.7215893, -20)
+
+[node name="SM_Factory_Panel_09" parent="." unique_id=821750342 instance=ExtResource("20_y3sp4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18, 1, -13)
+
+[node name="SM_Factory_Panel_10" parent="." unique_id=261957457 instance=ExtResource("20_y3sp4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18, 1, 13)
+
+[node name="SM_Factory_Panel_11" parent="." unique_id=143445075 instance=ExtResource("18_3oet3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10, 2, 20)
 
 [editable path="PlayerScene"]
