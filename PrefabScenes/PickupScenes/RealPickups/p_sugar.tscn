@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bet4uqt71q61p"]
+
+[ext_resource type="Script" uid="uid://dny4rrlm475x2" path="res://PrefabScenes/pickup_script.gd" id="1_s0suj"]
+[ext_resource type="Resource" uid="uid://d2gb6r4wkitjr" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_sugar.tres" id="2_s0suj"]
+[ext_resource type="PackedScene" uid="uid://bexwc0sdd8nse" path="res://Matts Files/ing_Sugar.fbx" id="3_b63f8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7rbwc"]
+height = 0.2
+radius = 0.2
+
+[node name="SugarPickup" type="RigidBody3D" unique_id=629013510 groups=["Pickup"]]
+collision_layer = 17
+script = ExtResource("1_s0suj")
+item_info = ExtResource("2_s0suj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1546490525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("CylinderShape3D_7rbwc")
+
+[node name="ing_Sugar" parent="." unique_id=282955327 instance=ExtResource("3_b63f8")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://2tinotp4kc6q"]
+
+[ext_resource type="Script" uid="uid://dny4rrlm475x2" path="res://PrefabScenes/pickup_script.gd" id="1_iufao"]
+[ext_resource type="Resource" uid="uid://r3wai1jx5rch" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_coco_powder.tres" id="2_w2kic"]
+[ext_resource type="PackedScene" uid="uid://c0nguodwacu2x" path="res://Matts Files/ing_CocoaPowder.fbx" id="3_w2kic"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7rbwc"]
+height = 0.2
+radius = 0.2
+
+[node name="CocoPowderPickup" type="RigidBody3D" unique_id=629013510 groups=["Pickup"]]
+collision_layer = 17
+script = ExtResource("1_iufao")
+item_info = ExtResource("2_w2kic")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1546490525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("CylinderShape3D_7rbwc")
+
+[node name="ing_CocoaPowder" parent="." unique_id=120700298 instance=ExtResource("3_w2kic")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)

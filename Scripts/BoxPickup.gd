@@ -3,12 +3,16 @@ extends Pickup
 
 
 
-func add_items_to_box(items : Array[ItemInfo]):
+func add_items_to_box(items : Array[Pickup]):
     for i in range(items.size()):
-        var item_scene = items[i].get_item_scene().instantiate()
+        var item_scene = items[i].item_info.get_item_scene().instantiate()
         var mesh_only_node = extract_meshes(item_scene)
         positions[i].add_child(mesh_only_node)
         mesh_only_node.position = Vector3.ZERO
+        
+        for quality in items[i].item_qualities:
+            if !item_qualities.has(quality):
+                item_qualities.append(quality)
     pass
 
 func extract_meshes(root: Node) -> Node3D:

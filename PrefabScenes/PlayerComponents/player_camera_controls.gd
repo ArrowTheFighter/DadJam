@@ -1,7 +1,9 @@
 extends Camera3D
+class_name PlayerCamera
 
 @export var HorizontalSensitivity := 2.0
 @export var VerticalSensitivity := 1.0
+var sensitivity = 1.0
 const MOUSE_SCALE := 0.05
 var skipMouseCheck = false
 
@@ -17,9 +19,9 @@ func _input(event: InputEvent) -> void:
     #rotate the camera when moving the mouse
     if event is InputEventMouseMotion:
         #Rotate the camera horizontally
-        rotation_degrees.y -= event.relative.x * HorizontalSensitivity * MOUSE_SCALE
+        rotation_degrees.y -= event.relative.x * HorizontalSensitivity * MOUSE_SCALE * sensitivity
         #Rotate the camera vertically
-        rotation_degrees.x = clampf(rotation_degrees.x - event.relative.y * VerticalSensitivity * MOUSE_SCALE,-90,90)
+        rotation_degrees.x = clampf(rotation_degrees.x - event.relative.y * VerticalSensitivity * MOUSE_SCALE * sensitivity,-90,90)
         
         
         

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bkrxye3lqe6f7"]
+
+[ext_resource type="Script" uid="uid://dny4rrlm475x2" path="res://PrefabScenes/pickup_script.gd" id="1_p6n73"]
+[ext_resource type="Resource" uid="uid://ccjbti6csfr6m" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_milk.tres" id="2_p6n73"]
+[ext_resource type="PackedScene" uid="uid://cgrw8carvvlgb" path="res://Matts Files/ing_Milk.fbx" id="3_vr5j0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7rbwc"]
+height = 0.40664062
+radius = 0.13232422
+
+[node name="MilkPickup" type="RigidBody3D" unique_id=629013510 groups=["Pickup"]]
+collision_layer = 17
+script = ExtResource("1_p6n73")
+item_info = ExtResource("2_p6n73")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1546490525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20332031, 0)
+shape = SubResource("CylinderShape3D_7rbwc")
+
+[node name="ing_Milk" parent="." unique_id=1455896012 instance=ExtResource("3_vr5j0")]

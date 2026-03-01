@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemInfo" format=3 uid="uid://r3wai1jx5rch"]
+
+[ext_resource type="Script" uid="uid://ckc6grqxpee7h" path="res://Scripts/item_info.gd" id="1_n8o20"]
+
+[resource]
+script = ExtResource("1_n8o20")
+item_name = "Coco Powder"
+max_qualities = 3
+item_scene_path = "uid://2tinotp4kc6q"
+metadata/_custom_type_script = "uid://ckc6grqxpee7h"

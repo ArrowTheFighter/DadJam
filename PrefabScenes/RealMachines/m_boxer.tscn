@@ -1,10 +1,10 @@
-[gd_scene format=4 uid="uid://daedj7fix216u"]
+[gd_scene format=4 uid="uid://cqsktqjocuali"]
 
-[ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_0ffnv"]
-[ext_resource type="Resource" uid="uid://bnf5rouwups2n" path="res://PrefabScenes/PickupScenes/RecipeInfo/test_recipe_boxing.tres" id="2_r8mlu"]
-[ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="3_r8mlu"]
-[ext_resource type="Texture2D" uid="uid://b4gykpijcn3ai" path="res://Matts Files/T_ATB_Palette_Base.png" id="4_c23wv"]
-[ext_resource type="Script" uid="uid://bn45c2by3ywby" path="res://Scripts/boxer_visuals_script.gd" id="6_r8mlu"]
+[ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_ygjf4"]
+[ext_resource type="Resource" uid="uid://caiguvwqaa108" path="res://PrefabScenes/PickupScenes/RealRecipes/r_boxer.tres" id="2_h7nr3"]
+[ext_resource type="Texture2D" uid="uid://b4gykpijcn3ai" path="res://Matts Files/T_ATB_Palette_Base.png" id="3_1hkjy"]
+[ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="4_gs8n1"]
+[ext_resource type="Script" uid="uid://bn45c2by3ywby" path="res://Scripts/boxer_visuals_script.gd" id="5_rctlk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
 size = Vector3(1, 0.7139282, 1)
@@ -12,7 +12,7 @@ size = Vector3(1, 0.7139282, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25fuv"]
 resource_name = "mat_Boxer"
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_c23wv")
+albedo_texture = ExtResource("3_1hkjy")
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
@@ -319,8 +319,8 @@ shadow_mesh = SubResource("ArrayMesh_h72lw")
 
 [node name="StaticBody3D" type="StaticBody3D" unique_id=1790180508 node_paths=PackedStringArray("display_points") groups=["Machine"]]
 collision_layer = 17
-script = ExtResource("1_0ffnv")
-recipe_info = ExtResource("2_r8mlu")
+script = ExtResource("1_ygjf4")
+recipe_info = ExtResource("2_h7nr3")
 display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2"), NodePath("DisplayPosition3")]
 input_dir = 2
 max_items = 3
@@ -411,7 +411,7 @@ blend_shapes/HeadExpand = 0.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ConveyorTest/part_Boxer_1" unique_id=247096655]
 libraries/ = SubResource("AnimationLibrary_sb1t5")
 
-[node name="part_Mixer_2" parent="ConveyorTest" unique_id=909053846 instance=ExtResource("3_r8mlu")]
+[node name="part_Mixer_2" parent="ConveyorTest" unique_id=909053846 instance=ExtResource("4_gs8n1")]
 visible = false
 
 [node name="part_Convey_1" type="Node3D" parent="ConveyorTest" unique_id=226618108]
@@ -433,8 +433,8 @@ mesh = SubResource("ArrayMesh_sie50")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5131857, 0.8004286, 1.0898783e-07)
 mesh = SubResource("ArrayMesh_tu5gl")
 
-[node name="ConveyorVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "start_pos", "middle_pos", "end_pos")]
-script = ExtResource("6_r8mlu")
+[node name="BoxerVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "start_pos", "middle_pos", "end_pos")]
+script = ExtResource("5_rctlk")
 machine = NodePath("..")
 start_pos = NodePath("../StartPos")
 middle_pos = NodePath("../MiddlePos")

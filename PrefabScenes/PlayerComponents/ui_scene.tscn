@@ -2,8 +2,28 @@
 
 [ext_resource type="Script" uid="uid://dytkuyg8weujb" path="res://Scripts/item_hotbar_manager.gd" id="1_aodg1"]
 [ext_resource type="Script" uid="uid://7sqag8g6r8vd" path="res://Scripts/score_manager.gd" id="1_g8fu2"]
+[ext_resource type="Texture2D" uid="uid://wodq727ymsef" path="res://FactoryArt/Textures/T_HotbarBG_9s.png" id="1_odoxw"]
 [ext_resource type="Script" uid="uid://cp3iiiri1s8h8" path="res://Scripts/quality_tab_manager.gd" id="2_rn3rv"]
 [ext_resource type="Script" uid="uid://dkoefk6y72omr" path="res://Scripts/money_display.gd" id="3_312q2"]
+[ext_resource type="FontFile" uid="uid://gkb354k183td" path="res://Fonts/AlienSpace.ttf" id="6_2knc1"]
+[ext_resource type="Script" uid="uid://cvjw33qdxs45g" path="res://Scripts/report_node.gd" id="6_uno0f"]
+[ext_resource type="LabelSettings" uid="uid://ccxy5flm7mg0k" path="res://Fonts/ReportLableSettings.tres" id="7_uno0f"]
+[ext_resource type="Texture2D" uid="uid://cdyk47o5oxgvs" path="res://Images/keyboard_q.png" id="9_fw078"]
+[ext_resource type="Texture2D" uid="uid://b7twqakrbkmpf" path="res://Images/keyboard_r.png" id="10_uf73k"]
+[ext_resource type="Texture2D" uid="uid://bh3upwr5iksyx" path="res://Images/keyboard_tab.png" id="11_qm8q8"]
+[ext_resource type="Texture2D" uid="uid://c66jyq08x8k7a" path="res://Images/mouse_right.png" id="12_kvc6a"]
+[ext_resource type="Texture2D" uid="uid://bijy7g8fvqrck" path="res://Images/mouse_left.png" id="13_deapx"]
+[ext_resource type="Texture2D" uid="uid://bbiskg3385roc" path="res://Images/keyboard_t.png" id="14_mri4q"]
+[ext_resource type="Texture2D" uid="uid://2cfkvwhlodv3" path="res://Images/keyboard_e.png" id="15_tasvc"]
+[ext_resource type="Script" uid="uid://cd2yba44o31cv" path="res://PrefabScenes/PlayerComponents/camera_sensativity_slider.gd" id="16_uf73k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odoxw"]
+texture = ExtResource("1_odoxw")
+texture_margin_left = 64.0
+texture_margin_top = 12.0
+texture_margin_right = 64.0
+texture_margin_bottom = 11.0
+region_rect = Rect2(0.0093307495, -0.2106533, 128.98178, 128.31534)
 
 [sub_resource type="LabelSettings" id="LabelSettings_312q2"]
 font_size = 37
@@ -13,6 +33,58 @@ shadow_size = 15
 shadow_color = Color(0, 0, 0, 0.48235294)
 shadow_offset = Vector2(3.425, 3.705)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aodg1"]
+bg_color = Color(0.6, 0.6, 0.40392157, 0.4862745)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_uxwx3"]
+font = ExtResource("6_2knc1")
+font_size = 42
+font_color = Color(1, 1, 1, 0.5294118)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xii0o"]
+bg_color = Color(0.26890373, 0.34201315, 0.49574256, 1)
+border_width_left = 12
+border_width_bottom = 12
+border_color = Color(0.18246186, 0.23617113, 0.35296267, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_m8v1g"]
+font = ExtResource("6_2knc1")
+font_size = 72
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odoxw"]
+bg_color = Color(0.6, 0.6, 0.6, 0.15686275)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_6jy8b"]
+font = ExtResource("6_2knc1")
+font_size = 47
+
+[sub_resource type="LabelSettings" id="LabelSettings_aodg1"]
+font = ExtResource("6_2knc1")
+font_size = 55
+
+[sub_resource type="LabelSettings" id="LabelSettings_xii0o"]
+font = ExtResource("6_2knc1")
+font_size = 68
+shadow_size = 4
+shadow_color = Color(0.21806103, 0.21806103, 0.21806103, 1)
+shadow_offset = Vector2(1.42, 1.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fw078"]
+font = ExtResource("6_2knc1")
+font_size = 50
+
 [node name="UI" type="Control" unique_id=1595550919]
 layout_mode = 3
 anchors_preset = 15
@@ -21,22 +93,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ItemHotbarContainer" type="HBoxContainer" parent="." unique_id=673224789]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=137860588]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -439.0
-offset_top = -117.0
-offset_right = 439.0
-offset_bottom = -47.0
+offset_left = -194.47803
+offset_top = -224.0
+offset_right = 194.4773
+offset_bottom = -29.684937
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 39
+theme_override_styles/panel = SubResource("StyleBoxTexture_odoxw")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1539741366]
+layout_mode = 2
+
+[node name="ItemHotbarContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=673224789]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 33
 alignment = 1
 script = ExtResource("1_aodg1")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1951340004]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Control" type="Control" parent="." unique_id=831285422]
 layout_mode = 1
@@ -46,6 +132,7 @@ offset_bottom = 172.0
 grow_horizontal = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="Control" unique_id=2106093051 groups=["Score"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -85,3 +172,344 @@ text = "Money: 0"
 label_settings = SubResource("LabelSettings_312q2")
 vertical_alignment = 1
 script = ExtResource("3_312q2")
+
+[node name="Panel" type="Panel" parent="." unique_id=908317380]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aodg1")
+
+[node name="InputHints" type="Control" parent="." unique_id=1051894905]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -381.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InputHints" unique_id=1332370034]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -448.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="InputHints/VBoxContainer" unique_id=1950342373]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="InputHints/VBoxContainer/HBoxContainer2" unique_id=1227531640]
+layout_mode = 2
+text = "Rotate"
+label_settings = SubResource("LabelSettings_uxwx3")
+
+[node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer2" unique_id=1310818418]
+self_modulate = Color(1, 1, 1, 0.5176471)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_fw078")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer2" unique_id=892515805]
+self_modulate = Color(1, 1, 1, 0.5176471)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_uf73k")
+expand_mode = 1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="InputHints/VBoxContainer" unique_id=615630498]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="InputHints/VBoxContainer/HBoxContainer6" unique_id=661442152]
+layout_mode = 2
+text = "Inventroy"
+label_settings = SubResource("LabelSettings_uxwx3")
+
+[node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer6" unique_id=591551022]
+self_modulate = Color(1, 1, 1, 0.5176471)
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("11_qm8q8")
+expand_mode = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="InputHints/VBoxContainer" unique_id=1016780035]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="InputHints/VBoxContainer/HBoxContainer5" unique_id=1780148114]
+layout_mode = 2
+text = "remove machine"
+label_settings = SubResource("LabelSettings_uxwx3")
+
+[node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer5" unique_id=56609291]
+self_modulate = Color(1, 1, 1, 0.5176471)
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("12_kvc6a")
+expand_mode = 1
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="InputHints/VBoxContainer" unique_id=1770361726]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="InputHints/VBoxContainer/HBoxContainer7" unique_id=1007635071]
+layout_mode = 2
+text = "Place Machine"
+label_settings = SubResource("LabelSettings_uxwx3")
+
+[node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer7" unique_id=1903552918]
+self_modulate = Color(1, 1, 1, 0.5176471)
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_deapx")
+expand_mode = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="InputHints/VBoxContainer" unique_id=1675374610]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="InputHints/VBoxContainer/HBoxContainer4" unique_id=1080797755]
+layout_mode = 2
+text = "Empty Machine"
+label_settings = SubResource("LabelSettings_uxwx3")
+
+[node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer4" unique_id=1360338253]
+self_modulate = Color(1, 1, 1, 0.5176471)
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("14_mri4q")
+expand_mode = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="InputHints/VBoxContainer" unique_id=248376915]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="InputHints/VBoxContainer/HBoxContainer3" unique_id=1040160568]
+layout_mode = 2
+text = "Interact"
+label_settings = SubResource("LabelSettings_uxwx3")
+
+[node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer3" unique_id=1530606473]
+self_modulate = Color(1, 1, 1, 0.5176471)
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("15_tasvc")
+expand_mode = 1
+
+[node name="ReportCard" type="Control" parent="." unique_id=972331726 groups=["ReportCard"]]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -463.0
+offset_top = -463.0
+offset_right = 463.0
+offset_bottom = 463.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_uno0f")
+
+[node name="Background" type="Panel" parent="ReportCard" unique_id=992675457]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xii0o")
+
+[node name="Label" type="Label" parent="ReportCard" unique_id=1779071279]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 926.0
+offset_bottom = 94.0
+size_flags_vertical = 0
+text = "REPORT"
+label_settings = SubResource("LabelSettings_m8v1g")
+horizontal_alignment = 1
+
+[node name="Divider" type="Panel" parent="ReportCard" unique_id=1884189763]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 101.0
+offset_right = 861.0
+offset_bottom = 115.0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_odoxw")
+
+[node name="Money Earned" type="Label" parent="ReportCard" unique_id=73508726]
+layout_mode = 0
+offset_top = 133.0
+offset_right = 926.0
+offset_bottom = 209.0
+size_flags_vertical = 0
+text = "Money earned:"
+label_settings = SubResource("LabelSettings_6jy8b")
+horizontal_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="ReportCard" unique_id=428698552]
+layout_mode = 0
+offset_top = 197.0
+offset_right = 926.0
+offset_bottom = 273.0
+size_flags_vertical = 0
+text = "$999"
+label_settings = SubResource("LabelSettings_aodg1")
+horizontal_alignment = 1
+
+[node name="Divider2" type="Panel" parent="ReportCard" unique_id=1186394133]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 264.0
+offset_right = 861.0
+offset_bottom = 278.0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_odoxw")
+
+[node name="REVIEWS" type="Label" parent="ReportCard" unique_id=1777246051]
+layout_mode = 0
+offset_top = 305.0
+offset_right = 926.0
+offset_bottom = 381.0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Reviews"
+label_settings = SubResource("LabelSettings_xii0o")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ReportCard" unique_id=84375554]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 403.0
+offset_right = 900.0
+offset_bottom = 791.0
+theme_override_constants/separation = 31
+
+[node name="Label6" type="Label" parent="ReportCard/VBoxContainer" unique_id=1693252203]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Milk is my favorite ingredient and i could taste it with every bite!!! XOXO"
+label_settings = ExtResource("7_uno0f")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label7" type="Label" parent="ReportCard/VBoxContainer" unique_id=1208838319]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 0
+text = "This chocolate was so good with its buttery roasted flavor it actually saved my marriage"
+label_settings = ExtResource("7_uno0f")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label8" type="Label" parent="ReportCard/VBoxContainer" unique_id=1813339389]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 0
+text = "I ahte chocolate that is nutty"
+label_settings = ExtResource("7_uno0f")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="ReportCard" unique_id=1197700640]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -165.0
+offset_right = 168.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_2knc1")
+theme_override_font_sizes/font_size = 67
+text = "Close"
+
+[node name="PauseMenu" type="Control" parent="." unique_id=1962941967 groups=["PauseMenu"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 555.0
+offset_top = 59.0
+offset_right = -555.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PauseMenu" unique_id=1980750187]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PauseMenu" unique_id=968204501]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -283.5
+offset_top = 35.0
+offset_right = 283.5
+offset_bottom = 104.0
+grow_horizontal = 2
+text = "Mouse Sensativity"
+label_settings = SubResource("LabelSettings_fw078")
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="PauseMenu" unique_id=1006605261]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -235.0
+offset_top = 114.0
+offset_right = 235.0
+offset_bottom = 171.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("16_uf73k")
+
+[connection signal="pressed" from="ReportCard/CloseButton" to="ReportCard" method="hide_report"]
+[connection signal="value_changed" from="PauseMenu/HSlider" to="PauseMenu/HSlider" method="value_changed"]

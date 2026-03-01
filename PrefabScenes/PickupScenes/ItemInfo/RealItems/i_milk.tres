@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemInfo" format=3 uid="uid://ccjbti6csfr6m"]
+
+[ext_resource type="Script" uid="uid://ckc6grqxpee7h" path="res://Scripts/item_info.gd" id="1_23qec"]
+
+[resource]
+script = ExtResource("1_23qec")
+item_name = "Milk"
+max_qualities = 3
+item_scene_path = "uid://bkrxye3lqe6f7"
+metadata/_custom_type_script = "uid://ckc6grqxpee7h"

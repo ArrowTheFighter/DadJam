@@ -31,7 +31,7 @@ func input_started(item_number):
     
     pass
     
-func setup_box_ingredients(ingredients : Array[ItemInfo]):
+func setup_box_ingredients(ingredients : Array[Pickup]):
     print("processor finished")
     machine.holding_items[0].add_items_to_box(ingredients)
     pass

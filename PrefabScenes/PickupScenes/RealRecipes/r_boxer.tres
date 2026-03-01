@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RecipeInfo" format=3 uid="uid://caiguvwqaa108"]
+
+[ext_resource type="Resource" uid="uid://du0sjc6b3w8i3" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_boxed_chocolate.tres" id="1_f013n"]
+[ext_resource type="Script" uid="uid://ckc6grqxpee7h" path="res://Scripts/item_info.gd" id="2_vip43"]
+[ext_resource type="Resource" uid="uid://bhi8gs4fv6ani" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_round_chocolate.tres" id="3_f013n"]
+[ext_resource type="Script" uid="uid://b014sm5jahalk" path="res://Scripts/recipe_info.gd" id="4_7a2aa"]
+
+[resource]
+script = ExtResource("4_7a2aa")
+recipe_output = ExtResource("1_f013n")
+recipe_requirements = Array[ExtResource("2_vip43")]([ExtResource("3_f013n"), ExtResource("3_f013n"), ExtResource("3_f013n")])
+metadata/_custom_type_script = "uid://b014sm5jahalk"

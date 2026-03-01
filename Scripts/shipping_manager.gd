@@ -5,6 +5,7 @@ signal on_money_earned(money : int)
 
 var stored_shipments : Array[Pickup]
 var stored_scores : Array[int]
+var money_earned_since_last_shipment : int
 var max_stored_shipments := 5
 
 const MONEY_MULTIPLIER = 5
@@ -25,6 +26,7 @@ func ship_item(pickup : Pickup):
     
     shipped_items += 1
     var item_score = calculate_shipped_score(pickup)
+    money_earned_since_last_shipment += item_score * MONEY_MULTIPLIER
     on_money_earned.emit(item_score * MONEY_MULTIPLIER)
     if stored_shipments.size() < max_stored_shipments:
         stored_shipments.append(pickup)
@@ -33,6 +35,7 @@ func ship_item(pickup : Pickup):
             var average_score = average_int_array(stored_scores)
             on_score_updated.emit(average_score)
             print("shipping bundle with score of " + str(average_score))
+            get_tree().get_first_node_in_group("ReportCard").show_report(money_earned_since_last_shipment,shipping_prefrences,shipping_dislikes)
             stored_shipments = []
             stored_scores = []
     print("shipping item with score of " + str(item_score))

@@ -24,13 +24,14 @@ var machine_finished := false
 @export var output_duration : float
 @onready var output_timer: Timer = $OutputTimer
 @export var machine_cost : int = 10
-
+@export_category("Level_Setup")
+@export var set_spot_filled_on_startup := false
 
 signal input_started(input_number)
 signal process_started
 signal output_started
 
-signal process_finished(ingredients : Array[ItemInfo])
+signal process_finished(ingredients : Array[Pickup])
 
 enum Direction {
     PositiveX,
@@ -40,6 +41,10 @@ enum Direction {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+    if set_spot_filled_on_startup:
+        machine_rotation = int(round(rotation_degrees.y / 90)) % 4
+        GridManager.set_grid_pos(GridManager.gloabl_to_grid_pos(global_position),self,machine_rotation)
+    
     input_timer.wait_time = input_duration
     input_timer.timeout.connect(start_process)
     
@@ -192,9 +197,9 @@ func convert_items_to_recipe_output():
         get_tree().root.add_child(instanced_item)
         
     var outputItem = instanced_item
-    var ingredients : Array[ItemInfo]
+    var ingredients : Array[Pickup]
     for item in holding_items:
-        ingredients.append(item.item_info)
+        ingredients.append(item.duplicate())
     empty_machine(false)
     
     apply_qualities(outputItem)
@@ -203,6 +208,9 @@ func convert_items_to_recipe_output():
     display_item(outputItem, display_points[0].global_position)
     
     process_finished.emit(ingredients)
+    
+    for item in ingredients:
+        item.queue_free()
     GridManager.grid_was_updated()
 
 

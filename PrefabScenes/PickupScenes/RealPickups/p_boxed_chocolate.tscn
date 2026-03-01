@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cc8xl71idf0jw"]
+
+[ext_resource type="Script" uid="uid://1ydt2ve8my30" path="res://Scripts/BoxPickup.gd" id="1_rdkfj"]
+[ext_resource type="Resource" uid="uid://du0sjc6b3w8i3" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_boxed_chocolate.tres" id="2_oy71a"]
+[ext_resource type="PackedScene" uid="uid://d3vpq6kqb5tmb" path="res://Matts Files/part_Box_Bottom.fbx" id="3_v56qs"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7rbwc"]
+height = 0.2
+radius = 0.2
+
+[node name="BoxedChocolatePickup" type="RigidBody3D" unique_id=629013510 node_paths=PackedStringArray("positions") groups=["Pickup"]]
+collision_layer = 17
+script = ExtResource("1_rdkfj")
+positions = [NodePath("Pos1"), NodePath("Pos2"), NodePath("Pos3")]
+item_info = ExtResource("2_oy71a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1546490525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("CylinderShape3D_7rbwc")
+
+[node name="part_Box_Bottom" parent="." unique_id=849035474 instance=ExtResource("3_v56qs")]
+
+[node name="Pos1" type="Marker3D" parent="." unique_id=1662131712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.123839065, 0, -0.039969817)
+
+[node name="Pos2" type="Marker3D" parent="." unique_id=250641263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12552446, 0, -0.039969817)
+
+[node name="Pos3" type="Marker3D" parent="." unique_id=1592249083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00023439527, 0, 0.12917423)

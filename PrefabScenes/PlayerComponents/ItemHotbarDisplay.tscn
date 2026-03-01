@@ -2,6 +2,17 @@
 
 [ext_resource type="Script" uid="uid://crc3upfgsny6u" path="res://Scripts/item_hotbar_display.gd" id="1_quo7t"]
 [ext_resource type="Texture2D" uid="uid://bc8i673ijj3um" path="res://icon.svg" id="1_x3icx"]
+[ext_resource type="Texture2D" uid="uid://dpixg4a366ifk" path="res://FactoryArt/Textures/T_Hotbar_SelCir.png" id="2_fp5hk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3iygy"]
+texture = ExtResource("2_fp5hk")
+region_rect = Rect2(15, 15, 98, 98)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j256"]
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_quo7t"]
 font_size = 34
@@ -22,11 +33,27 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=2136523363]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer" unique_id=498664327]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer" unique_id=2045762659]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3iygy")
+
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/MarginContainer/PanelContainer" unique_id=1780434258]
+show_behind_parent = true
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7j256")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/PanelContainer/Panel" unique_id=498664327]
+show_behind_parent = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("1_x3icx")
+expand_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer" unique_id=83955853]
+visible = false
 layout_mode = 2
 color = Color(0.50980395, 0.50980395, 0.50980395, 0.5882353)
 

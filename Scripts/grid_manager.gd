@@ -40,4 +40,17 @@ func remove_object_from_grid(pos: Vector2i):
             break
     grid_updated.emit()
             
+func gloabl_to_grid_pos(global_pos) -> Vector2i:
+    var roundedPos = Vector3(
+        round_to_multiple_offset(global_pos.x,GRID_SIZE,GRID_SIZE * 0.5),
+        0,
+        round_to_multiple_offset(global_pos.z,GRID_SIZE,GRID_SIZE * 0.5)
+        )
+    var grid_pos = Vector2i.ZERO
+    grid_pos.x = int((roundedPos.x - GRID_SIZE * 0.5) / GRID_SIZE)
+    grid_pos.y = int((roundedPos.z - GRID_SIZE * 0.5) / GRID_SIZE)
     
+    return grid_pos
+    
+func round_to_multiple_offset(value: float, multiple: float, offset: float) -> float:
+    return round((value - offset) / multiple) * multiple + offset

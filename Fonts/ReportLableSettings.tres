@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://ccxy5flm7mg0k"]
+
+[ext_resource type="FontFile" uid="uid://gkb354k183td" path="res://Fonts/AlienSpace.ttf" id="1_48kjv"]
+
+[resource]
+font = ExtResource("1_48kjv")
+font_size = 30
+shadow_size = 4
+shadow_color = Color(0.21806103, 0.21806103, 0.21806103, 1)
+shadow_offset = Vector2(1.42, 1.4)

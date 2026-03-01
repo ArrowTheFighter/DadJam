@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemInfo" format=3 uid="uid://du0sjc6b3w8i3"]
+
+[ext_resource type="Script" uid="uid://ckc6grqxpee7h" path="res://Scripts/item_info.gd" id="1_y6oed"]
+
+[resource]
+script = ExtResource("1_y6oed")
+item_name = "Bowl of Chocolate"
+max_qualities = 3
+item_scene_path = "uid://cc8xl71idf0jw"
+metadata/_custom_type_script = "uid://ckc6grqxpee7h"

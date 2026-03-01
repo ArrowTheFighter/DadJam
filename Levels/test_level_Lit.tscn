@@ -5,10 +5,13 @@
 [ext_resource type="Shader" uid="uid://ba367m6bviqqd" path="res://ShaderScripts/grid_shader.gdshader" id="3_0y878"]
 [ext_resource type="Script" uid="uid://buup2wx5af5l0" path="res://Scripts/grid_visuals_script.gd" id="4_3oet3"]
 [ext_resource type="PackedScene" uid="uid://gc6i7wnhyx6v" path="res://PrefabScenes/player_scene.tscn" id="5_72e5s"]
-[ext_resource type="PackedScene" uid="uid://dgobgxd7jkbaa" path="res://PrefabScenes/PickupScenes/test_pickup.tscn" id="6_y3sp4"]
 [ext_resource type="PackedScene" uid="uid://cpwtckxswpmc7" path="res://PrefabScenes/shipping_container_test.tscn" id="7_08clr"]
 [ext_resource type="PackedScene" uid="uid://sosyj6ocyqeg" path="res://PrefabScenes/YouGetItemsFromThese/ItemDispenserTest.tscn" id="8_55086"]
+[ext_resource type="Resource" uid="uid://d2gb6r4wkitjr" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_sugar.tres" id="8_y3sp4"]
+[ext_resource type="Resource" uid="uid://ccjbti6csfr6m" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_milk.tres" id="9_08clr"]
 [ext_resource type="PackedScene" uid="uid://bsk0imbkpglok" path="res://FactoryArt/Meshes/SM_Factory_Wall_01.fbx" id="9_40vq7"]
+[ext_resource type="Resource" uid="uid://du0sjc6b3w8i3" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_boxed_chocolate.tres" id="10_08clr"]
+[ext_resource type="Resource" uid="uid://r3wai1jx5rch" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_coco_powder.tres" id="10_55086"]
 [ext_resource type="PackedScene" uid="uid://d3wl8oreb7c8l" path="res://FactoryArt/Meshes/SM_Factory_Wall_02.fbx" id="10_qu3eq"]
 [ext_resource type="PackedScene" uid="uid://1vshmpv2jvgc" path="res://FactoryArt/Meshes/SM_Factory_Wall_03.fbx" id="11_e1m06"]
 [ext_resource type="PackedScene" uid="uid://c8qaxrrj0wnce" path="res://FactoryArt/Meshes/SM_Factory_Wall_04.fbx" id="12_2datp"]
@@ -76,20 +79,8 @@ collision_mask = 2
 
 [node name="Props" type="Node" parent="." unique_id=761793301]
 
-[node name="TestPickup" parent="." unique_id=629013510 instance=ExtResource("6_y3sp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6424322, 0.10099945, -6.317572)
-
-[node name="TestPickup2" parent="." unique_id=1142083623 instance=ExtResource("6_y3sp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1702766, 0.10099945, -6.1356835)
-
-[node name="TestPickup3" parent="." unique_id=5418946 instance=ExtResource("6_y3sp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.152995, 0.10099945, -6.821085)
-
-[node name="TestPickup4" parent="." unique_id=1979754113 instance=ExtResource("6_y3sp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6723158, 0.10099945, -6.9437413)
-
 [node name="StaticBody3D" parent="." unique_id=1790180508 instance=ExtResource("7_08clr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.008, -15.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0.008, 8.5)
 
 [node name="StaticBody3D2" parent="." unique_id=818349900 instance=ExtResource("7_08clr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.008, -15.5)
@@ -98,7 +89,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.008, -15.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.008, -15.5)
 
 [node name="ItemDispenserTest" parent="." unique_id=1360201585 instance=ExtResource("8_55086")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.001, 7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.001, -2.5)
+item_info = ExtResource("8_y3sp4")
+
+[node name="ItemDispenserTest3" parent="." unique_id=2000094186 instance=ExtResource("8_55086")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.001, 2.5)
+item_info = ExtResource("9_08clr")
+
+[node name="ItemDispenserTest4" parent="." unique_id=227095024 instance=ExtResource("8_55086")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0.001, 6.5)
+item_info = ExtResource("10_08clr")
+
+[node name="ItemDispenserTest2" parent="." unique_id=479672014 instance=ExtResource("8_55086")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.001, -4.5)
+item_info = ExtResource("10_55086")
 
 [node name="FactoryEnvironment" type="Node" parent="." unique_id=238070866]
 

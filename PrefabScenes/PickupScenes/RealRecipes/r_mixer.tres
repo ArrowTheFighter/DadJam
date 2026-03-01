@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RecipeInfo" format=3 uid="uid://cwet8vt5k3nas"]
+
+[ext_resource type="Resource" uid="uid://v06sco1ctsr7" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_bowl_of_chocolate.tres" id="1_b1vt3"]
+[ext_resource type="Script" uid="uid://ckc6grqxpee7h" path="res://Scripts/item_info.gd" id="2_pkem4"]
+[ext_resource type="Resource" uid="uid://r3wai1jx5rch" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_coco_powder.tres" id="3_rcr8h"]
+[ext_resource type="Resource" uid="uid://d2gb6r4wkitjr" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_sugar.tres" id="4_jutyg"]
+[ext_resource type="Script" uid="uid://b014sm5jahalk" path="res://Scripts/recipe_info.gd" id="5_4kj48"]
+
+[resource]
+script = ExtResource("5_4kj48")
+recipe_output = ExtResource("1_b1vt3")
+added_quality_1 = 10
+added_quality_2 = 6
+recipe_requirements = Array[ExtResource("2_pkem4")]([ExtResource("3_rcr8h"), ExtResource("4_jutyg")])
+metadata/_custom_type_script = "uid://b014sm5jahalk"
