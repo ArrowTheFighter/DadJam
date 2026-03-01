@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b1fk84khwhvw7" path="res://PrefabScenes/RealMachines/m_mixer.tscn" id="7_7eaeh"]
 [ext_resource type="PackedScene" uid="uid://cqdr8lg7qpy3w" path="res://PrefabScenes/RealMachines/m_molder.tscn" id="8_7eaeh"]
 [ext_resource type="PackedScene" uid="uid://cqsktqjocuali" path="res://PrefabScenes/RealMachines/m_boxer.tscn" id="9_hjq3b"]
+[ext_resource type="PackedScene" uid="uid://c7v2xhjdof0nk" path="res://PrefabScenes/RealMachines/m_infuser.tscn" id="10_71coe"]
+[ext_resource type="PackedScene" uid="uid://jnfytsqsbbmi" path="res://PrefabScenes/RealMachines/m_cooler.tscn" id="11_8bpgu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g3qmp"]
 radius = 0.25
@@ -54,7 +56,7 @@ shape = SubResource("BoxShape3D_glq8a")
 
 [node name="PlayerInventory" type="Node" parent="." unique_id=604657600]
 script = ExtResource("5_yjr7a")
-items = Array[PackedScene]([ExtResource("6_glq8a"), ExtResource("7_7eaeh"), ExtResource("8_7eaeh"), ExtResource("9_hjq3b")])
+items = Array[PackedScene]([ExtResource("6_glq8a"), ExtResource("7_7eaeh"), ExtResource("8_7eaeh"), ExtResource("9_hjq3b"), ExtResource("10_71coe"), ExtResource("11_8bpgu")])
 
 [connection signal="body_entered" from="Camera3D/Area3D" to="Camera3D/RayCastObjectPlacer2" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Camera3D/Area3D" to="Camera3D/RayCastObjectPlacer2" method="_on_area_3d_body_exited"]

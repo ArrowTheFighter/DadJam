@@ -1,26 +1,27 @@
-[gd_scene format=3 uid="uid://b1fk84khwhvw7"]
+[gd_scene format=3 uid="uid://jnfytsqsbbmi"]
 
-[ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_732pw"]
-[ext_resource type="Resource" uid="uid://cwet8vt5k3nas" path="res://PrefabScenes/PickupScenes/RealRecipes/r_mixer.tres" id="2_xdjyv"]
-[ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="3_qy2t1"]
-[ext_resource type="PackedScene" uid="uid://wjbix86w30br" path="res://FactoryArt/Meshes/SM_Infuser.fbx" id="4_b76vo"]
-[ext_resource type="Script" uid="uid://dxvfyg04xlpvh" path="res://Scripts/mixer_visuals_script.gd" id="4_xdjyv"]
+[ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_lpnj3"]
+[ext_resource type="Resource" uid="uid://dloinoba80fcv" path="res://PrefabScenes/PickupScenes/RealRecipes/r_cooler.tres" id="2_1uad1"]
+[ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="3_w0yqp"]
+[ext_resource type="PackedScene" uid="uid://wjbix86w30br" path="res://FactoryArt/Meshes/SM_Infuser.fbx" id="4_klhns"]
+[ext_resource type="Script" uid="uid://dxvfyg04xlpvh" path="res://Scripts/mixer_visuals_script.gd" id="5_dm5hl"]
+[ext_resource type="PackedScene" uid="uid://c4keoutygnco4" path="res://FactoryArt/Meshes/SM_Cooler.fbx" id="5_w0yqp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
 size = Vector3(1, 0.7139282, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" unique_id=1790180508 node_paths=PackedStringArray("display_points") groups=["Machine"]]
 collision_layer = 17
-script = ExtResource("1_732pw")
-machine_name = "Mixer"
-machine_cost = 40
-machine_description = "Mixes coco powder and sugar to make a bowl of chocolate. Also applies the Sweet and Smooth qualities"
-recipe_info = ExtResource("2_xdjyv")
+script = ExtResource("1_lpnj3")
+machine_name = "Cooler"
+machine_cost = 60
+machine_description = "Cools down a round chocolate and adds the Chilled Quality"
+recipe_info = ExtResource("2_1uad1")
 display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2")]
-input_dir = 6
+input_dir = 2
 max_items = 2
 input_duration = 0.2
-process_duration = 2.5
+process_duration = 2.0
 output_duration = 0.2
 
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
@@ -47,7 +48,8 @@ one_shot = true
 
 [node name="ConveyorTest" type="Node3D" parent="." unique_id=291985971]
 
-[node name="part_Mixer_2" parent="ConveyorTest" unique_id=1776204722 instance=ExtResource("3_qy2t1")]
+[node name="part_Mixer_2" parent="ConveyorTest" unique_id=1776204722 instance=ExtResource("3_w0yqp")]
+visible = false
 
 [node name="Skeleton3D" parent="ConveyorTest/part_Mixer_2/Armature" parent_id_path=PackedInt32Array(1776204722, 255388925) index="0" unique_id=1205145119]
 bones/1/position = Vector3(0, 0.0070188497, 0.009309745)
@@ -61,11 +63,13 @@ bones/4/rotation = Quaternion(0, 0, 0, 1)
 bones/6/position = Vector3(-0.0011378786, -1.751564e-10, 0.0008967804)
 bones/6/rotation = Quaternion(0, 0, 0, 1)
 
-[node name="SM_Infuser" parent="ConveyorTest" unique_id=1100822582 instance=ExtResource("4_b76vo")]
+[node name="SM_Infuser" parent="ConveyorTest" unique_id=1100822582 instance=ExtResource("4_klhns")]
 visible = false
 
+[node name="SM_Cooler" parent="ConveyorTest" unique_id=1065610189 instance=ExtResource("5_w0yqp")]
+
 [node name="MixerVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "start_pos", "middle_pos", "end_pos")]
-script = ExtResource("4_xdjyv")
+script = ExtResource("5_dm5hl")
 machine = NodePath("..")
 start_pos = NodePath("../StartPos")
 middle_pos = NodePath("../MiddlePos")
@@ -75,7 +79,7 @@ end_pos = NodePath("../EndPos")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.893, 0)
 
 [node name="MiddlePos" type="Marker3D" parent="." unique_id=2036138653]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002, 0.46572614, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002, 0.893, 0)
 
 [node name="EndPos" type="Marker3D" parent="." unique_id=413078187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.893, 0)

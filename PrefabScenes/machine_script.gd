@@ -38,6 +38,8 @@ signal process_started
 signal output_started
 
 signal process_finished(ingredients : Array[Pickup])
+signal output_finished()
+
 
 enum Direction {
     PositiveX,
@@ -48,8 +50,10 @@ enum Direction {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     if set_spot_filled_on_startup:
-        machine_rotation = int(round(rotation_degrees.y / 90)) % 4
-        GridManager.set_grid_pos(GridManager.gloabl_to_grid_pos(global_position),self,machine_rotation)
+        machine_rotation = (int(round(rotation_degrees.y / 90)) + 4) % 4
+        var grid_pos = GridManager.gloabl_to_grid_pos(global_position)
+        GridManager.set_grid_pos(grid_pos,self,machine_rotation)
+        initialize_machine(grid_pos,machine_rotation)
     
     input_timer.wait_time = input_duration
     input_timer.timeout.connect(start_process)
@@ -64,12 +68,14 @@ func _ready() -> void:
     pass # Replace with function body.
     
 func initialize_machine(grid_position : Vector2i,rotation_step):
+    print("setting up machine with roation of " + str(rotation_step))
     machine_grid_position = grid_position
     machine_rotation = rotation_step
     
     var offset := direction_to_grid_offset(output_dir,machine_rotation)
     out_position = machine_grid_position + offset
     input_positions = bitmask_to_grid_offsets(input_dir, rotation_step)
+    print(input_positions)
     
     GridManager.grid_was_updated()
     
@@ -160,8 +166,11 @@ func push_item_to_output():
         #outputItem = holding_items[0]
         #
     #print(outputItem.name)
+    if holding_items.size() <= 0:
+        return
     output_machine.add_item_to_machine(holding_items[0])
     release_items()
+    output_finished.emit()
     pass
 
 func cancel_process():

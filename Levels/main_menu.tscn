@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://dx5lhy8pgf28k"]
+
+[ext_resource type="Script" uid="uid://c2lm5u501i2li" path="res://Scripts/main_menu.gd" id="1_3es34"]
+[ext_resource type="Texture2D" uid="uid://hwu704y5ay61" path="res://Images/T_ConveyorBelt.png" id="1_jy27m"]
+[ext_resource type="FontFile" uid="uid://gkb354k183td" path="res://Fonts/AlienSpace.ttf" id="2_3es34"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8md67"]
+font = ExtResource("2_3es34")
+font_size = 80
+
+[node name="MainMenu" type="Control" unique_id=570857270]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3es34")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1079069078]
+self_modulate = Color(0.9858139, 0.9858692, 0.9860212, 1)
+layout_mode = 0
+offset_left = -155.0
+offset_right = 946.0
+offset_bottom = 1101.0
+texture = ExtResource("1_jy27m")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=2118285046]
+self_modulate = Color(0.9858139, 0.9858692, 0.9860212, 1)
+layout_mode = 0
+offset_left = 939.0
+offset_right = 2040.0
+offset_bottom = 1101.0
+texture = ExtResource("1_jy27m")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=514562643]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(7.821247e-08, 0.121582784, 0.1304661, 0.8156863)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=57706809]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 470.0
+offset_top = 152.0
+offset_right = -470.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 99
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=366294137]
+layout_mode = 2
+text = "XO Inc."
+label_settings = SubResource("LabelSettings_8md67")
+horizontal_alignment = 1
+
+[node name="StartGameButton" type="Button" parent="VBoxContainer" unique_id=1673748347]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3es34")
+theme_override_font_sizes/font_size = 100
+text = "Start Game"
+
+[node name="QuitGameButton" type="Button" parent="VBoxContainer" unique_id=291356866]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3es34")
+theme_override_font_sizes/font_size = 100
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]

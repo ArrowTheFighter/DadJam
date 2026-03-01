@@ -87,6 +87,8 @@ func _input(event: InputEvent) -> void:
         if GridManager.get_grid_pos_status(selected_grid_pos): 
             var placed_machine = GridManager.get_machine_at_grid_position(selected_grid_pos)
             if placed_machine != null:
+                if placed_machine.set_spot_filled_on_startup:
+                    return
                 MoneyManager.add_money(placed_machine.machine_cost)
             GridManager.remove_object_from_grid(selected_grid_pos)
                 
@@ -108,6 +110,7 @@ func _process(delta: float) -> void:
             
             get_tree().root.add_child(spawnedItem)
             
+            spawnedItem.item_qualities.append(QualityEnum.Property.SMOOTH)
             holding_item = spawnedItem
             holding_item_local_pos = Vector3(.5,-.2,-1)
             holding_item.freeze = true
@@ -130,6 +133,7 @@ func _process(delta: float) -> void:
                 holding_item.freeze = true
                 holding_item.set_collision_layer_value(5,false)
                 best_machine_with_pickup.release_items()
+                best_machine_with_pickup.output_finished.emit()
                 (holding_item as RigidBody3D).disable_mode = 4
                 item_picked_up.emit(holding_item)
                 update_node_outline(best_machine_with_pickup,1.0)

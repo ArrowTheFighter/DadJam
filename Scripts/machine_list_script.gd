@@ -1,6 +1,6 @@
 extends Control
 const UI_MACHINE_TAB = preload("uid://d2ar4maphqm3o")
-@onready var v_box_container: VBoxContainer = $Panel/ScrollContainer/Control/VBoxContainer
+@onready var v_box_container: VBoxContainer = $Panel/ScrollContainer/CenterContainer/VBoxContainer
 
 var inventory_is_open := false 
 var player_inventory : PlayerInventory

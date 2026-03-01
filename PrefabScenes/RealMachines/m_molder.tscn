@@ -180,7 +180,9 @@ _data = {
 [node name="MolderMachine" type="StaticBody3D" unique_id=1790180508 node_paths=PackedStringArray("display_points") groups=["Machine"]]
 collision_layer = 17
 script = ExtResource("1_58e8t")
+machine_name = "Molder"
 machine_cost = 30
+machine_description = "Moldes a bowl of chocolate into a chocolate ready to be boxed. Also applies the Roasted quality"
 recipe_info = ExtResource("2_58e8t")
 display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2")]
 input_dir = 2

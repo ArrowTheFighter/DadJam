@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4gykpijcn3ai"
-path.s3tc="res://.godot/imported/T_ATB_Palette_Base.png-26be7ceeafced0cc120900fbab2c80d8.s3tc.ctex"
+path="res://.godot/imported/T_ATB_Palette_Base.png-26be7ceeafced0cc120900fbab2c80d8.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Matts Files/T_ATB_Palette_Base.png"
-dest_files=["res://.godot/imported/T_ATB_Palette_Base.png-26be7ceeafced0cc120900fbab2c80d8.s3tc.ctex"]
+dest_files=["res://.godot/imported/T_ATB_Palette_Base.png-26be7ceeafced0cc120900fbab2c80d8.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

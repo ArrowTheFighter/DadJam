@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://2cfkvwhlodv3" path="res://Images/keyboard_e.png" id="15_tasvc"]
 [ext_resource type="Script" uid="uid://cd2yba44o31cv" path="res://PrefabScenes/PlayerComponents/camera_sensativity_slider.gd" id="16_uf73k"]
 [ext_resource type="Script" uid="uid://bmhuwulgfmvhy" path="res://Scripts/machine_list_script.gd" id="17_kvc6a"]
+[ext_resource type="Script" uid="uid://0w22qo5il4a6" path="res://Scripts/planet_rating_script.gd" id="18_kvc6a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odoxw"]
 texture = ExtResource("1_odoxw")
@@ -41,6 +42,10 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="LabelSettings" id="LabelSettings_qm8q8"]
+font = ExtResource("6_2knc1")
+font_size = 31
+
 [sub_resource type="LabelSettings" id="LabelSettings_uxwx3"]
 font = ExtResource("6_2knc1")
 font_size = 42
@@ -58,7 +63,7 @@ corner_radius_bottom_left = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_m8v1g"]
 font = ExtResource("6_2knc1")
-font_size = 72
+font_size = 49
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odoxw"]
 bg_color = Color(0.6, 0.6, 0.6, 0.15686275)
@@ -69,11 +74,11 @@ corner_radius_bottom_left = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_6jy8b"]
 font = ExtResource("6_2knc1")
-font_size = 47
+font_size = 35
 
 [sub_resource type="LabelSettings" id="LabelSettings_aodg1"]
 font = ExtResource("6_2knc1")
-font_size = 55
+font_size = 39
 
 [sub_resource type="LabelSettings" id="LabelSettings_xii0o"]
 font = ExtResource("6_2knc1")
@@ -218,6 +223,78 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aodg1")
+
+[node name="Ratings" type="Control" parent="." unique_id=1905765705]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -676.0
+offset_right = 676.0
+offset_bottom = 225.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ratings" unique_id=1884676220]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 78
+alignment = 1
+
+[node name="Planet Zorg" type="VBoxContainer" parent="Ratings/HBoxContainer" unique_id=1494942156]
+layout_mode = 2
+alignment = 1
+script = ExtResource("18_kvc6a")
+planet_num = 1
+
+[node name="Label" type="Label" parent="Ratings/HBoxContainer/Planet Zorg" unique_id=1253663196]
+layout_mode = 2
+text = "Planet Zorg Rating"
+label_settings = SubResource("LabelSettings_qm8q8")
+
+[node name="Label2" type="Label" parent="Ratings/HBoxContainer/Planet Zorg" unique_id=2089228222]
+layout_mode = 2
+text = "-- -- -- -- --"
+label_settings = SubResource("LabelSettings_qm8q8")
+horizontal_alignment = 1
+
+[node name="Planet Gron" type="VBoxContainer" parent="Ratings/HBoxContainer" unique_id=1844807041]
+layout_mode = 2
+alignment = 1
+script = ExtResource("18_kvc6a")
+planet_num = 2
+
+[node name="Label" type="Label" parent="Ratings/HBoxContainer/Planet Gron" unique_id=1697154955]
+layout_mode = 2
+text = "Planet Gron Rating"
+label_settings = SubResource("LabelSettings_qm8q8")
+
+[node name="Label2" type="Label" parent="Ratings/HBoxContainer/Planet Gron" unique_id=1801006788]
+layout_mode = 2
+text = "-- -- -- -- --"
+label_settings = SubResource("LabelSettings_qm8q8")
+horizontal_alignment = 1
+
+[node name="Planet Vorth" type="VBoxContainer" parent="Ratings/HBoxContainer" unique_id=1582962569]
+layout_mode = 2
+alignment = 1
+script = ExtResource("18_kvc6a")
+planet_num = 3
+
+[node name="Label" type="Label" parent="Ratings/HBoxContainer/Planet Vorth" unique_id=1384653030]
+layout_mode = 2
+text = "Planet Vorth Rating"
+label_settings = SubResource("LabelSettings_qm8q8")
+
+[node name="Label2" type="Label" parent="Ratings/HBoxContainer/Planet Vorth" unique_id=37880486]
+layout_mode = 2
+text = "-- -- -- -- --"
+label_settings = SubResource("LabelSettings_qm8q8")
+horizontal_alignment = 1
 
 [node name="InputHints" type="Control" parent="." unique_id=1051894905]
 layout_mode = 1
@@ -412,11 +489,31 @@ text = "Money earned:"
 label_settings = SubResource("LabelSettings_6jy8b")
 horizontal_alignment = 1
 
+[node name="Money Earned2" type="Label" parent="ReportCard" unique_id=1119330469]
+layout_mode = 0
+offset_top = 233.0
+offset_right = 926.0
+offset_bottom = 309.0
+size_flags_vertical = 0
+text = "Rating;"
+label_settings = SubResource("LabelSettings_6jy8b")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="ReportCard" unique_id=164857676]
+layout_mode = 0
+offset_top = 281.0
+offset_right = 926.0
+offset_bottom = 357.0
+size_flags_vertical = 0
+text = "-- -- -- -- --"
+label_settings = SubResource("LabelSettings_6jy8b")
+horizontal_alignment = 1
+
 [node name="MoneyLabel" type="Label" parent="ReportCard" unique_id=428698552]
 layout_mode = 0
-offset_top = 197.0
+offset_top = 178.0
 offset_right = 926.0
-offset_bottom = 273.0
+offset_bottom = 254.0
 size_flags_vertical = 0
 text = "$999"
 label_settings = SubResource("LabelSettings_aodg1")
@@ -425,17 +522,17 @@ horizontal_alignment = 1
 [node name="Divider2" type="Panel" parent="ReportCard" unique_id=1186394133]
 layout_mode = 0
 offset_left = 65.0
-offset_top = 264.0
+offset_top = 322.0
 offset_right = 861.0
-offset_bottom = 278.0
+offset_bottom = 336.0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_odoxw")
 
 [node name="REVIEWS" type="Label" parent="ReportCard" unique_id=1777246051]
 layout_mode = 0
-offset_top = 305.0
+offset_top = 350.0
 offset_right = 926.0
-offset_bottom = 381.0
+offset_bottom = 426.0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 16
 text = "Reviews"
@@ -445,9 +542,9 @@ horizontal_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="ReportCard" unique_id=84375554]
 layout_mode = 0
 offset_left = 27.0
-offset_top = 403.0
+offset_top = 448.0
 offset_right = 900.0
-offset_bottom = 791.0
+offset_bottom = 836.0
 theme_override_constants/separation = 31
 
 [node name="Review1" type="Label" parent="ReportCard/VBoxContainer" unique_id=1693252203]
@@ -527,26 +624,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="MachineList/Panel/ScrollContainer" unique_id=364762394]
+[node name="CenterContainer" type="CenterContainer" parent="MachineList/Panel/ScrollContainer" unique_id=1732903151]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MachineList/Panel/ScrollContainer/Control" unique_id=1498685049]
-layout_mode = 1
-offset_left = 65.0
-offset_right = 1305.0
-offset_bottom = 1140.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MachineList/Panel/ScrollContainer/CenterContainer" unique_id=1498685049]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 22
 
-[node name="Label" type="Label" parent="MachineList/Panel/ScrollContainer/Control/VBoxContainer" unique_id=1172231309]
+[node name="Label" type="Label" parent="MachineList/Panel/ScrollContainer/CenterContainer/VBoxContainer" unique_id=1172231309]
 layout_mode = 2
 text = "Machines"
 label_settings = SubResource("LabelSettings_deapx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="MachineList/Panel/ScrollContainer/Control/VBoxContainer" unique_id=1463825564]
+[node name="Panel" type="Panel" parent="MachineList/Panel/ScrollContainer/CenterContainer/VBoxContainer" unique_id=1463825564]
 custom_minimum_size = Vector2(0, 19.74)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mri4q")
