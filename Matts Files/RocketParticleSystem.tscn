@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bakd0bs6h4tml"]
+
+[ext_resource type="PackedScene" uid="uid://cq2ovud4pxax3" path="res://Matts Files/part_Rocket.fbx" id="1_iggcy"]
+[ext_resource type="Texture2D" uid="uid://bwfjkmrpfom4d" path="res://Matts Files/CloudSheet _V2.png" id="2_8lfy8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jvhn"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_8lfy8")
+billboard_mode = 3
+particles_anim_h_frames = 4
+particles_anim_v_frames = 3
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5f81s"]
+lifetime_randomness = 0.16
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 20.0
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 0, 0)
+spread = 7.695
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+scale_min = 0.0
+scale_max = 0.0
+anim_speed_min = 1.0
+anim_speed_max = 1.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_ddedk"]
+
+[node name="Node3D" type="Node3D" unique_id=579870478]
+
+[node name="part_Rocket" parent="." unique_id=1446681737 instance=ExtResource("1_iggcy")]
+transform = Transform3D(0.99258655, 0, 0, 0, 0.99258655, 0, 0, 0, 0.99258655, 0.0073657036, 0.6988855, -0.01077652)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=297193921]
+transform = Transform3D(0.12992018, 0, 0, 0, -5.678991e-09, -0.12992018, 0, 0.12992018, -5.678991e-09, 0.0059725046, 0.6840616, 0)
+material_override = SubResource("StandardMaterial3D_1jvhn")
+amount = 20
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_5f81s")
+draw_pass_1 = SubResource("QuadMesh_ddedk")
