@@ -4,8 +4,9 @@
 [ext_resource type="Resource" uid="uid://drdwuuextb3st" path="res://PrefabScenes/PickupScenes/RecipeInfo/test_recipe.tres" id="2_vpko0"]
 [ext_resource type="Texture2D" uid="uid://duxb7hwkfa1bg" path="res://Images/T_ATB_Palette_Base.png" id="3_sna2u"]
 [ext_resource type="Material" uid="uid://cff4dughde73v" path="res://Materials/outline_shader_upward_offset.tres" id="4_5ulg0"]
-[ext_resource type="Texture2D" uid="uid://hwu704y5ay61" path="res://Images/T_ConveyorBelt.png" id="5_n2xnm"]
+[ext_resource type="Shader" uid="uid://cv7cx2cac65ip" path="res://Materials/conveyor_belt_shader.gdshader" id="5_7bf5k"]
 [ext_resource type="Script" uid="uid://dv3152veuf0rf" path="res://Scripts/conveyor_visuals_script.gd" id="6_mmcag"]
+[ext_resource type="Texture2D" uid="uid://ddn20ysaqi5wv" path="res://Matts Files/T_ConveyorBelt.png" id="6_qqxs8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
 size = Vector3(1, 0.7139282, 1)
@@ -53,14 +54,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bu2rx")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3bf5"]
-resource_name = "mat_Convey_Belt"
-next_pass = ExtResource("4_5ulg0")
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("5_n2xnm")
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qqxs8"]
+render_priority = 0
+shader = ExtResource("5_7bf5k")
+shader_parameter/albedo_texture = ExtResource("6_qqxs8")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.5
+shader_parameter/scroll_speed = -1.249999821875
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_hok77"]
 _surfaces = [{
@@ -84,7 +85,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 96,
 "index_data": PackedByteArray("AAABAAIAAwABAAAAAgAEAAAAAAAFAAMAAwAFAAYABgAHAAMABAACAAgACAAJAAQACgAJAAgACAALAAoACgALAAwADAANAAoADgANAAwADAAPAA4ADgAPABAAEAARAA4AEgARABAAEAATABIAEgATABQAFAAVABIAFgAVABQAFAAXABYAFgAXABgAGAAZABYAGgAZABgAGAAbABoAHAAaABsAGwAdABwAHAAdAB4AHgAfABwAIAAfAB4AHgAhACAA"),
-"material": SubResource("StandardMaterial3D_l3bf5"),
+"material": SubResource("ShaderMaterial_qqxs8"),
 "name": "mat_Convey_Belt",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -255,6 +256,8 @@ shadow_mesh = SubResource("ArrayMesh_h72lw")
 [node name="StaticBody3D" type="StaticBody3D" unique_id=1790180508 node_paths=PackedStringArray("display_points") groups=["Machine"]]
 collision_layer = 17
 script = ExtResource("1_mjr6i")
+machine_name = "Conveyor Belt"
+machine_description = "Used to transfer items between machines"
 recipe_info = ExtResource("2_vpko0")
 display_points = [NodePath("DisplayPosition")]
 input_dir = 14

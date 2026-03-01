@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://d2ar4maphqm3o"]
+
+[ext_resource type="Texture2D" uid="uid://bc8i673ijj3um" path="res://icon.svg" id="1_7xook"]
+[ext_resource type="Script" uid="uid://nslxqai231jd" path="res://Scripts/ui_machine_tab_script.gd" id="1_8hs0v"]
+[ext_resource type="FontFile" uid="uid://gkb354k183td" path="res://Fonts/AlienSpace.ttf" id="2_rsj1q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsj1q"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.07731006, 0.109231986, 0.10956552, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hs0v"]
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32h3v"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_xe3md"]
+font = ExtResource("2_rsj1q")
+font_size = 27
+
+[sub_resource type="LabelSettings" id="LabelSettings_hi68r"]
+font = ExtResource("2_rsj1q")
+
+[node name="PanelContainer" type="PanelContainer" unique_id=1187274567]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1075, 150)
+offset_right = 2.0
+offset_bottom = 8.0
+script = ExtResource("1_8hs0v")
+
+[node name="ui_mcahine_tab" type="Button" parent="." unique_id=2023483852]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rsj1q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui_mcahine_tab" unique_id=691648018]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.5
+offset_right = -10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Panel" type="PanelContainer" parent="ui_mcahine_tab/HBoxContainer" unique_id=1552187418]
+show_behind_parent = true
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8hs0v")
+
+[node name="MachineIcon" type="TextureRect" parent="ui_mcahine_tab/HBoxContainer/Panel" unique_id=334790036]
+show_behind_parent = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_7xook")
+expand_mode = 1
+
+[node name="Panel2" type="Panel" parent="ui_mcahine_tab/HBoxContainer" unique_id=97914756]
+custom_minimum_size = Vector2(12.86, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_32h3v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui_mcahine_tab/HBoxContainer" unique_id=1814114087]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Machine Name" type="Label" parent="ui_mcahine_tab/HBoxContainer/VBoxContainer" unique_id=2051780303]
+layout_mode = 2
+text = "Machine Name"
+label_settings = SubResource("LabelSettings_xe3md")
+
+[node name="Machine Price" type="Label" parent="ui_mcahine_tab/HBoxContainer/VBoxContainer" unique_id=1826968433]
+layout_mode = 2
+text = "$999"
+label_settings = SubResource("LabelSettings_xe3md")
+horizontal_alignment = 1
+
+[node name="MachineDescription" type="Label" parent="ui_mcahine_tab/HBoxContainer" unique_id=572407934]
+custom_minimum_size = Vector2(650, 137.7)
+layout_mode = 2
+text = "This is the desription for the machine, it says what the machine is used for and lists recipes and any other such information."
+label_settings = SubResource("LabelSettings_hi68r")
+vertical_alignment = 1
+autowrap_mode = 2

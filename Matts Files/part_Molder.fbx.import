@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d4me23ctjtx5e"
-path="res://.godot/imported/part_Mixer_2.fbx-206ce1e99b2e9e3413fc033df6f4dabc.scn"
+uid="uid://1tfogvfjjacf"
+path="res://.godot/imported/part_Molder.fbx-f0b15562820d18751914fc7cd94c8513.scn"
 
 [deps]
 
-source_file="res://Matts Files/part_Mixer_2.fbx"
-dest_files=["res://.godot/imported/part_Mixer_2.fbx-206ce1e99b2e9e3413fc033df6f4dabc.scn"]
+source_file="res://Matts Files/part_Molder.fbx"
+dest_files=["res://.godot/imported/part_Molder.fbx-f0b15562820d18751914fc7cd94c8513.scn"]
 
 [params]
 
@@ -39,7 +39,7 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "animations": {
-"anim_Mixer_Middle": {
+"anim_Mold_Bake": {
 "save_to_file/enabled": false,
 "save_to_file/fallback_path": "",
 "save_to_file/keep_custom_tracks": "",

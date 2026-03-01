@@ -6,6 +6,13 @@ const DIR_X_NEG := 1 << 1 # -X
 const DIR_Z_POS := 1 << 2 # +Z
 const DIR_Z_NEG := 1 << 3 # -Z
 
+@export_category("Machine Info")
+@export var machine_name : String
+@export var machine_cost : int = 10
+@export_multiline() var machine_description : String
+@export var machine_icon : Texture
+
+@export_category("Machine settings")
 @export var recipe_info : RecipeInfo
 @export var display_points : Array[Node3D]
 @export_flags("+X","-X","+Z","-Z") var input_dir
@@ -23,7 +30,6 @@ var machine_finished := false
 @onready var process_timer: Timer = $ProcessTimer
 @export var output_duration : float
 @onready var output_timer: Timer = $OutputTimer
-@export var machine_cost : int = 10
 @export_category("Level_Setup")
 @export var set_spot_filled_on_startup := false
 
@@ -200,6 +206,9 @@ func convert_items_to_recipe_output():
     var ingredients : Array[Pickup]
     for item in holding_items:
         ingredients.append(item.duplicate())
+        for quality in item.item_qualities:
+            if !outputItem.item_qualities.has(quality):
+                outputItem.item_qualities.append(quality)
     empty_machine(false)
     
     apply_qualities(outputItem)

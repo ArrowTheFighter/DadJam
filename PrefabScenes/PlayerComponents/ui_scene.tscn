@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bbiskg3385roc" path="res://Images/keyboard_t.png" id="14_mri4q"]
 [ext_resource type="Texture2D" uid="uid://2cfkvwhlodv3" path="res://Images/keyboard_e.png" id="15_tasvc"]
 [ext_resource type="Script" uid="uid://cd2yba44o31cv" path="res://PrefabScenes/PlayerComponents/camera_sensativity_slider.gd" id="16_uf73k"]
+[ext_resource type="Script" uid="uid://bmhuwulgfmvhy" path="res://Scripts/machine_list_script.gd" id="17_kvc6a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odoxw"]
 texture = ExtResource("1_odoxw")
@@ -43,7 +44,7 @@ corner_radius_bottom_left = 5
 [sub_resource type="LabelSettings" id="LabelSettings_uxwx3"]
 font = ExtResource("6_2knc1")
 font_size = 42
-font_color = Color(1, 1, 1, 0.5294118)
+font_color = Color(0, 0, 0, 0.45490196)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xii0o"]
 bg_color = Color(0.26890373, 0.34201315, 0.49574256, 1)
@@ -81,6 +82,33 @@ shadow_size = 4
 shadow_color = Color(0.21806103, 0.21806103, 0.21806103, 1)
 shadow_offset = Vector2(1.42, 1.4)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvc6a"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.24686101, 0.22467133, 0.13096493, 0.85490197)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_deapx"]
+font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mri4q"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+
 [sub_resource type="LabelSettings" id="LabelSettings_fw078"]
 font = ExtResource("6_2knc1")
 font_size = 50
@@ -94,6 +122,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=137860588]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -109,9 +138,11 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_odoxw")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1539741366]
+visible = false
 layout_mode = 2
 
 [node name="ItemHotbarContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=673224789]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -219,7 +250,7 @@ text = "Rotate"
 label_settings = SubResource("LabelSettings_uxwx3")
 
 [node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer2" unique_id=1310818418]
-self_modulate = Color(1, 1, 1, 0.5176471)
+self_modulate = Color(1, 1, 1, 0.77254903)
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -228,7 +259,7 @@ texture = ExtResource("9_fw078")
 expand_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer2" unique_id=892515805]
-self_modulate = Color(1, 1, 1, 0.5176471)
+self_modulate = Color(1, 1, 1, 0.77254903)
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -246,7 +277,7 @@ text = "Inventroy"
 label_settings = SubResource("LabelSettings_uxwx3")
 
 [node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer6" unique_id=591551022]
-self_modulate = Color(1, 1, 1, 0.5176471)
+self_modulate = Color(1, 1, 1, 0.77254903)
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -264,7 +295,7 @@ text = "remove machine"
 label_settings = SubResource("LabelSettings_uxwx3")
 
 [node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer5" unique_id=56609291]
-self_modulate = Color(1, 1, 1, 0.5176471)
+self_modulate = Color(1, 1, 1, 0.77254903)
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -282,7 +313,7 @@ text = "Place Machine"
 label_settings = SubResource("LabelSettings_uxwx3")
 
 [node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer7" unique_id=1903552918]
-self_modulate = Color(1, 1, 1, 0.5176471)
+self_modulate = Color(1, 1, 1, 0.77254903)
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -300,7 +331,7 @@ text = "Empty Machine"
 label_settings = SubResource("LabelSettings_uxwx3")
 
 [node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer4" unique_id=1360338253]
-self_modulate = Color(1, 1, 1, 0.5176471)
+self_modulate = Color(1, 1, 1, 0.77254903)
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -318,7 +349,7 @@ text = "Interact"
 label_settings = SubResource("LabelSettings_uxwx3")
 
 [node name="TextureRect" type="TextureRect" parent="InputHints/VBoxContainer/HBoxContainer3" unique_id=1530606473]
-self_modulate = Color(1, 1, 1, 0.5176471)
+self_modulate = Color(1, 1, 1, 0.7529412)
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -348,6 +379,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xii0o")
 
 [node name="Label" type="Label" parent="ReportCard" unique_id=1779071279]
@@ -417,7 +450,7 @@ offset_right = 900.0
 offset_bottom = 791.0
 theme_override_constants/separation = 31
 
-[node name="Label6" type="Label" parent="ReportCard/VBoxContainer" unique_id=1693252203]
+[node name="Review1" type="Label" parent="ReportCard/VBoxContainer" unique_id=1693252203]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 0
@@ -426,7 +459,7 @@ label_settings = ExtResource("7_uno0f")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Label7" type="Label" parent="ReportCard/VBoxContainer" unique_id=1208838319]
+[node name="Review2" type="Label" parent="ReportCard/VBoxContainer" unique_id=1208838319]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 0
@@ -435,7 +468,7 @@ label_settings = ExtResource("7_uno0f")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Label8" type="Label" parent="ReportCard/VBoxContainer" unique_id=1813339389]
+[node name="Review3" type="Label" parent="ReportCard/VBoxContainer" unique_id=1813339389]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 0
@@ -460,6 +493,63 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("6_2knc1")
 theme_override_font_sizes/font_size = 67
 text = "Close"
+
+[node name="MachineList" type="Control" parent="." unique_id=1185356713]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 482.0
+offset_top = 50.0
+offset_right = -482.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_kvc6a")
+
+[node name="Panel" type="Panel" parent="MachineList" unique_id=163269051]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -207.0
+offset_right = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kvc6a")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MachineList/Panel" unique_id=1613981130]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="MachineList/Panel/ScrollContainer" unique_id=364762394]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MachineList/Panel/ScrollContainer/Control" unique_id=1498685049]
+layout_mode = 1
+offset_left = 65.0
+offset_right = 1305.0
+offset_bottom = 1140.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 22
+
+[node name="Label" type="Label" parent="MachineList/Panel/ScrollContainer/Control/VBoxContainer" unique_id=1172231309]
+layout_mode = 2
+text = "Machines"
+label_settings = SubResource("LabelSettings_deapx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="MachineList/Panel/ScrollContainer/Control/VBoxContainer" unique_id=1463825564]
+custom_minimum_size = Vector2(0, 19.74)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mri4q")
 
 [node name="PauseMenu" type="Control" parent="." unique_id=1962941967 groups=["PauseMenu"]]
 visible = false

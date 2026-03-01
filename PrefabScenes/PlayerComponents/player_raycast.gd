@@ -12,6 +12,7 @@ var holding_item : Node3D
 var holding_item_local_pos : Vector3
 var outlined_object
 var _object_rotation := 0
+var mouse_capture
 var object_rotation : int :
     get:
         return _object_rotation
@@ -25,6 +26,7 @@ signal item_dropped
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     player_inventory.selected_item_changed.connect(selected_item_changed)
+    mouse_capture = get_tree().get_first_node_in_group("MouseCaptureGroup")
     pass # Replace with function body.
 func _input(event: InputEvent) -> void:
     
@@ -37,6 +39,8 @@ func _input(event: InputEvent) -> void:
         set_preview_rotation(object_rotation)
     
     if Input.is_action_just_pressed("place_object"):
+        if !mouse_capture.can_capture_mouse:
+            return
         if !has_selected_pos:
             return
         if !GridManager.get_grid_pos_status(selected_grid_pos): 

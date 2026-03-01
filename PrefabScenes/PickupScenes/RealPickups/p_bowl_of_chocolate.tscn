@@ -2,15 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dny4rrlm475x2" path="res://PrefabScenes/pickup_script.gd" id="1_oysxp"]
 [ext_resource type="Resource" uid="uid://v06sco1ctsr7" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_bowl_of_chocolate.tres" id="2_oysxp"]
-[ext_resource type="PackedScene" uid="uid://c0nguodwacu2x" path="res://Matts Files/ing_CocoaPowder.fbx" id="3_rbg03"]
+[ext_resource type="PackedScene" uid="uid://hyufrwrne5h8" path="res://Matts Files/ing_BowlPudding.fbx" id="3_oysxp"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7rbwc"]
 height = 0.2
 radius = 0.2
-
-[sub_resource type="TorusMesh" id="TorusMesh_d16vw"]
-inner_radius = 0.119
-outer_radius = 0.342
 
 [node name="BowlOfChocolatePickup" type="RigidBody3D" unique_id=629013510 groups=["Pickup"]]
 collision_layer = 17
@@ -21,8 +17,5 @@ item_info = ExtResource("2_oysxp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("CylinderShape3D_7rbwc")
 
-[node name="ing_CocoaPowder" parent="." unique_id=120700298 instance=ExtResource("3_rbg03")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=476517199]
-mesh = SubResource("TorusMesh_d16vw")
+[node name="ing_BowlPudding" parent="." unique_id=1180136322 instance=ExtResource("3_oysxp")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
