@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvedesq3k8gst"
-path.s3tc="res://.godot/imported/T_IngredientSign_Sugar.png-587702ea8ea72d032e42d2cdde54ff6a.s3tc.ctex"
+path.s3tc="res://.godot/imported/T_IngredientSign_Sugar.png-f557c2ec474fa95c799546f0533a4942.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://FactoryArt/textures/T_IngredientSign_Sugar.png"
-dest_files=["res://.godot/imported/T_IngredientSign_Sugar.png-587702ea8ea72d032e42d2cdde54ff6a.s3tc.ctex"]
+source_file="res://FactoryArt/Textures/T_IngredientSign_Sugar.png"
+dest_files=["res://.godot/imported/T_IngredientSign_Sugar.png-f557c2ec474fa95c799546f0533a4942.s3tc.ctex"]
 
 [params]
 

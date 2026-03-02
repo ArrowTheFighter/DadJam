@@ -22,8 +22,12 @@ var shipping_prefrences = [
 ]
 
 var shipping_dislikes = [
-    QualityEnum.Property.BURNT,
-    QualityEnum.Property.NUTTY
+    QualityEnum.Property.WET,
+    QualityEnum.Property.JIGGLY,
+    QualityEnum.Property.RADIOACTIVE,
+    QualityEnum.Property.ORGANIC,
+    QualityEnum.Property.EXPENSIVE,
+    QualityEnum.Property.DECORATED,
 ]
 ## Planet 2
 var p2_stored_shipments : Array[Pickup]
@@ -35,15 +39,21 @@ var p2_shipped_qualities : Array[QualityEnum.Property]
 
 var p2_shipping_prefrences = [
     QualityEnum.Property.ROASTED,
-    QualityEnum.Property.SMOOTH,
     QualityEnum.Property.CHILLED,
     QualityEnum.Property.CREAMY,
-    QualityEnum.Property.SWEET
+    QualityEnum.Property.RADIOACTIVE,
+    QualityEnum.Property.ORGANIC,
 ]
 
 var p2_shipping_dislikes = [
     QualityEnum.Property.BURNT,
-    QualityEnum.Property.NUTTY
+    QualityEnum.Property.NUTTY,
+    QualityEnum.Property.SWEET,
+    QualityEnum.Property.SMOOTH,
+    QualityEnum.Property.WET,
+    QualityEnum.Property.JIGGLY,
+    QualityEnum.Property.EXPENSIVE,
+    QualityEnum.Property.DECORATED,
 ]
 
 ##Planet 3
@@ -55,16 +65,20 @@ var p3_shipped_qualities : Array[QualityEnum.Property]
 
 
 var p3_shipping_prefrences = [
-    QualityEnum.Property.ROASTED,
-    QualityEnum.Property.SMOOTH,
-    QualityEnum.Property.CHILLED,
-    QualityEnum.Property.CREAMY,
-    QualityEnum.Property.SWEET
+    
+    QualityEnum.Property.WET,
+    QualityEnum.Property.JIGGLY,
+    QualityEnum.Property.RADIOACTIVE,
+    QualityEnum.Property.ORGANIC,
+    QualityEnum.Property.EXPENSIVE,
+    QualityEnum.Property.DECORATED,
 ]
 
 var p3_shipping_dislikes = [
     QualityEnum.Property.BURNT,
-    QualityEnum.Property.NUTTY
+    QualityEnum.Property.NUTTY,
+    QualityEnum.Property.CHILLED,
+    QualityEnum.Property.CREAMY,
 ]
 
 signal planet_1_shipped(rating)

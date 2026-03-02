@@ -11,6 +11,7 @@ extends Control
 ]
 
 func show_report(money_earned, disliked_qualitites,liked_qualities,score,title_text):
+    get_tree().paused = true
     visible = true
     get_tree().get_first_node_in_group("MouseCaptureGroup").release_mouse()
     title.text = title_text
@@ -42,6 +43,8 @@ func show_report(money_earned, disliked_qualitites,liked_qualities,score,title_t
     pass
     
 func hide_report():
+    
+    get_tree().paused = false
     visible = false
     get_tree().get_first_node_in_group("MouseCaptureGroup").capture_mouse()
 
