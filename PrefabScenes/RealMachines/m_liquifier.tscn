@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://tao1nna6rqmf"]
 
 [ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_l0dcm"]
+[ext_resource type="Texture2D" uid="uid://dkt2g8volqidv" path="res://Icons/TN_Mixer_ALT.png" id="2_b01sd"]
 [ext_resource type="Resource" uid="uid://hpm6o5baa5dl" path="res://PrefabScenes/PickupScenes/RealRecipes/r_liquifier.tres" id="2_ujygc"]
 [ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="3_8ot8w"]
 [ext_resource type="Texture2D" uid="uid://b4gykpijcn3ai" path="res://Matts Files/T_ATB_Palette_Base.png" id="3_ujygc"]
@@ -331,6 +332,7 @@ script = ExtResource("1_l0dcm")
 machine_name = "Liquifier"
 machine_cost = 60
 machine_description = "Mixes a round chocolate with milk and adds the wet and jiggly qualities"
+machine_icon = ExtResource("2_b01sd")
 recipe_info = ExtResource("2_ujygc")
 display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2")]
 input_dir = 6

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_5prmv"]
 [ext_resource type="Resource" uid="uid://dvxojwc8u16p8" path="res://PrefabScenes/PickupScenes/RealRecipes/r_biterator.tres" id="2_5prmv"]
+[ext_resource type="Texture2D" uid="uid://bplkcxgxhxyd4" path="res://Icons/TN_Generic_2.png" id="2_5wpc1"]
 [ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="3_q44gu"]
 [ext_resource type="PackedScene" uid="uid://wjbix86w30br" path="res://FactoryArt/Meshes/SM_Infuser.fbx" id="4_5wpc1"]
 [ext_resource type="PackedScene" uid="uid://c4keoutygnco4" path="res://FactoryArt/Meshes/SM_Cooler.fbx" id="5_s5qac"]
@@ -18,6 +19,7 @@ script = ExtResource("1_5prmv")
 machine_name = "Bitterator"
 machine_cost = 60
 machine_description = "Injects pure bitter into a round chocolate removing the Sweet quality"
+machine_icon = ExtResource("2_5wpc1")
 recipe_info = ExtResource("2_5prmv")
 display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2")]
 input_dir = 2

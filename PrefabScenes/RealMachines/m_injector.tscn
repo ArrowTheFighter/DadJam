@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_aef8f"]
 [ext_resource type="Resource" uid="uid://du7ks125jvu4t" path="res://PrefabScenes/PickupScenes/RealRecipes/r_injector.tres" id="2_0843y"]
+[ext_resource type="Texture2D" uid="uid://dukdq24f5rw67" path="res://Icons/TN_Injector_ALT.png" id="2_r6l13"]
 [ext_resource type="Texture2D" uid="uid://b4gykpijcn3ai" path="res://Matts Files/T_ATB_Palette_Base.png" id="4_rdeux"]
 [ext_resource type="PackedScene" uid="uid://qk3123vl0qix" path="res://FactoryArt/Meshes/SM_Arrow.fbx" id="5_aef8f"]
 [ext_resource type="Script" uid="uid://c17gchy4v0ilr" path="res://Scripts/infuser_visuals_script.gd" id="5_eyx7e"]
@@ -183,6 +184,7 @@ script = ExtResource("1_aef8f")
 machine_name = "Injector"
 machine_cost = 80
 machine_description = "Injects a round chocolate with a special sauce applying the Radioactive and Organic qualities"
+machine_icon = ExtResource("2_r6l13")
 recipe_info = ExtResource("2_0843y")
 display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2")]
 input_dir = 14

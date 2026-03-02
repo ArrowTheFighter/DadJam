@@ -1,4 +1,6 @@
 extends Node
+@onready var cube_023: MeshInstance3D = $"../ConveyorTest/SM_Machine_Arrow_Colored_01/Cube_023"
+@onready var cube_024: MeshInstance3D = $"../ConveyorTest/SM_Machine_Arrow_Colored_01/Cube_024"
 
 @export var machine : Machine
 @export var start_pos : Node3D
@@ -11,6 +13,13 @@ func _ready() -> void:
     machine.output_started.connect(output_started)
     machine.process_started.connect(process_started)
     machine.process_finished.connect(process_ended)
+    await get_tree().create_timer(0.1).timeout
+    var tween = create_tween()
+    tween.tween_property(cube_023,"rotation_degrees:y",95,0.5).set_trans(Tween.TRANS_BACK)
+    
+    
+    var tween2 = create_tween()
+    tween2.tween_property(cube_024,"rotation_degrees:y",-95,0.5).set_trans(Tween.TRANS_BACK)
     pass
     
     
@@ -24,11 +33,25 @@ func input_started(item_number):
 func process_started():
     if animation_player != null:
         animation_player.play("anim_Mixer_Middle")
+    
+    var tween = create_tween()
+    tween.tween_property(cube_023,"rotation_degrees:y",0,0.5).set_trans(Tween.TRANS_BACK)
+    
+    
+    var tween2 = create_tween()
+    tween2.tween_property(cube_024,"rotation_degrees:y",0,0.5).set_trans(Tween.TRANS_BACK)
+    
     pass
     
 func process_ended(ingredients):
     if animation_player != null:
         animation_player.pause()
+    var tween = create_tween()
+    tween.tween_property(cube_023,"rotation_degrees:y",95,0.5).set_trans(Tween.TRANS_BACK)
+    
+    
+    var tween2 = create_tween()
+    tween2.tween_property(cube_024,"rotation_degrees:y",-95,0.5).set_trans(Tween.TRANS_BACK)
     pass
     
 func output_started():
