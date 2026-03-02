@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_aef8f"]
 [ext_resource type="Resource" uid="uid://du7ks125jvu4t" path="res://PrefabScenes/PickupScenes/RealRecipes/r_injector.tres" id="2_0843y"]
 [ext_resource type="Texture2D" uid="uid://b4gykpijcn3ai" path="res://Matts Files/T_ATB_Palette_Base.png" id="4_rdeux"]
+[ext_resource type="PackedScene" uid="uid://qk3123vl0qix" path="res://FactoryArt/Meshes/SM_Arrow.fbx" id="5_aef8f"]
 [ext_resource type="Script" uid="uid://c17gchy4v0ilr" path="res://Scripts/infuser_visuals_script.gd" id="5_eyx7e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
@@ -188,6 +189,7 @@ input_dir = 14
 input_duration = 0.2
 process_duration = 1.5
 output_duration = 0.2
+placement_arrow_path = NodePath("PlacementArrow")
 
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
@@ -308,3 +310,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002, 0.893, 0)
 
 [node name="EndPos" type="Marker3D" parent="." unique_id=413078187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.893, 0)
+
+[node name="PlacementArrow" parent="." unique_id=504390285 instance=ExtResource("5_aef8f")]
+transform = Transform3D(-0.4, 0, 6.039832e-08, 0, 1, 0, -6.039832e-08, 0, -0.4, 0.67889506, 0.8263923, 0)
+
+[node name="PlacementArrow2" parent="PlacementArrow" unique_id=489851020 instance=ExtResource("5_aef8f")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 3.4653854, 0, -5.232587e-07)
+
+[node name="PlacementArrow3" parent="PlacementArrow" unique_id=881605437 instance=ExtResource("5_aef8f")]
+transform = Transform3D(-5.3895178e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, -5.3895178e-08, 1.7811165, 0, 1.3652244)
+
+[node name="PlacementArrow4" parent="PlacementArrow" unique_id=247938427 instance=ExtResource("5_aef8f")]
+transform = Transform3D(-3.35276e-08, 0, 0.9999994, 0, 1, 0, -0.9999994, 0, -3.35276e-08, 1.7811157, 0, -1.4371351)

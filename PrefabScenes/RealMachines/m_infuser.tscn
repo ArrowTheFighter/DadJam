@@ -1,10 +1,12 @@
 [gd_scene format=4 uid="uid://c7v2xhjdof0nk"]
 
 [ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_2t0qr"]
+[ext_resource type="Texture2D" uid="uid://5sdqf2d6oqwe" path="res://Icons/TN_Injector.png" id="2_1ec8b"]
 [ext_resource type="Resource" uid="uid://c06op6pfuyjbo" path="res://PrefabScenes/PickupScenes/RealRecipes/r_infuser.tres" id="2_2t0qr"]
 [ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="3_ju2qo"]
 [ext_resource type="Texture2D" uid="uid://b4gykpijcn3ai" path="res://Matts Files/T_ATB_Palette_Base.png" id="4_2t0qr"]
 [ext_resource type="Script" uid="uid://c17gchy4v0ilr" path="res://Scripts/infuser_visuals_script.gd" id="5_1ec8b"]
+[ext_resource type="PackedScene" uid="uid://qk3123vl0qix" path="res://FactoryArt/Meshes/SM_Arrow.fbx" id="7_ju2qo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
 size = Vector3(1, 0.7139282, 1)
@@ -99,6 +101,7 @@ script = ExtResource("1_2t0qr")
 machine_name = "Infuser"
 machine_cost = 50
 machine_description = "Infuses a round chocolate with milk to add the Creamy quality"
+machine_icon = ExtResource("2_1ec8b")
 recipe_info = ExtResource("2_2t0qr")
 display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2")]
 input_dir = 14
@@ -106,6 +109,7 @@ max_items = 2
 input_duration = 0.2
 process_duration = 1.5
 output_duration = 0.2
+placement_arrow_path = NodePath("PlacementArrow")
 
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
@@ -201,5 +205,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002, 0.893, 0)
 
 [node name="EndPos" type="Marker3D" parent="." unique_id=413078187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.893, 0)
+
+[node name="PlacementArrow" parent="." unique_id=504390285 instance=ExtResource("7_ju2qo")]
+transform = Transform3D(-0.4, 0, 6.039832e-08, 0, 1, 0, -6.039832e-08, 0, -0.4, 0.67889506, 0.8263923, 0)
+
+[node name="PlacementArrow2" parent="PlacementArrow" unique_id=224874798 instance=ExtResource("7_ju2qo")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 3.4653854, 0, -5.232587e-07)
+
+[node name="PlacementArrow3" parent="PlacementArrow" unique_id=1665526342 instance=ExtResource("7_ju2qo")]
+transform = Transform3D(-5.3895178e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, -5.3895178e-08, 1.7811165, 0, 1.3652244)
+
+[node name="PlacementArrow4" parent="PlacementArrow" unique_id=1932721753 instance=ExtResource("7_ju2qo")]
+transform = Transform3D(-3.35276e-08, 0, 0.9999994, 0, 1, 0, -0.9999994, 0, -3.35276e-08, 1.7811157, 0, -1.4371351)
 
 [editable path="ConveyorTest/part_Mixer_2"]

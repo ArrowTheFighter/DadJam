@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4keoutygnco4" path="res://FactoryArt/Meshes/SM_Cooler.fbx" id="5_s5qac"]
 [ext_resource type="PackedScene" uid="uid://ylb70ie80i8u" path="res://FactoryArt/Meshes/SM_Machine_Generic_2Input.fbx" id="6_lu182"]
 [ext_resource type="Script" uid="uid://dxvfyg04xlpvh" path="res://Scripts/mixer_visuals_script.gd" id="6_ph8hi"]
+[ext_resource type="PackedScene" uid="uid://qk3123vl0qix" path="res://FactoryArt/Meshes/SM_Arrow.fbx" id="8_q44gu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
 size = Vector3(1, 0.7139282, 1)
@@ -23,6 +24,7 @@ input_dir = 2
 input_duration = 0.2
 process_duration = 2.0
 output_duration = 0.2
+placement_arrow_path = NodePath("PlacementArrow")
 
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
@@ -86,5 +88,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002, 0.893, 0)
 
 [node name="EndPos" type="Marker3D" parent="." unique_id=413078187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.893, 0)
+
+[node name="PlacementArrow" parent="." unique_id=504390285 instance=ExtResource("8_q44gu")]
+transform = Transform3D(-0.4, 0, 6.039832e-08, 0, 1, 0, -6.039832e-08, 0, -0.4, 0.98731333, 0.8263923, 0)
+
+[node name="PlacementArrow2" parent="PlacementArrow" unique_id=1525353559 instance=ExtResource("8_q44gu")]
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 4.954181, 0, -7.4806053e-07)
 
 [editable path="ConveyorTest/part_Mixer_2"]

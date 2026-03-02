@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_ygjf4"]
 [ext_resource type="Resource" uid="uid://caiguvwqaa108" path="res://PrefabScenes/PickupScenes/RealRecipes/r_boxer.tres" id="2_h7nr3"]
+[ext_resource type="Texture2D" uid="uid://cbi538xc6v4m" path="res://Icons/TN_Boxer.png" id="2_r60hu"]
 [ext_resource type="Texture2D" uid="uid://b4gykpijcn3ai" path="res://Matts Files/T_ATB_Palette_Base.png" id="3_1hkjy"]
 [ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="4_gs8n1"]
 [ext_resource type="Script" uid="uid://bn45c2by3ywby" path="res://Scripts/boxer_visuals_script.gd" id="5_rctlk"]
+[ext_resource type="PackedScene" uid="uid://qk3123vl0qix" path="res://FactoryArt/Meshes/SM_Arrow.fbx" id="7_0pj13"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
 size = Vector3(1, 0.7139282, 1)
@@ -323,6 +325,7 @@ script = ExtResource("1_ygjf4")
 machine_name = "Boxer"
 machine_cost = 50
 machine_description = "Boxes up chocolates so they can be shipped"
+machine_icon = ExtResource("2_r60hu")
 recipe_info = ExtResource("2_h7nr3")
 display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2"), NodePath("DisplayPosition3")]
 input_dir = 2
@@ -330,6 +333,7 @@ max_items = 3
 input_duration = 0.2
 process_duration = 1.2
 output_duration = 0.2
+placement_arrow_path = NodePath("PlacementArrow")
 
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
@@ -450,3 +454,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0020655394, 0.893, 0)
 
 [node name="EndPos" type="Marker3D" parent="." unique_id=413078187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.893, 0)
+
+[node name="PlacementArrow" parent="." unique_id=504390285 instance=ExtResource("7_0pj13")]
+transform = Transform3D(-0.4, 0, 6.039832e-08, 0, 1, 0, -6.039832e-08, 0, -0.4, 0.6989941, 0.8263923, 0)
+
+[node name="PlacementArrow2" parent="PlacementArrow" unique_id=1078803065 instance=ExtResource("7_0pj13")]
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 3.682771, 0, -5.5608297e-07)

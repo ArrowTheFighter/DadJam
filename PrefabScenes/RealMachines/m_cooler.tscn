@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://wjbix86w30br" path="res://FactoryArt/Meshes/SM_Infuser.fbx" id="4_klhns"]
 [ext_resource type="Script" uid="uid://dxvfyg04xlpvh" path="res://Scripts/mixer_visuals_script.gd" id="5_dm5hl"]
 [ext_resource type="PackedScene" uid="uid://c4keoutygnco4" path="res://FactoryArt/Meshes/SM_Cooler.fbx" id="5_w0yqp"]
+[ext_resource type="PackedScene" uid="uid://c3thygmjs46lf" path="res://FactoryArt/Meshes/SM_Machine_Arrow_Colored_01.fbx" id="6_klhns"]
+[ext_resource type="PackedScene" uid="uid://qk3123vl0qix" path="res://FactoryArt/Meshes/SM_Arrow.fbx" id="7_dm5hl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
 size = Vector3(1, 0.7139282, 1)
@@ -23,6 +25,7 @@ max_items = 2
 input_duration = 0.2
 process_duration = 2.0
 output_duration = 0.2
+placement_arrow_path = NodePath("ConveyorTest/SM_Machine_Arrow_Colored_01/PlacementArrow")
 
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
@@ -51,7 +54,7 @@ one_shot = true
 [node name="part_Mixer_2" parent="ConveyorTest" unique_id=1776204722 instance=ExtResource("3_w0yqp")]
 visible = false
 
-[node name="Skeleton3D" parent="ConveyorTest/part_Mixer_2/Armature" parent_id_path=PackedInt32Array(1776204722, 255388925) index="0" unique_id=1205145119]
+[node name="Skeleton3D" parent="ConveyorTest/part_Mixer_2/Armature" parent_id_path=PackedInt32Array(1776204722, 371087565) index="0" unique_id=335222135]
 bones/1/position = Vector3(0, 0.0070188497, 0.009309745)
 bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/2/position = Vector3(0, -0.0070188497, 0.0026377647)
@@ -67,6 +70,15 @@ bones/6/rotation = Quaternion(0, 0, 0, 1)
 visible = false
 
 [node name="SM_Cooler" parent="ConveyorTest" unique_id=1065610189 instance=ExtResource("5_w0yqp")]
+visible = false
+
+[node name="SM_Machine_Arrow_Colored_01" parent="ConveyorTest" unique_id=1365371889 instance=ExtResource("6_klhns")]
+
+[node name="PlacementArrow" parent="ConveyorTest/SM_Machine_Arrow_Colored_01" unique_id=504390285 instance=ExtResource("7_dm5hl")]
+transform = Transform3D(-0.4, 0, 6.039832e-08, 0, 1, 0, -6.039832e-08, 0, -0.4, 0.67889506, 0.8263923, 0)
+
+[node name="PlacementArrow2" parent="ConveyorTest/SM_Machine_Arrow_Colored_01/PlacementArrow" unique_id=827078155 instance=ExtResource("7_dm5hl")]
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 3.4333444, 0, -5.184206e-07)
 
 [node name="MixerVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "start_pos", "middle_pos", "end_pos")]
 script = ExtResource("5_dm5hl")
