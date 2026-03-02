@@ -12,7 +12,6 @@
 [ext_resource type="Resource" uid="uid://d2gb6r4wkitjr" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_sugar.tres" id="8_y3sp4"]
 [ext_resource type="Resource" uid="uid://ccjbti6csfr6m" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_milk.tres" id="9_08clr"]
 [ext_resource type="PackedScene" uid="uid://bsk0imbkpglok" path="res://FactoryArt/Meshes/SM_Factory_Wall_01.fbx" id="9_40vq7"]
-[ext_resource type="Resource" uid="uid://du0sjc6b3w8i3" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_boxed_chocolate.tres" id="10_08clr"]
 [ext_resource type="Resource" uid="uid://r3wai1jx5rch" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_coco_powder.tres" id="10_55086"]
 [ext_resource type="PackedScene" uid="uid://d3wl8oreb7c8l" path="res://FactoryArt/Meshes/SM_Factory_Wall_02.fbx" id="10_qu3eq"]
 [ext_resource type="PackedScene" uid="uid://1vshmpv2jvgc" path="res://FactoryArt/Meshes/SM_Factory_Wall_03.fbx" id="11_e1m06"]
@@ -35,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://d2yxlullo5kwe" path="res://FactoryArt/Meshes/SM_AutomatedDispensary_Sugar.fbx" id="33_egvif"]
 [ext_resource type="PackedScene" uid="uid://c11ytmewctmaw" path="res://FactoryArt/Meshes/SM_AutomatedDispensary_Cocoa.fbx" id="34_8auty"]
 [ext_resource type="PackedScene" uid="uid://glxxggbdnqit" path="res://FactoryArt/Meshes/SM_AutomatedDispensary_Milk.fbx" id="35_hmrah"]
+[ext_resource type="PackedScene" uid="uid://dp6w7lt54vxpm" path="res://FactoryArt/Meshes/SM_Factory_Poster_01.fbx" id="36_hmrah"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4k50d"]
 albedo_color = Color(0.24066085, 0.40436083, 0.40920183, 1)
@@ -266,19 +266,15 @@ collision_mask = 2
 [node name="Props" type="Node" parent="." unique_id=761793301]
 
 [node name="ItemDispenserTest" parent="." unique_id=1360201585 instance=ExtResource("8_55086")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.001, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.001, 0.013570309)
 item_info = ExtResource("8_y3sp4")
 
 [node name="ItemDispenserTest3" parent="." unique_id=2000094186 instance=ExtResource("8_55086")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.001, 2.5)
 item_info = ExtResource("9_08clr")
 
-[node name="ItemDispenserTest4" parent="." unique_id=227095024 instance=ExtResource("8_55086")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.001, 4.5)
-item_info = ExtResource("10_08clr")
-
 [node name="ItemDispenserTest2" parent="." unique_id=479672014 instance=ExtResource("8_55086")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.001, -4.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0.001, -2.5046027)
 item_info = ExtResource("10_55086")
 
 [node name="FactoryEnvironment" type="Node" parent="." unique_id=238070866]
@@ -2256,6 +2252,15 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.
 
 [node name="SM_AutomatedDispensary_Milk4" parent="." unique_id=182050857 instance=ExtResource("35_hmrah")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.483691, 0.09030793, 10.490523)
+
+[node name="SM_Factory_Poster_01" parent="." unique_id=989408581 instance=ExtResource("36_hmrah")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0.02575821, 0.9996682, 1.1259271e-09, -0.9996682, 0.02575821, -4.3696883e-08, -12, 1.6554394, -2.6398149)
+
+[node name="SM_Factory_Poster_02" parent="." unique_id=468332153 instance=ExtResource("36_hmrah")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.992563, 1.4459254, -6.5032763)
+
+[node name="SM_Factory_Poster_03" parent="." unique_id=1616317219 instance=ExtResource("36_hmrah")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.992563, 1.4459254, 15.265387)
 
 [editable path="PlayerScene"]
 [editable path="StaticBody3D2"]
