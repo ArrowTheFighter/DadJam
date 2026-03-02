@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b2cs45jejkfy6"]
+
+[ext_resource type="Texture2D" uid="uid://lyfmuaf07jq" path="res://FactoryArt/Textures/T_sign_Zorg.png" id="1_ec3df"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_ec3df")
+emission_enabled = true
+emission_energy_multiplier = 0.85
+emission_texture = ExtResource("1_ec3df")

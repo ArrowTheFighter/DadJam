@@ -32,6 +32,8 @@ var machine_finished := false
 @onready var output_timer: Timer = $OutputTimer
 @export_category("Level_Setup")
 @export var set_spot_filled_on_startup := false
+@export var placement_arrow_path: NodePath
+@onready var placement_arrow: Node3D = get_node(placement_arrow_path) if placement_arrow_path != NodePath("") else null
 
 signal input_started(input_number)
 signal process_started
@@ -80,6 +82,10 @@ func initialize_machine(grid_position : Vector2i,rotation_step):
     GridManager.grid_was_updated()
     
     pass
+    
+func set_placement_preview_enabled(enabled: bool) -> void:
+    if placement_arrow:
+        placement_arrow.visible = enabled
     
 func get_input_grid_positions() -> Array[Vector2i]:
     var positions : Array[Vector2i]
@@ -358,7 +364,7 @@ func draw_input_debug():
 
         draw_debug_cube(world_pos)
     
-func draw_debug_cube(position: Vector3, size: float = 0.5, color: Color = Color.RED):
+func draw_debug_cube(position: Vector3, size: float = 0.5, color: Color = Color.LIME_GREEN):
     var mesh_instance := MeshInstance3D.new()
 
     var mesh := BoxMesh.new()

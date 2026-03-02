@@ -3,6 +3,7 @@ class_name PlayerRaycast
 @export var PlaceableTest : PackedScene
 @export var player_inventory : PlayerInventory
 @export var preview_material : StandardMaterial3D
+@export var preview_material_error : StandardMaterial3D
 @export var camera_node : Camera3D
 var MeshPreview : Node3D
 var selected_grid_pos : Vector2i
@@ -54,6 +55,8 @@ func _input(event: InputEvent) -> void:
             var machine_rotation = object_rotation
             
             get_tree().root.add_child(instancedPlaceable)
+            
+            instancedPlaceable.set_placement_preview_enabled(false)
             
             # Save the target position and scale
             var target_pos = selected_global_pos
@@ -224,7 +227,11 @@ func spawn_display_mesh():
     MeshPreview = item_to_place.instantiate()
     
     disable_colliders_recursive(MeshPreview)
-    apply_material_recursive(MeshPreview,preview_material)
+    
+    if MoneyManager.can_afford(MeshPreview.machine_cost):
+        apply_material_recursive(MeshPreview,preview_material)
+    else:
+        apply_material_recursive(MeshPreview,preview_material_error)
     
     get_tree().root.add_child(MeshPreview)
     

@@ -1,6 +1,6 @@
 extends Node
 
-var current_money : int = 250
+var current_money : int = 300
 
 signal money_updated(new_amount)
 

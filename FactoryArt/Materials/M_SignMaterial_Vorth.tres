@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b2xtnhnt4nnrt"]
+
+[ext_resource type="Texture2D" uid="uid://dnnmgp3py6gtb" path="res://FactoryArt/Textures/T_sign_Vorth.png" id="1_xvf4b"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_xvf4b")
+emission_enabled = true
+emission_energy_multiplier = 0.85
+emission_texture = ExtResource("1_xvf4b")

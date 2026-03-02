@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://kp8bn0u7p2sg"]
+
+[ext_resource type="Texture2D" uid="uid://bvedesq3k8gst" path="res://FactoryArt/Textures/T_IngredientSign_Sugar.png" id="1_br8i6"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_br8i6")
+emission_enabled = true
+emission_energy_multiplier = 0.85
+emission_texture = ExtResource("1_br8i6")

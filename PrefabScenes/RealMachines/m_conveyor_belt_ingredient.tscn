@@ -255,18 +255,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_h72lw")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3xhh"]
-albedo_color = Color(0.41062272, 0.41062272, 0.41062272, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_16y72"]
-material = SubResource("StandardMaterial3D_l3xhh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulm1l"]
-albedo_color = Color(0.04395192, 0.043951936, 0.0439519, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_sd33t"]
-material = SubResource("StandardMaterial3D_ulm1l")
-
 [node name="StaticBody3D" type="StaticBody3D" unique_id=1790180508 node_paths=PackedStringArray("display_points") groups=["Machine"]]
 collision_layer = 17
 script = ExtResource("1_38yh6")
@@ -347,11 +335,3 @@ script = ExtResource("8_v7c7m")
 item = ExtResource("9_l3xhh")
 machine = NodePath("..")
 spawnPos = NodePath("../StartPos")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=164866676]
-transform = Transform3D(0.21395457, 0, 0, 0, 0.60983276, 0, 0, 0, 1, -0.432606, 1.1244833, 0)
-mesh = SubResource("BoxMesh_16y72")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1940292638]
-transform = Transform3D(0.05749806, 0, 0, 0, 0.5493419, 0, 0, 0, 0.9211741, -0.31565434, 1.1244833, 0)
-mesh = SubResource("BoxMesh_sd33t")

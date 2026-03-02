@@ -2,8 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://fskqjv5cxj8w" path="res://PrefabScenes/PlayerComponents/ui_scene.tscn" id="1_a6t11"]
 [ext_resource type="Script" uid="uid://pw3dh0fu07rj" path="res://Scripts/mouse_capture.gd" id="2_0uq57"]
+[ext_resource type="PackedScene" uid="uid://c8rvlkingotxo" path="res://FactoryArt/Meshes/SM_ShippingSign.fbx" id="2_hjhdi"]
 [ext_resource type="Shader" uid="uid://ba367m6bviqqd" path="res://ShaderScripts/grid_shader.gdshader" id="3_0y878"]
+[ext_resource type="PackedScene" uid="uid://dgecdmwid4tbr" path="res://FactoryArt/Meshes/SM_ShippingSign_Gron.fbx" id="3_w8d2s"]
 [ext_resource type="Script" uid="uid://buup2wx5af5l0" path="res://Scripts/grid_visuals_script.gd" id="4_3oet3"]
+[ext_resource type="PackedScene" uid="uid://dtfetqfw0yo5x" path="res://FactoryArt/Meshes/SM_ShippingSign_Vorth.fbx" id="4_egvif"]
 [ext_resource type="PackedScene" uid="uid://gc6i7wnhyx6v" path="res://PrefabScenes/player_scene.tscn" id="5_72e5s"]
 [ext_resource type="PackedScene" uid="uid://sosyj6ocyqeg" path="res://PrefabScenes/YouGetItemsFromThese/ItemDispenserTest.tscn" id="8_55086"]
 [ext_resource type="Resource" uid="uid://d2gb6r4wkitjr" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_sugar.tres" id="8_y3sp4"]
@@ -29,6 +32,9 @@
 [ext_resource type="Script" uid="uid://54nj0y26lfdy" path="res://Scripts/rocket_visuals_script.gd" id="28_w8d2s"]
 [ext_resource type="Script" uid="uid://c3ibp4lwccna2" path="res://Scripts/shipping_container_script.gd" id="29_egvif"]
 [ext_resource type="PackedScene" uid="uid://cu82pxcvnh6v4" path="res://PrefabScenes/RealMachines/m_conveyor_belt_ingredient.tscn" id="30_hjhdi"]
+[ext_resource type="PackedScene" uid="uid://d2yxlullo5kwe" path="res://FactoryArt/Meshes/SM_AutomatedDispensary_Sugar.fbx" id="33_egvif"]
+[ext_resource type="PackedScene" uid="uid://c11ytmewctmaw" path="res://FactoryArt/Meshes/SM_AutomatedDispensary_Cocoa.fbx" id="34_8auty"]
+[ext_resource type="PackedScene" uid="uid://glxxggbdnqit" path="res://FactoryArt/Meshes/SM_AutomatedDispensary_Milk.fbx" id="35_hmrah"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4k50d"]
 albedo_color = Color(0.24066085, 0.40436083, 0.40920183, 1)
@@ -208,11 +214,26 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cdxcf"]
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_gknsb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8d2s"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.29803923, 0.6627451, 1, 1)
+
 [node name="TestLevel" type="Node3D" unique_id=1890959445]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=939268224]
 
 [node name="UI" parent="CanvasLayer" unique_id=1595550919 instance=ExtResource("1_a6t11")]
+
+[node name="SM_ShippingSign" parent="CanvasLayer" unique_id=1980839490 instance=ExtResource("2_hjhdi")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2.465959, 2.957469, -17.50296)
+
+[node name="SM_ShippingSign_Gron" parent="CanvasLayer" unique_id=2027326063 instance=ExtResource("3_w8d2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16.200977, 2.9421132, 0.5030513)
+
+[node name="SM_ShippingSign_Vorth" parent="CanvasLayer" unique_id=478647641 instance=ExtResource("4_egvif")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5568199, 2.9632597, 18.070227)
 
 [node name="MouseCapture" type="Node" parent="." unique_id=371010619 groups=["MouseCaptureGroup"]]
 script = ExtResource("2_0uq57")
@@ -542,16 +563,16 @@ transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -14, 0, 
 transform = Transform3D(0.5, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, 0.5, -14, 0, 6)
 
 [node name="SM_Factory_Doorway" parent="FactoryEnvironment/Walls" unique_id=1293677745 instance=ExtResource("15_gknsb")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18, 0, -1)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18, 0, -0.5269817)
 
 [node name="SM_Factory_Doorway4" parent="FactoryEnvironment/Walls" unique_id=1805945324 instance=ExtResource("15_gknsb")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, 1)
 
 [node name="SM_Factory_Doorway2" parent="FactoryEnvironment/Walls" unique_id=749378354 instance=ExtResource("15_gknsb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3, 0, 20)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2.6714554, 0, 20)
 
 [node name="SM_Factory_Doorway3" parent="FactoryEnvironment/Walls" unique_id=1860199338 instance=ExtResource("15_gknsb")]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 1, 0, -20)
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 1.4517848, 0, -20)
 
 [node name="Floors" type="Node" parent="FactoryEnvironment" unique_id=2028633129]
 
@@ -1815,8 +1836,8 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(1.7881393e-07, 1.343588e-07, -0.99999994, 1.6295542e-07, 1, 1.3435881e-07, 0.99999994, -1.6295543e-07, 1.7881393e-07, 0, 0, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0, 0)
-bones/2/rotation = Quaternion(-4.7503026e-08, -0.70710665, -4.7503015e-08, 0.7071069)
-bones/2/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-1.0511645e-07, -0.70710665, 1.0110434e-08, 0.7071069)
+bones/2/scale = Vector3(0.99999994, 1, 0.99999994)
 bones/3/name = "Squash_end"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.003948346)
@@ -1927,8 +1948,8 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(1.7881393e-07, 1.343588e-07, -0.99999994, 1.6295542e-07, 1, 1.3435881e-07, 0.99999994, -1.6295543e-07, 1.7881393e-07, 0, 0, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0, 0)
-bones/2/rotation = Quaternion(-4.7503026e-08, -0.70710665, -4.7503015e-08, 0.7071069)
-bones/2/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-1.0511645e-07, -0.70710665, 1.0110434e-08, 0.7071069)
+bones/2/scale = Vector3(0.99999994, 1, 0.99999994)
 bones/3/name = "Squash_end"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.003948346)
@@ -2039,8 +2060,8 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(1.7881393e-07, 1.343588e-07, -0.99999994, 1.6295542e-07, 1, 1.3435881e-07, 0.99999994, -1.6295543e-07, 1.7881393e-07, 0, 0, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0, 0)
-bones/2/rotation = Quaternion(-4.7503026e-08, -0.70710665, -4.7503015e-08, 0.7071069)
-bones/2/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-1.0511645e-07, -0.70710665, 1.0110434e-08, 0.7071069)
+bones/2/scale = Vector3(0.99999994, 1, 0.99999994)
 bones/3/name = "Squash_end"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.003948346)
@@ -2058,7 +2079,8 @@ skeleton = NodePath("..")
 transform = Transform3D(1.0000005, 0, 0, 0, -0.8660258, -0.5000003, 0, 0.5000003, -0.8660258, 0, -0.003773083, 0.009083398)
 
 [node name="sm_Rocket_Lid_L" type="MeshInstance3D" parent="StaticBody3D6/ConveyorTest/part_Rocket/rig_Rocket/Skeleton3D/Node3D" unique_id=1395614120]
-transform = Transform3D(0.9999995, 3.5527137e-15, 3.5527137e-15, -2.1316282e-14, 0.9999995, -1.4901161e-07, -3.5527137e-15, 1.4901161e-07, 0.9999995, 0, 0.0037730793, -0.009083392)
+transform = Transform3D(0.9999995, 7.1054274e-15, 7.1054274e-15, -3.5527137e-14, 0.9999995, -1.7881392e-07, 0, 1.7881395e-07, 0.9999995, -2.1725893e-05, 0.0037944485, -0.009071052)
+material_override = ExtResource("16_40vq7")
 mesh = SubResource("ArrayMesh_c4fqu")
 skin = SubResource("Skin_1wyxt")
 skeleton = NodePath("../..")
@@ -2145,10 +2167,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 14.5)
 item = ExtResource("8_y3sp4")
 
 [node name="StaticBody3D10" parent="." unique_id=221886587 instance=ExtResource("30_hjhdi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 6.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 8.5)
 
 [node name="StaticBody3D11" parent="." unique_id=1708618053 instance=ExtResource("30_hjhdi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 8.5)
+
+[node name="mesh_Convey_Frame" parent="StaticBody3D11/ConveyorTest/part_Convey_2" parent_id_path=PackedInt32Array(1708618053, 1861700586) index="0" unique_id=1375942752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="IngredientSpawner" parent="StaticBody3D11" index="10" unique_id=265525926]
 item = ExtResource("8_y3sp4")
@@ -2190,6 +2215,47 @@ collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D20" unique_id=1139899145]
 shape = SubResource("BoxShape3D_cdxcf")
+
+[node name="CeilingMesh" type="MeshInstance3D" parent="." unique_id=302627138]
+transform = Transform3D(-21.28177, -8.742278e-08, 0, 1.8605115e-06, -1, 0, 0, 0, 23.563404, 0, 2.9252741, 0)
+mesh = SubResource("PlaneMesh_gknsb")
+surface_material_override/0 = SubResource("StandardMaterial3D_w8d2s")
+
+[node name="SM_AutomatedDispensary_Sugar" parent="." unique_id=1718396078 instance=ExtResource("33_egvif")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.496091, 0.09030805, -7.5104036)
+
+[node name="SM_AutomatedDispensary_Sugar2" parent="." unique_id=297443748 instance=ExtResource("33_egvif")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.496091, 0.09030805, -13.496956)
+
+[node name="SM_AutomatedDispensary_Cocoa" parent="." unique_id=1989840805 instance=ExtResource("34_8auty")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.4806185, 0.09030793, -9.50239)
+
+[node name="SM_AutomatedDispensary_Cocoa2" parent="." unique_id=302985000 instance=ExtResource("34_8auty")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.4806185, 0.09030793, -15.498257)
+
+[node name="SM_AutomatedDispensary_Milk" parent="." unique_id=1914917917 instance=ExtResource("35_hmrah")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.483691, 0.09030793, -11.497669)
+
+[node name="SM_AutomatedDispensary_Milk2" parent="." unique_id=2016316608 instance=ExtResource("35_hmrah")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.483691, 0.09030793, -17.502361)
+
+[node name="SM_AutomatedDispensary_Sugar3" parent="." unique_id=269417439 instance=ExtResource("33_egvif")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.496091, 0.09030805, 14.501926)
+
+[node name="SM_AutomatedDispensary_Sugar4" parent="." unique_id=1549008968 instance=ExtResource("33_egvif")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.496091, 0.09030805, 8.495929)
+
+[node name="SM_AutomatedDispensary_Cocoa3" parent="." unique_id=646107855 instance=ExtResource("34_8auty")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.4806185, 0.09030793, 12.490495)
+
+[node name="SM_AutomatedDispensary_Cocoa4" parent="." unique_id=1923069936 instance=ExtResource("34_8auty")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.4806185, 0.09030793, 6.494628)
+
+[node name="SM_AutomatedDispensary_Milk3" parent="." unique_id=1966481501 instance=ExtResource("35_hmrah")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.483691, 0.09030793, 16.495216)
+
+[node name="SM_AutomatedDispensary_Milk4" parent="." unique_id=182050857 instance=ExtResource("35_hmrah")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.483691, 0.09030793, 10.490523)
 
 [editable path="PlayerScene"]
 [editable path="StaticBody3D2"]

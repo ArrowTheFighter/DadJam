@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://cv7cx2cac65ip" path="res://Materials/conveyor_belt_shader.gdshader" id="5_7bf5k"]
 [ext_resource type="Script" uid="uid://dv3152veuf0rf" path="res://Scripts/conveyor_visuals_script.gd" id="6_mmcag"]
 [ext_resource type="Texture2D" uid="uid://ddn20ysaqi5wv" path="res://Matts Files/T_ConveyorBelt.png" id="6_qqxs8"]
+[ext_resource type="PackedScene" uid="uid://qk3123vl0qix" path="res://FactoryArt/Meshes/SM_Arrow.fbx" id="8_lo7br"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
 size = Vector3(1, 0.7139282, 1)
@@ -263,6 +264,7 @@ display_points = [NodePath("DisplayPosition")]
 input_dir = 14
 input_duration = 0.5
 output_duration = 0.5
+placement_arrow_path = NodePath("PlacementArrow")
 
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.893, 0)
@@ -326,3 +328,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.893, 0)
 
 [node name="EndPos" type="Marker3D" parent="." unique_id=413078187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.893, 0)
+
+[node name="PlacementArrow" parent="." unique_id=654216957 instance=ExtResource("8_lo7br")]
+transform = Transform3D(-0.4, 0, 6.039832e-08, 0, 1, 0, -6.039832e-08, 0, -0.4, 0.67889506, 0.8263923, 0)

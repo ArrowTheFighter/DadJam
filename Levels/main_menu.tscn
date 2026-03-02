@@ -57,22 +57,35 @@ theme_override_constants/separation = 99
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=366294137]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9256367, 0.5305531, 0.72402495, 1)
+theme_override_fonts/font = ExtResource("2_3es34")
+theme_override_font_sizes/font_size = 60
 text = "XO Inc."
 label_settings = SubResource("LabelSettings_8md67")
 horizontal_alignment = 1
 
 [node name="StartGameButton" type="Button" parent="VBoxContainer" unique_id=1673748347]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_3es34")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 60
 text = "Start Game"
 
-[node name="QuitGameButton" type="Button" parent="VBoxContainer" unique_id=291356866]
-custom_minimum_size = Vector2(0, 200)
+[node name="GameDesc" type="Label" parent="VBoxContainer" unique_id=1008618462]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_3es34")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 28
+text = "You’ve been assigned your own chocolate factory at XO Inc.
+
+Build assembly lines and ship boxes to alien planets."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitGameButton" type="Button" parent="VBoxContainer" unique_id=291356866]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3es34")
+theme_override_font_sizes/font_size = 60
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
