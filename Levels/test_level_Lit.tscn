@@ -2171,10 +2171,7 @@ item = ExtResource("8_y3sp4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 8.5)
 
 [node name="StaticBody3D11" parent="." unique_id=1708618053 instance=ExtResource("30_hjhdi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 8.5)
-
-[node name="mesh_Convey_Frame" parent="StaticBody3D11/ConveyorTest/part_Convey_2" parent_id_path=PackedInt32Array(1708618053, 1861700586) index="0" unique_id=1375942752]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 6.5)
 
 [node name="IngredientSpawner" parent="StaticBody3D11" index="10" unique_id=265525926]
 item = ExtResource("8_y3sp4")

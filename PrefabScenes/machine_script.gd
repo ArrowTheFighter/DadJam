@@ -34,7 +34,7 @@ var machine_finished := false
 @export var set_spot_filled_on_startup := false
 @export var placement_arrow_path: NodePath
 @onready var placement_arrow: Node3D = get_node(placement_arrow_path) if placement_arrow_path != NodePath("") else null
-
+var has_output := false
 signal input_started(input_number)
 signal process_started
 signal output_started
@@ -103,6 +103,7 @@ func grid_updated():
     pass
 
 func can_add_to_machine() -> bool:
+    if has_output: return false
     return holding_items.size() < max_items
 
 func add_item_to_machine(pickup : Pickup):
@@ -158,9 +159,11 @@ func push_item_to_output():
     if !output_machine:
         return
     if !output_machine.can_add_to_machine():
+        print("couldn't push to machine")
         return
     if !output_machine.get_input_grid_positions().has(machine_grid_position):
         return
+        
     #var instanced_item
     #if(recipe_info != null and recipe_info.recipe_output != null):
         #var output_item_scene = recipe_info.recipe_output.get_item_scene()
@@ -176,6 +179,7 @@ func push_item_to_output():
         return
     output_machine.add_item_to_machine(holding_items[0])
     release_items()
+    has_output = false
     output_finished.emit()
     pass
 
@@ -235,6 +239,7 @@ func convert_items_to_recipe_output():
     
     for item in ingredients:
         item.queue_free()
+    has_output = true
     GridManager.grid_was_updated()
 
 

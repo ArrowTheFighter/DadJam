@@ -11,6 +11,7 @@ extends Control
 ]
 
 func show_report(money_earned, disliked_qualitites,liked_qualities,score,title_text):
+    get_tree().get_first_node_in_group("MachineList").hide_menu()
     get_tree().paused = true
     visible = true
     get_tree().get_first_node_in_group("MouseCaptureGroup").release_mouse()

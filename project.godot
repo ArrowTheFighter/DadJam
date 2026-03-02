@@ -37,6 +37,7 @@ Player=""
 ReportCard=""
 PauseMenu=""
 DropPrompt=""
+MachineList=""
 
 [input]
 

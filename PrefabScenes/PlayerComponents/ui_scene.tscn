@@ -635,7 +635,7 @@ theme_override_fonts/font = ExtResource("6_2knc1")
 theme_override_font_sizes/font_size = 67
 text = "Close"
 
-[node name="MachineList" type="Control" parent="." unique_id=1185356713]
+[node name="MachineList" type="Control" parent="." unique_id=1185356713 groups=["MachineList"]]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -692,6 +692,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mri4q")
 
 [node name="PauseMenu" type="Control" parent="." unique_id=1962941967 groups=["PauseMenu"]]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
