@@ -1,5 +1,5 @@
 extends Node
-@onready var animation_player: AnimationPlayer = $"../ConveyorTest/part_Molder/AnimationPlayer"
+@export var animation_player: AnimationPlayer 
 
 @export var machine : Machine
 @export var start_pos : Node3D

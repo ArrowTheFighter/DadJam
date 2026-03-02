@@ -4,7 +4,7 @@ extends Node
 @export var start_pos : Node3D
 @export var middle_pos : Node3D
 @export var end_pos : Node3D
-@onready var animation_player: AnimationPlayer = $"../ConveyorTest/part_Mixer_2/AnimationPlayer"
+@export var animation_player: AnimationPlayer 
 
 func _ready() -> void:
     machine.input_started.connect(input_started)
@@ -22,11 +22,13 @@ func input_started(item_number):
     pass
     
 func process_started():
-    animation_player.play("anim_Mixer_Middle")
+    if animation_player != null:
+        animation_player.play("anim_Mixer_Middle")
     pass
     
 func process_ended(ingredients):
-    animation_player.pause()
+    if animation_player != null:
+        animation_player.pause()
     pass
     
 func output_started():

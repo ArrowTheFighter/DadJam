@@ -41,6 +41,10 @@ func spawn_machine_list(inventroy : PlayerInventory):
         
 func machine_tab_pressed(number):
     player_inventory.select_item(number)
+    var mouse_capture = get_tree().get_first_node_in_group("MouseCaptureGroup")
+    mouse_capture.capture_mouse()
+    visible = false
+    inventory_is_open = false
     pass
     
 func find_descendant_of_type(node : Node,script: Script) -> Node:

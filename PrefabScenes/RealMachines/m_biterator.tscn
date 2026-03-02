@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://cirqxuj16vp43"]
+
+[ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_5prmv"]
+[ext_resource type="Resource" uid="uid://dvxojwc8u16p8" path="res://PrefabScenes/PickupScenes/RealRecipes/r_biterator.tres" id="2_5prmv"]
+[ext_resource type="Texture2D" uid="uid://bplkcxgxhxyd4" path="res://Icons/TN_Generic_2.png" id="2_5wpc1"]
+[ext_resource type="PackedScene" uid="uid://d4me23ctjtx5e" path="res://Matts Files/part_Mixer_2.fbx" id="3_q44gu"]
+[ext_resource type="PackedScene" uid="uid://wjbix86w30br" path="res://FactoryArt/Meshes/SM_Infuser.fbx" id="4_5wpc1"]
+[ext_resource type="PackedScene" uid="uid://c4keoutygnco4" path="res://FactoryArt/Meshes/SM_Cooler.fbx" id="5_s5qac"]
+[ext_resource type="PackedScene" uid="uid://ylb70ie80i8u" path="res://FactoryArt/Meshes/SM_Machine_Generic_2Input.fbx" id="6_lu182"]
+[ext_resource type="Script" uid="uid://dxvfyg04xlpvh" path="res://Scripts/mixer_visuals_script.gd" id="6_ph8hi"]
+[ext_resource type="PackedScene" uid="uid://qk3123vl0qix" path="res://FactoryArt/Meshes/SM_Arrow.fbx" id="8_q44gu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
+size = Vector3(1, 0.7139282, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1790180508 node_paths=PackedStringArray("display_points") groups=["Machine"]]
+collision_layer = 17
+script = ExtResource("1_5prmv")
+machine_name = "Bitterator"
+machine_cost = 60
+machine_description = "Injects pure bitter into a round chocolate removing the Sweet quality"
+machine_icon = ExtResource("2_5wpc1")
+recipe_info = ExtResource("2_5prmv")
+display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2")]
+input_dir = 2
+input_duration = 0.2
+process_duration = 2.0
+output_duration = 0.2
+placement_arrow_path = NodePath("PlacementArrow")
+
+[node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
+
+[node name="DisplayPosition2" type="Marker3D" parent="." unique_id=416576520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
+
+[node name="DisplayPosition3" type="Marker3D" parent="." unique_id=626833161]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=862597027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35776687, 0)
+shape = SubResource("BoxShape3D_mvuy5")
+
+[node name="InputTimer" type="Timer" parent="." unique_id=1121644859]
+one_shot = true
+
+[node name="ProcessTimer" type="Timer" parent="." unique_id=1879764061]
+one_shot = true
+
+[node name="OutputTimer" type="Timer" parent="." unique_id=1925323064]
+one_shot = true
+
+[node name="ConveyorTest" type="Node3D" parent="." unique_id=291985971]
+
+[node name="part_Mixer_2" parent="ConveyorTest" unique_id=1776204722 instance=ExtResource("3_q44gu")]
+visible = false
+
+[node name="Skeleton3D" parent="ConveyorTest/part_Mixer_2/Armature" parent_id_path=PackedInt32Array(1776204722, 371087565) index="0" unique_id=335222135]
+bones/1/position = Vector3(0, 0.0070188497, 0.009309745)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/2/position = Vector3(0, -0.0070188497, 0.0026377647)
+bones/2/rotation = Quaternion(1, 7.54979e-08, 0, 0)
+bones/3/position = Vector3(-0.0026597972, -1.9699215e-05, 0.0005071846)
+bones/3/rotation = Quaternion(0, 0, 4.371139e-08, 1)
+bones/4/position = Vector3(0.001218536, -5.9804774e-12, 0.0008967789)
+bones/4/rotation = Quaternion(0, 0, 0, 1)
+bones/6/position = Vector3(-0.0011378786, -1.751564e-10, 0.0008967804)
+bones/6/rotation = Quaternion(0, 0, 0, 1)
+
+[node name="SM_Infuser" parent="ConveyorTest" unique_id=1100822582 instance=ExtResource("4_5wpc1")]
+visible = false
+
+[node name="SM_Cooler" parent="ConveyorTest" unique_id=1065610189 instance=ExtResource("5_s5qac")]
+visible = false
+
+[node name="SM_Machine_Generic_2Input" parent="ConveyorTest" unique_id=1981211296 instance=ExtResource("6_lu182")]
+
+[node name="MixerVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "start_pos", "middle_pos", "end_pos")]
+script = ExtResource("6_ph8hi")
+machine = NodePath("..")
+start_pos = NodePath("../StartPos")
+middle_pos = NodePath("../MiddlePos")
+end_pos = NodePath("../EndPos")
+
+[node name="StartPos" type="Marker3D" parent="." unique_id=1722671857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.893, 0)
+
+[node name="MiddlePos" type="Marker3D" parent="." unique_id=2036138653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002, 0.893, 0)
+
+[node name="EndPos" type="Marker3D" parent="." unique_id=413078187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.893, 0)
+
+[node name="PlacementArrow" parent="." unique_id=504390285 instance=ExtResource("8_q44gu")]
+transform = Transform3D(-0.4, 0, 6.039832e-08, 0, 1, 0, -6.039832e-08, 0, -0.4, 0.98731333, 0.8263923, 0)
+
+[node name="PlacementArrow2" parent="PlacementArrow" unique_id=1525353559 instance=ExtResource("8_q44gu")]
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 4.954181, 0, -7.4806053e-07)
+
+[editable path="ConveyorTest/part_Mixer_2"]

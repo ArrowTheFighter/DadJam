@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cxgvw7s8gwcmg" path="res://PrefabScenes/machine_script.gd" id="1_58e8t"]
 [ext_resource type="Resource" uid="uid://bfuagt2tbxujv" path="res://PrefabScenes/PickupScenes/RealRecipes/r_molder.tres" id="2_58e8t"]
+[ext_resource type="Texture2D" uid="uid://cias2ivhf68ni" path="res://Icons/TN_Molder.png" id="2_xft7p"]
 [ext_resource type="Texture2D" uid="uid://b4gykpijcn3ai" path="res://Matts Files/T_ATB_Palette_Base.png" id="3_58e8t"]
 [ext_resource type="Script" uid="uid://b3k4xav21ibb" path="res://Scripts/molder_visuals_script.gd" id="4_xft7p"]
+[ext_resource type="PackedScene" uid="uid://qk3123vl0qix" path="res://FactoryArt/Meshes/SM_Arrow.fbx" id="6_h1tbo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvuy5"]
 size = Vector3(1, 0.7139282, 1)
@@ -183,12 +185,14 @@ script = ExtResource("1_58e8t")
 machine_name = "Molder"
 machine_cost = 30
 machine_description = "Moldes a bowl of chocolate into a chocolate ready to be boxed. Also applies the Roasted quality"
+machine_icon = ExtResource("2_xft7p")
 recipe_info = ExtResource("2_58e8t")
 display_points = [NodePath("DisplayPosition"), NodePath("DisplayPosition2")]
 input_dir = 2
 input_duration = 0.2
 process_duration = 2.0
 output_duration = 0.2
+placement_arrow_path = NodePath("PlacementArrow")
 
 [node name="DisplayPosition" type="Marker3D" parent="." unique_id=2015351178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75263953, 0)
@@ -267,8 +271,9 @@ skeleton = NodePath("..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ConveyorTest/part_Molder" unique_id=189282555]
 libraries/ = SubResource("AnimationLibrary_2obhk")
 
-[node name="MolderVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("machine", "start_pos", "middle_pos", "end_pos")]
+[node name="MolderVisuals" type="Node" parent="." unique_id=1987811791 node_paths=PackedStringArray("animation_player", "machine", "start_pos", "middle_pos", "end_pos")]
 script = ExtResource("4_xft7p")
+animation_player = NodePath("../ConveyorTest/part_Molder/AnimationPlayer")
 machine = NodePath("..")
 start_pos = NodePath("../StartPos")
 middle_pos = NodePath("../MiddlePos")
@@ -282,5 +287,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002, 0.8385416, 0)
 
 [node name="EndPos" type="Marker3D" parent="." unique_id=413078187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.893, 0)
+
+[node name="PlacementArrow" parent="." unique_id=504390285 instance=ExtResource("6_h1tbo")]
+transform = Transform3D(-0.4, 0, 6.039832e-08, 0, 1, 0, -6.039832e-08, 0, -0.4, 0.67889506, 0.8263923, 0)
+
+[node name="PlacementArrow2" parent="PlacementArrow" unique_id=683038882 instance=ExtResource("6_h1tbo")]
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 3.4333444, 0, -5.184206e-07)
 
 [connection signal="animation_finished" from="ConveyorTest/part_Molder/AnimationPlayer" to="MolderVisuals" method="_on_animation_player_animation_finished"]

@@ -14,6 +14,7 @@ var holding_item_local_pos : Vector3
 var outlined_object
 var _object_rotation := 0
 var mouse_capture
+var drop_prompt
 var object_rotation : int :
     get:
         return _object_rotation
@@ -28,6 +29,7 @@ signal item_dropped
 func _ready() -> void:
     player_inventory.selected_item_changed.connect(selected_item_changed)
     mouse_capture = get_tree().get_first_node_in_group("MouseCaptureGroup")
+    drop_prompt = get_tree().get_first_node_in_group("DropPrompt")
     pass # Replace with function body.
 func _input(event: InputEvent) -> void:
     
@@ -97,11 +99,17 @@ func _input(event: InputEvent) -> void:
                 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+    
+    drop_prompt.visible = false
+    
     if outlined_object != null:
         update_node_outline(outlined_object, 1)
         outlined_object = null
     var ItemDispenser = get_item_dispenser()
     if ItemDispenser != null and holding_item == null:
+        
+        drop_prompt.visible = true
+        drop_prompt.set_text("Pickup")
         
         update_node_outline(ItemDispenser,1.1)
         outlined_object = ItemDispenser
@@ -126,6 +134,10 @@ func _process(delta: float) -> void:
     if best_machine_with_pickup != null and holding_item == null:
         update_node_outline(best_machine_with_pickup,1.1)
         outlined_object = best_machine_with_pickup
+        
+        drop_prompt.visible = true
+        drop_prompt.set_text("Pickup")
+        
         if best_machine_with_pickup.can_take_item():
             if(MeshPreview != null):
                 MeshPreview.queue_free()
@@ -141,6 +153,7 @@ func _process(delta: float) -> void:
                 item_picked_up.emit(holding_item)
                 update_node_outline(best_machine_with_pickup,1.0)
                 update_node_outline(holding_item,1.0)
+                
         if Input.is_action_just_pressed("empty_machine"): 
               best_machine_with_pickup.empty_machine()
         return
@@ -149,6 +162,10 @@ func _process(delta: float) -> void:
     if best_pickup != null and holding_item == null:
         update_node_outline(best_pickup,1.1)
         outlined_object = best_pickup
+        
+        drop_prompt.visible = true
+        drop_prompt.set_text("Pickup")
+            
         if(MeshPreview != null):
             MeshPreview.queue_free()
         if Input.is_action_just_pressed("interact"):
@@ -158,25 +175,35 @@ func _process(delta: float) -> void:
             holding_item.set_collision_layer_value(5,false)
             (holding_item as RigidBody3D).disable_mode = 4
             item_picked_up.emit(holding_item)
+            
         return
     
     
     if holding_item != null:
+        drop_prompt.visible = true
+        drop_prompt.set_text("Drop")
         holding_item.global_position = camera_node.to_global(holding_item_local_pos)
          #drop the item
-    
+    #else:
+        #drop_prompt.visible = false
     #Check if the raycast hits anything
     has_selected_pos = is_colliding()
     if(is_colliding()):
         var hitObject : Node3D = get_collider()
         
         if(hitObject != null and hitObject.is_in_group("Machine") and holding_item != null):
+            
+            drop_prompt.visible = true
+            drop_prompt.set_text("Place")
+            
             if Input.is_action_just_pressed("interact"):
                 if (hitObject as Machine).can_add_to_machine():
                     print(hitObject.name)
                     hitObject.add_item_to_machine(holding_item)
                     remove_holding_item()
                     item_dropped.emit()
+                    
+                    drop_prompt.visible = false
                     return
         
         if(holding_item == null):

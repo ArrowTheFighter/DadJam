@@ -2,12 +2,11 @@
 
 [ext_resource type="Resource" uid="uid://bhi8gs4fv6ani" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_round_chocolate.tres" id="1_0o8ey"]
 [ext_resource type="Script" uid="uid://ckc6grqxpee7h" path="res://Scripts/item_info.gd" id="2_6d3v4"]
-[ext_resource type="Resource" uid="uid://ccjbti6csfr6m" path="res://PrefabScenes/PickupScenes/ItemInfo/RealItems/i_milk.tres" id="3_810r7"]
 [ext_resource type="Script" uid="uid://b014sm5jahalk" path="res://Scripts/recipe_info.gd" id="5_eljdk"]
 
 [resource]
 script = ExtResource("5_eljdk")
 recipe_output = ExtResource("1_0o8ey")
 added_quality_1 = 7
-recipe_requirements = Array[ExtResource("2_6d3v4")]([ExtResource("1_0o8ey"), ExtResource("3_810r7")])
+recipe_requirements = Array[ExtResource("2_6d3v4")]([ExtResource("1_0o8ey")])
 metadata/_custom_type_script = "uid://b014sm5jahalk"
