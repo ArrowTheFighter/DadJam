@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://bmhuwulgfmvhy" path="res://Scripts/machine_list_script.gd" id="17_kvc6a"]
 [ext_resource type="Script" uid="uid://0w22qo5il4a6" path="res://Scripts/planet_rating_script.gd" id="18_kvc6a"]
 [ext_resource type="Script" uid="uid://bf6wv3usesvo8" path="res://Scripts/quit_button.gd" id="20_mri4q"]
+[ext_resource type="Script" uid="uid://cwtakshr0ipye" path="res://PrefabScenes/PlayerComponents/volume_sensativity_slider.gd" id="20_tasvc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odoxw"]
 texture = ExtResource("1_odoxw")
@@ -691,7 +692,6 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mri4q")
 
 [node name="PauseMenu" type="Control" parent="." unique_id=1962941967 groups=["PauseMenu"]]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -725,6 +725,20 @@ text = "Mouse Sensativity"
 label_settings = SubResource("LabelSettings_fw078")
 horizontal_alignment = 1
 
+[node name="Label2" type="Label" parent="PauseMenu" unique_id=1035872393]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -283.5
+offset_top = 210.0
+offset_right = 283.5
+offset_bottom = 279.0
+grow_horizontal = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_fw078")
+horizontal_alignment = 1
+
 [node name="HSlider" type="HSlider" parent="PauseMenu" unique_id=1006605261]
 layout_mode = 1
 anchors_preset = 5
@@ -739,6 +753,21 @@ max_value = 1.0
 step = 0.01
 value = 0.5
 script = ExtResource("16_uf73k")
+
+[node name="HSlider2" type="HSlider" parent="PauseMenu" unique_id=1916748874]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -235.0
+offset_top = 279.0
+offset_right = 235.0
+offset_bottom = 336.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.01
+value = 0.2
+script = ExtResource("20_tasvc")
 
 [node name="QuitButton" type="Button" parent="PauseMenu" unique_id=910762530]
 layout_mode = 1
@@ -760,4 +789,5 @@ script = ExtResource("20_mri4q")
 
 [connection signal="pressed" from="ReportCard/CloseButton" to="ReportCard" method="hide_report"]
 [connection signal="value_changed" from="PauseMenu/HSlider" to="PauseMenu/HSlider" method="value_changed"]
+[connection signal="value_changed" from="PauseMenu/HSlider2" to="PauseMenu/HSlider2" method="value_changed"]
 [connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu/QuitButton" method="_on_pressed"]

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://c71jwvsn6oh15"]
 
 [ext_resource type="PackedScene" uid="uid://fskqjv5cxj8w" path="res://PrefabScenes/PlayerComponents/ui_scene.tscn" id="1_a6t11"]
+[ext_resource type="AudioStream" uid="uid://c21acjyijfhh6" path="res://Audio/FactoryBeats.mp3" id="1_hmrah"]
 [ext_resource type="Script" uid="uid://pw3dh0fu07rj" path="res://Scripts/mouse_capture.gd" id="2_0uq57"]
 [ext_resource type="PackedScene" uid="uid://c8rvlkingotxo" path="res://FactoryArt/Meshes/SM_ShippingSign.fbx" id="2_hjhdi"]
 [ext_resource type="Shader" uid="uid://ba367m6bviqqd" path="res://ShaderScripts/grid_shader.gdshader" id="3_0y878"]
@@ -221,6 +222,10 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(0.29803923, 0.6627451, 1, 1)
 
 [node name="TestLevel" type="Node3D" unique_id=1890959445]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=928764995]
+stream = ExtResource("1_hmrah")
+autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=939268224]
 

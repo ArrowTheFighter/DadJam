@@ -60,7 +60,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.9256367, 0.5305531, 0.72402495, 1)
 theme_override_fonts/font = ExtResource("2_3es34")
 theme_override_font_sizes/font_size = 60
-text = "XO Inc."
+text = "XOXO Inc."
 label_settings = SubResource("LabelSettings_8md67")
 horizontal_alignment = 1
 
